@@ -2,13 +2,21 @@
 
 > 何时读我：anchors 阶段开工前；storyboard 有镜头路由到 `image-motion` 时。
 
-## 接入位（首次使用前与用户确认，确认后回填本节）
+## 接入（已定并冒烟，2026-07-14）
 
+- 网关：**与 Seedance 同一把 key、同一个 neodrop 网关**——`$ARK_VIDEO_API_BASE_URL` + `$ARK_VIDEO_API_KEY`（仓库根 `.env`）。
+  ⚠️ 不要用 `.env` 里的 `OPENAI_*` 那组（灵鲸网关，其分组无 gpt-image-2 渠道，503 `model_not_found`）；
+- 文生图：`POST {base}/v1/images/generations`（JSON）；图生图/参考图编辑：`POST {base}/v1/images/edits`（multipart，`image[]` 文件最多 16 张，其余字段同）：
+
+```json
+{ "model": "gpt-image-2", "prompt": "...", "quality": "low|medium|high",
+  "output_format": "png|jpeg", "size": "1024x1024", "n": 1 }
 ```
-GPT-Image-2 接入:  [待确认] —— 是否走 new-api 网关未定(蓝图开放点④)
-调用方式:          [待确认]
-单图成本:          [待确认] —— 写入 ledger.costs
-```
+
+- `output_format` **禁 webp**（Azure 系部署 400 invalid_value）；`size` 是 `宽x高`（16 的倍数），省略=auto；
+- 响应主形态 `data[0].b64_json`，部分渠道回 `data[0].url`——两种都要处理；`usage` 可能为 null；
+- 429/5xx 指数退避重试 ≤3 次；响应头 `x-oneapi-request-id` 留痕进 `ledger.costs`；
+- **实测（样本 `projects/_smoke/gpt-image-smoke.png`）**：`quality: low` 即可产出合格版式帧，中文文字渲染完整无碎裂——版式类锚点用 low 起步，角色/产品锚点再上 medium/high。
 
 ## 一、锚点生产（先锁"长什么样"，再谈"怎么动"）
 
