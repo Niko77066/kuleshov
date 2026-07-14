@@ -47,9 +47,27 @@ seed-audio-1.0 是生成式音频模型：能在一条音频里混环境音、BG
 - 必须分节时（长片/单节重做），用 `references` 锚定：`speaker`（豆包 2.0 音色 ID）或 `audio_url`/`audio_data`（≤30s 参考音频，可用本栏目首期成品旁白截段——人设声音资产化）；三者互斥只填一个；
 - 单节重做后**必须回听接缝两侧**确认音色无跳变。
 
-### 时间戳
+### 时间戳（2026-07-14 冒烟实测核实）
 
-`enable_subtitle: true` → 响应带 `subtitle.sentences`（句级时间戳）——audio_timeline 的骨架直接从响应拿（结构首次成功调用后核实并回填本节）。逐词精度与回转写校验仍走 WhisperX。
+`enable_subtitle: true` → 响应带**逐字级**时间戳，单位毫秒：
+
+```json
+"subtitle": { "sentences": [ {
+  "start_time": 193, "end_time": 2072, "text": "库勒肖夫链路冒烟测试。",
+  "words": [ { "start_time": 193, "end_time": 340, "text": "库" }, ... ]
+} ] }
+```
+
+- **audio_timeline 直接从响应构建**：sentences → 分节区间，words → 逐字轴；毫秒转秒；
+- 标点也作为 word 条目返回（时长为 0 或极短），构建时轴时过滤；
+- **WhisperX 不再承担对齐**，只保留一个用途：回转写校验（G1 门的 ≥95% 是拿**独立转写**对比剧本——TTS 自带字幕反映的是"想读什么"，不是"实际读出了什么"，不能作为自己的证据）。
+
+### 实测记录（冒烟 2026-07-14）
+
+- 响应同时带 `url` 和 `audio`(Base64)——**直接解码 Base64**，省一次下载且不受 2h 过期约束；
+- ffprobe 核实：mp3 / 48kHz / 立体声 / 128kbps，时长与 `duration` 字段一致（4.8s）；
+- 开通服务后有 **~20s 授权传播延迟**（期间报 `45000030 not granted`，重试即可）；
+- 样本：`projects/_smoke/tts-smoke.mp3`。
 
 ## 字数预算表（script 阶段硬校验）
 
