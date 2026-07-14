@@ -1,3 +1,6 @@
+# 密钥永不入库
+.env
+
 # 重媒体产物不进 git;留痕(film.json/md/prompt)与锚点图必须进
 projects/**/*.mp4
 projects/**/*.mov

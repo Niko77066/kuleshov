@@ -6,16 +6,50 @@
 
 文字估时是 OpenMontage 时长反馈环（TTS 超时 → 打回重写）的病根。顺序倒过来：**旁白先定稿，视觉对齐真实音频**。`audio/timeline.json` 定稿后就是全片的时钟，任何视觉时长争议以它为准。
 
-## 接入位（首次运行时与用户确认，确认后把答案写进本节）
+## 接入：火山引擎 seed-audio-1.0（已定，2026-07-14）
 
-```
-TTS provider:        [待定] —— 候选:new-api 网关挂 TTS(蓝图开放点④,未定)/ 其他 API
-调用方式:            [待定] —— 命令或 curl 模板写在这里
-声音档:              [待定] —— 每个栏目/人设固定一个声音档,跨片一致
+- 端点：`POST https://openspeech.bytedance.com/api/v3/tts/create`（**同步**，非流式）
+- 鉴权：单 header `X-Api-Key: $VOLC_TTS_API_KEY`，key 在仓库根 `.env`（gitignored，禁入库）；控制台管理页 console.volcengine.com/speech/new/setting/apikeys
+- 硬限制：单次输出 ≤ **120s**；`text_prompt` ≤ **3000 字符**；按 `original_duration` 秒计费
+- 返回：`url`（**有效期 2 小时，拿到立即下载**）或 `audio`（Base64）；`duration` / `original_duration`
+- ⚠️ 曾踩坑：curl 传 JSON 文件要用 `--data-binary @file`，`--data-raw` 不解析 `@`
+
+请求模板（每次调用的完整 payload 与响应都留痕到 `film.json.ledger`）：
+
+```bash
+source .env && curl -sS -X POST 'https://openspeech.bytedance.com/api/v3/tts/create' \
+  --max-time 300 -H 'Content-Type: application/json' -H "X-Api-Key: $VOLC_TTS_API_KEY" \
+  --data-binary @payload.json
 ```
 
-- 调试链路可用 macOS `say -o` 占位，但 **`say` 的产物禁止出厂**，用了必须记 DEBT。
-- 分节生成（每节一个 wav 再拼接），单节重做才便宜。
+```json
+{
+  "model": "seed-audio-1.0",
+  "text_prompt": "<声音档描述>朗读：“<旁白文本>”",
+  "audio_config": { "format": "mp3", "sample_rate": 48000, "pitch_rate": 0,
+                    "speech_rate": 0, "loudness_rate": 0, "enable_subtitle": true },
+  "watermark": {}
+}
+```
+
+### text_prompt 纪律（Kuleshov 专用约束，比 API 能力更严）
+
+seed-audio-1.0 是生成式音频模型：能在一条音频里混环境音、BGM、多角色。**我们禁用这些能力于旁白轨**——旁白轨必须干净（混音契约：音乐/音效独立轨、独立闪避），所以：
+
+- 旁白 `text_prompt` 只写两样：**声音档描述 +「朗读：」+ 文本**；禁止写音效/音乐/多角色标注；
+- 声音档描述模板固定在风格包里（如 daily-brief：`一位专业的中文新闻播报员（中年女性，普通话，冷静克制，语速中快）`），跨期逐字复用；
+- BGM / 音效**可以**用同一接口单独生成（独立调用、独立轨、独立留痕）——这是白捡的能力，音乐选型时优先考虑。
+
+### 声音一致性（跨节、跨片）
+
+纯文本描述模式下**分节生成音色会漂移**。规则：
+- 60s 片 ≤ 120s 上限 → **整片旁白一次生成**（默认）；
+- 必须分节时（长片/单节重做），用 `references` 锚定：`speaker`（豆包 2.0 音色 ID）或 `audio_url`/`audio_data`（≤30s 参考音频，可用本栏目首期成品旁白截段——人设声音资产化）；三者互斥只填一个；
+- 单节重做后**必须回听接缝两侧**确认音色无跳变。
+
+### 时间戳
+
+`enable_subtitle: true` → 响应带 `subtitle.sentences`（句级时间戳）——audio_timeline 的骨架直接从响应拿（结构首次成功调用后核实并回填本节）。逐词精度与回转写校验仍走 WhisperX。
 
 ## 字数预算表（script 阶段硬校验）
 
