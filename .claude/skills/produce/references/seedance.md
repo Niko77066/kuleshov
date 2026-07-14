@@ -26,10 +26,16 @@ POST {base}/v1/videos
   "duration": 4 }                         // 整数 4–15;省略=auto。范围外的值在排队后才被拒且已计费,提交前必须本地校验
 ```
 
-- submit 返回 `{ id/task_id, status: "queued" }`；轮询 `GET {base}/v1/videos/{id}`（10–20s 间隔）至 `completed`/`failed`；
-- 成片 URL 在 **`metadata.url`**，时长在 `metadata.duration`（缺则 ffprobe 兜底）；拿到 URL 立即下载；
-- 生成耗时典型 **5–30 分钟**，M0 心态按"提交后去干别的"安排；
+- submit 返回 `{ id/task_id, status: "queued" }`；轮询 `GET {base}/v1/videos/{id}`（10–20s 间隔），中间态实测为 `in_progress`（判定逻辑写"非 completed/failed 即继续等"，别枚举中间态）；
+- 成片 URL 在 **`metadata.url`**（火山 TOS 带签名 URL，**拿到立即下载**）；`metadata.duration` 实测可能缺失，ffprobe 兜底是必须动作；
+- 生成耗时：4s/480p 文生视频实测 **~2.5 分钟**；带参考、720p、15s 镜头组按 5–30 分钟预期；
 - 纯文生视频（不带 content）也受理（2026-07-14 实测）。
+
+### 实测记录（冒烟 2026-07-14，task_1L7Zk…）
+
+- 请求 4s → **实际产出 5.04s**：实际时长 ≠ 请求时长是常态，**compose 时长调和规则（尾裁→±5%变速→fail）不是防御性设计，是必经路径**；每条 clip 落地必 ffprobe 实测时长回填 `gen.duration_actual_s`；
+- "480p" 实际输出 864×496 / 24fps / h264——compose 归一（1080p/30fps）时超分与帧率转换都会发生，质感缝合按此预设；
+- 样本：`projects/_smoke/seedance-smoke.mp4`。
 
 ## 硬约束
 
