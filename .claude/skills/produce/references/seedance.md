@@ -37,11 +37,17 @@ POST {base}/v1/videos
 - "480p" 实际输出 864×496 / 24fps / h264——compose 归一（1080p/30fps）时超分与帧率转换都会发生，质感缝合按此预设；
 - 样本：`projects/_smoke/seedance-smoke.mp4`。
 
+### 锚点参考实测（2026-07-14，端到端：GPT-Image-2 → oss-upload → @Image1 → i2v）
+
+- `role: "reference_image"` 语义是**一致性参考，不是构图锁定**：主体/场景/光线忠实保留，但模型会自行重新取景（首帧 ≠ 锚点图逐像素）。要构图锁定用 `first_frame` 角色（待实测）；
+- **不显式传 `metadata.ratio` 时，输出比例由上游自判**（3:2 锚点 → 产出 752×560 ≈ 4:3）——storyboard 定了宽高比就必须显式下发，不许省略；
+- 带参考 4s/480p 实测约 3 分钟；样本：`projects/_smoke/seedance-anchor-i2v.mp4`（锚点：`anchor-scene.png`）。
+
 ## 硬约束
 
 - 单次生成 **4–15s**（整数秒）；
 - 参考位：**≤ 9 图**（JPEG/PNG/WebP，单张 ≤30MB，约定 index 0 = 首帧）+ **≤ 3 音频**（MP3/WAV，累计 ≤15s；给音频必须同时至少给一张图）；提示词内用 `@Image1` / `@Audio1` 引用——IR 的 `anchor_refs` 翻译成这套语法；
-- **参考文件必须是公网可访问 URL**——本地锚点图要先传图床/OSS（M0 开放项：定一个上传通道再开参考图链路）；
+- **参考文件必须是公网可访问 URL**——上传通道已就绪：`tools/oss-upload.sh <本地文件> [key]` 传 grain S3 并返回 `https://storage.neodrop.ai/...` 公网 URL（脚本自带可达性检查）；kuleshov 资产一律放 `kuleshov/` 命名空间；
 - **极端长宽比的参考图会在受理后才失败且满价计费**——提交前本地 ffprobe 校验长宽比；
 - 音频参考会驱动**口型同步人声**（数字人式能力）；但旁白纪律不变：旁白走我们的 TTS 轨，`generate_audio` 默认 false，需要环境声时才开；
 - 首尾帧：网关 content 角色支持 `first_frame`/`last_frame`（grain 未暴露、我们待实测），keyframe 锚点走这个角色；

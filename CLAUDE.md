@@ -10,6 +10,7 @@ M0 的交付物不是视频，是：**验证过的品味资产 + 带人工分的
 - `.claude/skills/produce/` — 十阶段生产管线 SOP（入口：`/produce`），引擎知识包在其 `references/` 下，按镜头路由按需加载
 - `styles/` — 风格包（每包一个目录）+ 反主观翻译总表（`translation-table.md`）
 - `projects/<片名>/` — 每片一个目录：`film.json`（全片唯一真相源）+ 阶段 artifact + 产物
+- `tools/oss-upload.sh` — 本地资产传 grain S3 → 返回 `storage.neodrop.ai` 公网 URL（Seedance @ref 引用用）
 
 ## 运行铁律（M0 版 Rule Zero）
 

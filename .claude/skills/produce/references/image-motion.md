@@ -33,6 +33,7 @@
 - GPT-Image-2 擅长角色表、故事板页、文字渲染、信息密集构图；
 - **标题 / logo 这类"动起来就碎"的元素单独生成静态资产，后期叠加**（overlays 层），不进视频生成；
 - 每张锚点记录完整生成参数（模型/seed/prompt/参考图）回填 `anchors[]`，可复现可微调；
+- 锚点要给 Seedance/数字人当 `@ref` 时，用 `tools/oss-upload.sh projects/<片名>/anchors/<文件>` 上传并把返回的公网 URL 回填 `anchors[].cdn_url`（本地文件是真身，URL 是引用副本）；
 - 验收过的锚点未来可提升为跨片资产（M0 先留在片内，别删）。
 
 ## 二、图片动效（声明型——在 HyperFrames 里做，不预烘焙 mp4）
