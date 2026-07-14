@@ -1,6 +1,6 @@
 # 引擎知识包 · Seedance 2.0（生成视频，烘焙型）
 
-> 何时读我：通路预算选了"完整通路"，且 storyboard 有镜头路由到 `seedance` 时。零成本通路不读。
+> 何时读我：storyboard 有镜头路由到 `seedance`（真运动/氛围/场景再现）时。
 
 ## 接入（已定并冒烟，2026-07-14；契约源自 grain `ark-video-client.ts` / `fal.ts` + 实测）
 

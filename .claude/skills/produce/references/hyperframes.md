@@ -4,7 +4,7 @@
 
 ## 定位
 
-HeyGen 开源（Apache 2.0）的 agent-native 合成框架："写 HTML/CSS/GSAP，渲染视频"。**不产生像素，只做确定性合成**。是零成本通路的主引擎，也是全片叠加层（字幕/角标/数据卡）的宿主。
+HeyGen 开源（Apache 2.0）的 agent-native 合成框架："写 HTML/CSS/GSAP，渲染视频"。**不产生像素，只做确定性合成**。它是 **MG 动画（motion graphics）/信息图形语言**的主引擎，也是全片叠加层（字幕/角标/数据卡）的宿主——按表达选它，不是按成本选它。
 
 **类型纪律**：全部产出属"幻灯片语法"，**不计入运动占比**——片型承诺只能写 `typography_led` / `data_explainer`，冒充 `motion_led` 是承诺违约。
 
