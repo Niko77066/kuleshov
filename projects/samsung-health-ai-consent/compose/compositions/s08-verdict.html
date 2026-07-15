@@ -1,0 +1,97 @@
+<template id="s08-verdict-template">
+  <div
+    data-composition-id="s08-verdict"
+    data-width="1920" data-height="1080"
+    data-start="0" data-duration="8.853"
+  >
+    <!-- MG z10，坐于抠像人物之下 -->
+    <div class="halo-glow"></div>
+    <div class="halo-ring r1"></div>
+    <div class="halo-ring r2"></div>
+
+    <div class="verdict">
+      <div class="vline v1">同意页写着随时撤回，</div>
+      <div class="vline v2">拒绝键连着删除。</div>
+      <div class="vline v3">你同意的不只是一次授权，</div>
+      <div class="vline v4">是这笔交易的<span class="amber">定价权</span>。</div>
+    </div>
+    <div class="closer">看清，再点。</div>
+    <div class="channel"><span class="tick"></span>科技追问 · Samsung Health 专题</div>
+
+    <style>
+      @font-face { font-family: "PingFang SC"; src: local("PingFang SC"); }
+      @font-face { font-family: "Noto Sans SC"; src: local("Noto Sans SC"); }
+      @font-face { font-family: "SF Mono"; src: local("SF Mono"); }
+
+      [data-composition-id="s08-verdict"] {
+        width: 1920px; height: 1080px; position: relative; overflow: hidden;
+        background: transparent;
+        font-family: "PingFang SC", "Noto Sans SC", sans-serif;
+      }
+      [data-composition-id="s08-verdict"] .halo-glow {
+        position: absolute; left: 250px; top: 40px; width: 820px; height: 820px;
+        background: radial-gradient(circle, rgba(74,158,255,0.20) 0%, rgba(74,158,255,0) 62%);
+        filter: blur(30px);
+      }
+      [data-composition-id="s08-verdict"] .halo-ring { position: absolute; border: 1.5px solid rgba(120,180,255,0.14); border-radius: 50%; }
+      [data-composition-id="s08-verdict"] .halo-ring.r1 { left: 360px; top: 150px; width: 600px; height: 600px; }
+      [data-composition-id="s08-verdict"] .halo-ring.r2 { left: 250px; top: 40px; width: 820px; height: 820px; border-color: rgba(120,180,255,0.08); }
+
+      [data-composition-id="s08-verdict"] .verdict { position: absolute; left: 1200px; top: 300px; width: 680px; }
+      [data-composition-id="s08-verdict"] .vline {
+        font-size: 48px; font-weight: 700; color: #F2F5F9; line-height: 1.0;
+        margin-bottom: 36px; opacity: 0; text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      }
+      [data-composition-id="s08-verdict"] .v3, [data-composition-id="s08-verdict"] .v4 {
+        font-size: 40px; font-weight: 500; color: #C9CDD3;
+      }
+      [data-composition-id="s08-verdict"] .v3 { margin-top: 54px; }
+      [data-composition-id="s08-verdict"] .amber { color: #FFC777; font-weight: 700; text-shadow: 0 0 24px rgba(255,180,84,0.6); }
+      [data-composition-id="s08-verdict"] .closer {
+        position: absolute; left: 1200px; top: 430px; font-size: 74px; font-weight: 800;
+        color: #F2F5F9; opacity: 0; text-shadow: 0 0 38px rgba(74,158,255,0.32), 0 3px 12px rgba(0,0,0,0.5);
+      }
+      [data-composition-id="s08-verdict"] .channel {
+        position: absolute; left: 1202px; top: 720px;
+        font-size: 24px; color: #AAB2BD; letter-spacing: 0.04em; opacity: 0;
+      }
+      [data-composition-id="s08-verdict"] .channel .tick {
+        display: inline-block; width: 6px; height: 20px; background: #4A9EFF;
+        margin-right: 12px; vertical-align: -2px; border-radius: 2px; box-shadow: 0 0 12px rgba(74,158,255,0.7);
+      }
+    </style>
+
+    <script src="assets/gsap.min.js"></script>
+    <script>
+      (function () {
+        window.__timelines = window.__timelines || {};
+        const tl = gsap.timeline({ paused: true });
+        const root = document.querySelector('[data-composition-id="s08-verdict"]');
+        const v = [1, 2, 3, 4].map(i => root.querySelector(".v" + i));
+        const verdict = root.querySelector(".verdict");
+        const closer = root.querySelector(".closer");
+        const channel = root.querySelector(".channel");
+        const rings = root.querySelectorAll(".halo-ring");
+
+        gsap.set(rings, { scale: 0.92, opacity: 0, transformOrigin: "50% 50%" });
+        tl.to(rings, { scale: 1, opacity: 1, duration: 0.9, ease: "power2.out", stagger: 0.12 }, 0);
+        tl.to(channel, { opacity: 1, duration: 0.3 }, 0.2);
+
+        // 对仗句逐行上屏（词时间 −35.187）：0.05 / 1.84 / 3.36 / 5.48
+        const cues = [0.05, 1.84, 3.36, 5.48];
+        cues.forEach((t, i) => {
+          gsap.set(v[i], { y: 18, filter: "blur(10px)" });
+          tl.to(v[i], { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.35, ease: "power4.out" }, t);
+        });
+
+        // local 7.44（"看清，再点"）：论证退后，结语对焦落定独占
+        gsap.set(closer, { filter: "blur(16px)", scale: 0.96, transformOrigin: "left center" });
+        tl.to(verdict, { opacity: 0, duration: 0.35, ease: "power2.inOut" }, 7.35);
+        tl.to(closer, { opacity: 1, filter: "blur(0px)", scale: 1, duration: 0.45, ease: "power3.out" }, 7.44);
+
+        tl.to({}, { duration: 8.853 }, 0);
+        window.__timelines["s08-verdict"] = tl;
+      })();
+    </script>
+  </div>
+</template>

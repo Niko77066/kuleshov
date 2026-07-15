@@ -1,0 +1,13 @@
+{
+  "model": "doubao-seedance-2-0-260128",
+  "prompt": "Slow steady dolly-in toward the glowing smartphone screen from @Image1: night bedroom, a hand wearing a fitness band rests on rumpled sheets beside the phone. On the screen, abstract health charts slowly scroll and gently pulse; the cool blue glow flickers softly across the sheets and skin as the fingers curl almost imperceptibly. Quiet, moody, slightly uneasy atmosphere. No readable text, no logos, no talking.",
+  "metadata": {
+    "content": [
+      { "type": "image_url", "image_url": { "url": "https://storage.neodrop.ai/kuleshov/samsung-health-ai-consent/style-frame-v1.png" }, "role": "reference_image" }
+    ],
+    "resolution": "1080p",
+    "ratio": "16:9",
+    "generate_audio": false
+  },
+  "duration": 5
+}

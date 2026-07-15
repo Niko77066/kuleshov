@@ -1,0 +1,83 @@
+<template id="bg-ambient-template">
+  <div
+    data-composition-id="bg-ambient"
+    data-width="1920" data-height="1080"
+    data-start="0" data-duration="44.04"
+  >
+    <div class="amb-base"></div>
+    <div class="amb-blob b-blue"></div>
+    <div class="amb-blob b-teal"></div>
+    <div class="amb-blob b-amber"></div>
+    <div class="amb-mesh"></div>
+    <div class="amb-vignette"></div>
+
+    <style>
+      [data-composition-id="bg-ambient"] {
+        width: 1920px; height: 1080px; position: relative; overflow: hidden;
+        background: #0A0C10;
+      }
+      [data-composition-id="bg-ambient"] .amb-base {
+        position: absolute; inset: 0;
+        background: radial-gradient(ellipse 120% 100% at 50% 40%, #0E1218 0%, #090B0E 100%);
+      }
+      [data-composition-id="bg-ambient"] .amb-blob {
+        position: absolute; border-radius: 50%;
+        filter: blur(120px); will-change: transform, opacity;
+      }
+      /* 冷蓝辉光——主色 --accent 呼应 */
+      [data-composition-id="bg-ambient"] .b-blue {
+        width: 1100px; height: 1100px; left: -180px; top: -320px;
+        background: radial-gradient(circle, rgba(58,120,220,0.30) 0%, rgba(58,120,220,0) 68%);
+      }
+      /* 深青辉光——底部纵深 */
+      [data-composition-id="bg-ambient"] .b-teal {
+        width: 1200px; height: 1200px; right: -260px; bottom: -420px;
+        background: radial-gradient(circle, rgba(30,120,130,0.24) 0%, rgba(30,120,130,0) 66%);
+      }
+      /* 极弱琥珀余烬——呼应 --warn，全片仅一点暖，克制 */
+      [data-composition-id="bg-ambient"] .b-amber {
+        width: 720px; height: 720px; right: 180px; top: -260px;
+        background: radial-gradient(circle, rgba(255,150,60,0.10) 0%, rgba(255,150,60,0) 62%);
+      }
+      /* 细网格——报纸/工程底纹，极淡 */
+      [data-composition-id="bg-ambient"] .amb-mesh {
+        position: absolute; inset: -40px;
+        background-image:
+          linear-gradient(to right, rgba(140,170,210,0.028) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(140,170,210,0.028) 1px, transparent 1px);
+        background-size: 68px 68px;
+        mask-image: radial-gradient(ellipse 90% 80% at 50% 45%, #000 30%, transparent 85%);
+        -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 45%, #000 30%, transparent 85%);
+      }
+      [data-composition-id="bg-ambient"] .amb-vignette {
+        position: absolute; inset: 0; pointer-events: none;
+        background: radial-gradient(ellipse 128% 108% at 50% 46%, transparent 58%, rgba(4,5,7,0.55) 100%);
+      }
+    </style>
+
+    <script src="assets/gsap.min.js"></script>
+    <script>
+      (function () {
+        window.__timelines = window.__timelines || {};
+        const tl = gsap.timeline({ paused: true });
+        const root = document.querySelector('[data-composition-id="bg-ambient"]');
+        const blue = root.querySelector(".b-blue");
+        const teal = root.querySelector(".b-teal");
+        const amber = root.querySelector(".b-amber");
+
+        // 极缓漂移（44s 内单程 + yoyo 折返，确定性，无随机）——底"活"但不抢戏
+        gsap.set(blue, { x: 0, y: 0 });
+        gsap.set(teal, { x: 0, y: 0 });
+        gsap.set(amber, { x: 0, y: 0, opacity: 0.9 });
+
+        tl.to(blue, { x: 220, y: 140, duration: 22, ease: "sine.inOut", yoyo: true, repeat: 1 }, 0);
+        tl.to(teal, { x: -180, y: -120, duration: 26, ease: "sine.inOut", yoyo: true, repeat: 1 }, 0);
+        tl.to(amber, { x: -120, y: 90, opacity: 0.55, duration: 20, ease: "sine.inOut", yoyo: true, repeat: 1 }, 0);
+
+        // 垫满母槽
+        tl.to({}, { duration: 44.04 }, 0);
+        window.__timelines["bg-ambient"] = tl;
+      })();
+    </script>
+  </div>
+</template>

@@ -1,0 +1,94 @@
+<template id="s02-hook-card-template">
+  <div
+    data-composition-id="s02-hook-card"
+    data-width="1920" data-height="1080"
+    data-start="0" data-duration="2.197"
+  >
+    <!-- 全部 MG 在 z10，坐于抠像人物（root z20）之下 —— 落在她身后/身侧 -->
+    <!-- 人物身后的辉光科技motif -->
+    <div class="halo-glow"></div>
+    <div class="halo-ring r1"></div>
+    <div class="halo-ring r2"></div>
+    <!-- 身侧右栏：追问 -->
+    <div class="kicker">Samsung Health · AI 训练同意</div>
+    <div class="question">你到底<br/>同意了什么？</div>
+    <div class="q-underline"></div>
+    <div class="channel"><span class="tick"></span>科技追问 · Samsung Health 专题</div>
+
+    <style>
+      @font-face { font-family: "PingFang SC"; src: local("PingFang SC"); }
+      @font-face { font-family: "Noto Sans SC"; src: local("Noto Sans SC"); }
+      @font-face { font-family: "SF Mono"; src: local("SF Mono"); }
+
+      [data-composition-id="s02-hook-card"] {
+        width: 1920px; height: 1080px; position: relative; overflow: hidden;
+        background: transparent;
+        font-family: "PingFang SC", "Noto Sans SC", sans-serif;
+      }
+      /* 人物身后辉光（她的头在 x~615/y~240，光心稍偏其后） */
+      [data-composition-id="s02-hook-card"] .halo-glow {
+        position: absolute; left: 250px; top: 40px; width: 820px; height: 820px;
+        background: radial-gradient(circle, rgba(74,158,255,0.22) 0%, rgba(74,158,255,0) 62%);
+        filter: blur(30px);
+      }
+      [data-composition-id="s02-hook-card"] .halo-ring {
+        position: absolute; border: 1.5px solid rgba(120,180,255,0.16); border-radius: 50%;
+      }
+      [data-composition-id="s02-hook-card"] .halo-ring.r1 { left: 360px; top: 150px; width: 600px; height: 600px; }
+      [data-composition-id="s02-hook-card"] .halo-ring.r2 { left: 250px; top: 40px; width: 820px; height: 820px; border-color: rgba(120,180,255,0.09); }
+      /* 右栏追问 */
+      [data-composition-id="s02-hook-card"] .kicker {
+        position: absolute; left: 1200px; top: 300px;
+        font-size: 27px; color: #6BB0FF; letter-spacing: 0.08em; font-weight: 600;
+        text-shadow: 0 0 18px rgba(74,158,255,0.45); opacity: 0;
+      }
+      [data-composition-id="s02-hook-card"] .question {
+        position: absolute; left: 1198px; top: 348px; width: 660px;
+        font-size: 82px; font-weight: 800; color: #F2F5F9; line-height: 1.18;
+        letter-spacing: 0.01em; text-shadow: 0 0 40px rgba(74,158,255,0.32), 0 3px 12px rgba(0,0,0,0.5);
+        opacity: 0;
+      }
+      [data-composition-id="s02-hook-card"] .q-underline {
+        position: absolute; left: 1202px; top: 566px; height: 5px; width: 360px;
+        background: linear-gradient(90deg, #4A9EFF, rgba(74,158,255,0.15));
+        border-radius: 3px; box-shadow: 0 0 18px rgba(74,158,255,0.8);
+        transform-origin: left center;
+      }
+      [data-composition-id="s02-hook-card"] .channel {
+        position: absolute; left: 1202px; top: 606px;
+        font-size: 24px; color: #AAB2BD; letter-spacing: 0.04em; opacity: 0;
+      }
+      [data-composition-id="s02-hook-card"] .channel .tick {
+        display: inline-block; width: 6px; height: 20px; background: #4A9EFF;
+        margin-right: 12px; vertical-align: -2px; border-radius: 2px;
+        box-shadow: 0 0 12px rgba(74,158,255,0.7);
+      }
+    </style>
+
+    <script src="assets/gsap.min.js"></script>
+    <script>
+      (function () {
+        window.__timelines = window.__timelines || {};
+        const tl = gsap.timeline({ paused: true });
+        const root = document.querySelector('[data-composition-id="s02-hook-card"]');
+        const kicker = root.querySelector(".kicker");
+        const question = root.querySelector(".question");
+        const underline = root.querySelector(".q-underline");
+        const channel = root.querySelector(".channel");
+        const rings = root.querySelectorAll(".halo-ring");
+
+        gsap.set(underline, { scaleX: 0 });
+        gsap.set(question, { y: 30, filter: "blur(18px)" });
+        gsap.set(rings, { scale: 0.9, opacity: 0, transformOrigin: "50% 50%" });
+        tl.to(rings, { scale: 1, opacity: 1, duration: 0.7, ease: "power2.out", stagger: 0.1 }, 0);
+        tl.to(kicker, { opacity: 1, duration: 0.28, ease: "power2.out" }, 0.1);
+        tl.to(question, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.5, ease: "power3.out" }, 0.2);
+        tl.to(underline, { scaleX: 1, duration: 0.4, ease: "power4.out" }, 0.55);
+        tl.to(channel, { opacity: 1, duration: 0.3, ease: "power2.out" }, 0.7);
+
+        tl.to({}, { duration: 2.197 }, 0);
+        window.__timelines["s02-hook-card"] = tl;
+      })();
+    </script>
+  </div>
+</template>
