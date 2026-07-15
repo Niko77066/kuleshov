@@ -10,6 +10,7 @@
 | 沉稳 / 权威 | 平均镜头 4–6s，切点只落句读 | `power2.inOut`，0.5–0.8s，位移小 | slow dolly in, locked-off tripod, steady composition | 时长 4–6s，位移 3–5% | 语速 ≤ 140wpm，停顿明显 | [假设] |
 | 温暖 / 生活流 | 让动作做完再切，容忍 6s+ 长镜 | 淡入为主，0.8–1.2s | handheld subtle sway, natural window light, medium shot | crossfade 0.5s，暖色 LUT | 语气软，语尾下沉 | [假设] |
 | 紧迫 / breaking | 剪辑密度 30+ cuts/min，J-cut 抢拍 | 入场 0.15–0.25s，stagger 0.05s | fast tracking shot, crash zoom, rapid subject motion | 禁用（太慢，改版式卡） | 语速顶格，重音密集 | [假设] |
+| 静谧奢华 / nocturne | 平均镜头 4–6s，J-cut 默认，切点落句读 | `power2.out` 0.6–0.9s，透明度+小位移，禁弹跳 | slow dolly in, macro close-up, shallow depth of field, single soft top light, dark ambience, amber glass reflections | 4–6s，位移 3–5%，暗角+暖琥珀 LUT | 本行风格不用数字人 | [假设] |
 
 ## 使用规则
 
