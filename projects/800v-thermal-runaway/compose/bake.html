@@ -1,0 +1,10 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>html,body{margin:0;width:1920px;height:1080px;overflow:hidden;background:#0C0F14}canvas{display:block;width:1920px;height:1080px}</style>
+<script src="assets/vendor/three.min.js"></script></head>
+<body><canvas id="s02canvas"></canvas>
+<script src="assets/s02-three.js"></script>
+<script>
+  const t = parseFloat(new URLSearchParams(location.search).get('t')||'0');
+  window.__renderS02(t);
+</script>
+</body></html>

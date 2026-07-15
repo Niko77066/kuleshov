@@ -45,14 +45,6 @@ npx skills add heygen-com/hyperframes   # 8 核心 + 10 工作流技能
 
 榜单卡 / 数据卡 / 大数字卡 / 标题与章节卡 / 引言卡 / 全片字幕层 / 图片动效容器（见 image-motion.md——Ken Burns 在这里做，不预烘焙 mp4，可调且确定性）。
 
-## WebGL/Three.js 集成(2026-07-15 实战教训)
-
-- **`<script type="module">` 在渲染管线里不执行**(页面走 file:// 加载,ESM 被 CORS 拦死;http:// 预览正常→snapshot/render 全黑,极具迷惑性)。classic script(如 gsap.min.js)不受影响;
-- three 要用 **UMD 版**(`three@0.160.0/build/three.min.js`,r160 是最后一个带 UMD 的版本)+ classic script;
-- 即便 classic 加载成功,**引擎会按帧重建/接管 DOM,脚本绑定的 canvas 引用会被换掉**——canvas 在预览亮、在 render 黑;
-- **可靠路径:程序化 3D 用 headless Chrome 逐帧烘焙成 mp4**(`chrome --headless=new --screenshot` + `?t=` 参数确定性渲染 + ffmpeg 组装),再当普通 video clip 挂入——视频管线是被验证的。渲染器 WebGLRenderer 记得 `preserveDrawingBuffer:true`;
-- Seedance 素材挂入前**必须重编码密集关键帧**(`-g 12 -keyint_min 12 -sc_threshold 0`),否则渲染器 seek 冻帧(引擎会 WARN sparse keyframes)。
-
 ## 反模式
 
 - 每个条目换一种版式（模板味 + 认知负担）；

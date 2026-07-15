@@ -1,0 +1,2 @@
+{ "$schema": "https://hyperframes.heygen.com/schema/hyperframes.json",
+  "paths": { "blocks": ".", "assets": "assets" } }

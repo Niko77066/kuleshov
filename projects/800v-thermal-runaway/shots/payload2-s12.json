@@ -1,0 +1,10 @@
+{
+ "model": "doubao-seedance-2-0-260128",
+ "prompt": "SUBJECTS\nNight scene: firefighters aiming powerful hoses at the smoking underbody of an electric car, thousands of litres of water sheeting off the battery pack, but grey smoke keeps pouring out and refuses to relent.\n\nENVIRONMENT\nOutdoor at night, wet asphalt reflecting emergency light, the car low in frame, dense smoke and steam, water spray catching the light.\n\nSTYLE\nForensic engineering-documentary cinematography. Deep carbon-black (#0C0F14) environment, low-key dramatic raking light. Heat reads as ONE color ramp only - amber #FFB02E to orange #FF5A1F to white-hot #FFF3E0; cool coolant-blue #3D9DF6 only on still-normal parts. Bone-white crisp edge highlights. Physically real brushed-metal and matte materials, shallow depth of field, subtle volumetric haze. NO text, NO logos, NO on-screen labels, NO rainbow colors, NO sci-fi HUD, NO blue particle FX, NO cartoon look.\n\nCONTINUITY\nDocumentary realism, deep carbon-black night, cool tones except the dull orange glow stubbornly persisting under the car. Water in front, heat within — a feeling of futility. No people's faces in focus, no text, no logos.\n\nAUDIO RULE\nNo BGM, no music, no score. Diegetic ambience and synchronized physical SFX only. No dialogue or narration.\n\nTIMELINE\n0:00-0:03 Wide handheld, water jets hitting the car underbody, huge clouds of steam and smoke billowing. SFX: roaring water, hissing steam.\n0:03-0:07 Slow push toward the underbody; water sheets off but a dull orange glow persists deep inside, smoke unrelenting. SFX: water roar, low internal rumble.\n0:07-0:10 HARD-CUT END FRAME: locked medium on water sheeting off the underbody while smoke still rises and the ember glow remains, camera settled. Hold 0.6s. No fade, dissolve, morph, or camera drift. SFX: steady water and steam hiss.",
+ "metadata": {
+  "resolution": "1080p",
+  "ratio": "16:9",
+  "generate_audio": false,
+  "duration": 10
+ }
+}

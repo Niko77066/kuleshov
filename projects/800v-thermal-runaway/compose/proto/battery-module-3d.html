@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>html,body{margin:0;height:100%;background:#0C0F14;overflow:hidden}</style>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+}}
+</script>
+</head>
+<body>
+<canvas id="c"></canvas>
+<script type="module">
+import * as THREE from 'three';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+
+const W = 1280, H = 720;
+const renderer = new THREE.WebGLRenderer({canvas: c, antialias:true});
+renderer.setSize(W,H); renderer.setPixelRatio(1);
+renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.0;
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color('#0C0F14');
+scene.fog = new THREE.Fog('#0C0F14', 22, 46);
+
+const cam = new THREE.PerspectiveCamera(38, W/H, 0.1, 100);
+cam.position.set(11, 9.5, 15); cam.lookAt(0, -0.3, 0);
+
+// palette
+const CARBON='#0C0F14', BONE='#E8E6E1', H0=new THREE.Color('#FFB02E'), H1=new THREE.Color('#FF5A1F');
+
+// lighting — cool key from above (normal state reads cool), warm only from the hot cell
+scene.add(new THREE.AmbientLight('#3D9DF6', 0.12));
+const key = new THREE.DirectionalLight('#dfe8ff', 0.55); key.position.set(6,14,8); scene.add(key);
+const rim = new THREE.DirectionalLight('#3D9DF6', 0.35); rim.position.set(-8,4,-6); scene.add(rim);
+
+// prismatic cell = rounded box + 2 terminal posts + bone-white edge lines
+const cols=6, rows=3, cw=1.7, cd=3.2, ch=3.0, gx=0.28, gz=0.34;
+const hotC=2, hotR=1; // the cell in thermal runaway
+const cellGeo = new RoundedBoxGeometry(cw, ch, cd, 3, 0.10);
+const postGeo = new THREE.CylinderGeometry(0.16,0.16,0.34,16);
+const edgeGeo = new THREE.EdgesGeometry(new THREE.BoxGeometry(cw,ch,cd));
+
+function makeCell(heat){ // heat 0..1
+  const g = new THREE.Group();
+  const col = new THREE.Color('#171a20').lerp(H1, heat*0.9);
+  const mat = new THREE.MeshStandardMaterial({color:col, metalness:0.6, roughness:0.42,
+     emissive: H0.clone().lerp(H1, heat), emissiveIntensity: heat*heat*3.2});
+  const body = new THREE.Mesh(cellGeo, mat); g.add(body);
+  const lines = new THREE.LineSegments(edgeGeo, new THREE.LineBasicMaterial({
+     color: new THREE.Color(BONE).lerp(H1, heat), transparent:true, opacity:0.5+0.4*heat}));
+  g.add(lines);
+  const pmat = new THREE.MeshStandardMaterial({color:'#c9ccd2', metalness:0.9, roughness:0.3});
+  for(const sx of [-0.5,0.5]){ const p=new THREE.Mesh(postGeo,pmat); p.position.set(sx*cw*0.55, ch/2+0.15, cd*0.30); g.add(p);}
+  if(heat>0.5){ const pl=new THREE.PointLight(H1, heat*9, 14, 2); pl.position.set(0,0,0); g.add(pl);}
+  return g;
+}
+
+const totalW=cols*cw+(cols-1)*gx, totalD=rows*cd+(rows-1)*gz;
+for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){
+  const dist=Math.abs(c-hotC)+Math.abs(r-hotR);
+  let heat = c===hotC&&r===hotR?1.0 : dist===1?0.42 : dist===2?0.12 : 0.0; // heat spreading to neighbors
+  const cell=makeCell(heat);
+  cell.position.set(c*(cw+gx)-totalW/2+cw/2, 0, r*(cd+gz)-totalD/2+cd/2);
+  scene.add(cell);
+}
+
+// pack tray (open-top enclosure)
+const tray=new THREE.Mesh(new RoundedBoxGeometry(totalW+1.2, 0.6, totalD+1.2, 2, 0.12),
+   new THREE.MeshStandardMaterial({color:'#0f1217', metalness:0.7, roughness:0.5}));
+tray.position.y=-ch/2-0.35; scene.add(tray);
+const trayEdge=new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(totalW+1.2,0.6,totalD+1.2)),
+   new THREE.LineBasicMaterial({color:BONE, transparent:true, opacity:0.35}));
+trayEdge.position.copy(tray.position); scene.add(trayEdge);
+
+// bloom for the white-hot glow
+const composer=new EffectComposer(renderer);
+composer.addPass(new RenderPass(scene,cam));
+const bloom=new UnrealBloomPass(new THREE.Vector2(W,H), 0.9, 0.6, 0.78); composer.addPass(bloom);
+
+let f=0; function loop(){ f++; cam.position.x=11*Math.cos(f*0.0009)+ (11)*0; composer.render(); requestAnimationFrame(loop);}
+composer.render();
+window.__ready=true;
+loop();
+</script>
+</body>
+</html>

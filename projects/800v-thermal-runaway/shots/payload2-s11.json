@@ -1,0 +1,19 @@
+{
+ "model": "doubao-seedance-2-0-260128",
+ "prompt": "SUBJECTS\nMacro dark shot of a high-voltage copper busbar and its insulation between battery cells; the insulation chars and cracks from heat, then a blinding electric arc snaps across the gap, igniting escaping gas. Style/lighting reference @Image1.\n\nENVIRONMENT\nPitch-black interior, only the charring glow and the arc as light sources, heavy haze from escaping gas.\n\nSTYLE\nForensic engineering-documentary cinematography. Deep carbon-black (#0C0F14) environment, low-key dramatic raking light. Heat reads as ONE color ramp only - amber #FFB02E to orange #FF5A1F to white-hot #FFF3E0; cool coolant-blue #3D9DF6 only on still-normal parts. Bone-white crisp edge highlights. Physically real brushed-metal and matte materials, shallow depth of field, subtle volumetric haze. NO text, NO logos, NO on-screen labels, NO rainbow colors, NO sci-fi HUD, NO blue particle FX, NO cartoon look.\n\nCONTINUITY\n800V high-voltage context. Progression: insulation carbonizes -> arc strikes -> gas ignites. The arc is a blinding blue-white electrical discharge (this is the ONE allowed non-heat-ramp light). Ends on a bright flash for a hard cut.\n\nAUDIO RULE\nNo BGM, no music, no score. Diegetic ambience and synchronized physical SFX only. No dialogue or narration.\n\nTIMELINE\n0:00-0:025 Macro, slow creep toward the busbar; insulation blackening and cracking, faint orange heat at the edges. SFX: crackle, rising electrical buzz.\n0:025-0:05 A sudden blinding electric arc snaps across the charred gap, igniting a puff of gas with a flare. SFX: sharp electrical crack, ignition whoomp.\n0:05-0:06 HARD-CUT END FRAME: the arc flash at peak brightness nearly whiting the frame, camera locked. Hold 0.3s. No fade, dissolve, morph, or camera drift. SFX: electrical crack peaks then cuts.",
+ "metadata": {
+  "resolution": "1080p",
+  "ratio": "16:9",
+  "generate_audio": false,
+  "duration": 6,
+  "content": [
+   {
+    "type": "image_url",
+    "image_url": {
+     "url": "https://storage.neodrop.ai/kuleshov/800v-thermal-runaway/a01_styleframe.png"
+    },
+    "role": "reference_image"
+   }
+  ]
+ }
+}

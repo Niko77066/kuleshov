@@ -1,0 +1,8 @@
+{
+  "model": "gpt-image-2",
+  "prompt": "Establishing style frame for a forensic engineering documentary about an EV battery thermal-runaway event. Subject: an 800V lithium battery module — a row of dark prismatic cells with small metal terminal posts on top, seated in an open dark-metal tray — sitting in a pitch-black investigation studio on a matte surface. Deep carbon-black background (#0C0F14). Dramatic low-key raking light from the upper left. Crisp bone-white (#E8E6E1) edge highlights on the cell corners, giving a precise technical-drawing feel. ONE central cell is glowing hot from within with an amber-to-orange heat gradient (core #FFB02E fading to #FF5A1F), soft internal bloom and a thin wisp of vapor rising from its vent. The neighboring cells carry a cool coolant-blue (#3D9DF6) rim light, reading as 'still normal'. Mood: calm, clinical, high-contrast, cinematic, physically real brushed-metal and matte materials, shallow depth of field. Absolutely NO text, NO logos, NO people, NO rainbow colors, NO sci-fi holographic HUD, NO glowing blue particle effects, NO cartoon or toy look. 16:9 cinematic framing.",
+  "quality": "medium",
+  "output_format": "png",
+  "size": "1536x864",
+  "n": 2
+}

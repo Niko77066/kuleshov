@@ -1,0 +1,10 @@
+{
+ "model": "doubao-seedance-2-0-260128",
+ "prompt": "SUBJECTS\nNight: firefighters aim powerful hoses at the smoking underbody of an electric car; thousands of litres sheet off the battery pack, but grey smoke keeps pouring out.\n\nENVIRONMENT\nOutdoor night, wet asphalt reflecting emergency light, car low in frame, dense smoke/steam, water spray catching light.\n\nSTYLE\nForensic engineering-documentary cinematography with HIGH VISUAL IMPACT and dynamic scale. Deep carbon-black (#0C0F14), low-key dramatic light. Heat is ONE ramp only: amber #FFB02E -> orange #FF5A1F -> white-hot #FFF3E0; cool coolant-blue #3D9DF6 only on still-normal parts. Bone-white crisp edges. Physically real brushed metal, macro detail, volumetric haze, fast decisive camera. NO text, NO logos, NO on-screen labels, NO rainbow, NO sci-fi HUD, NO blue particle FX, NO cartoon look.\n\nCONTINUITY\nDocumentary realism, carbon-black night, cool tones except a dull orange glow persisting under the car. No faces in focus, no text, no logos. Urgent pacing.\n\nAUDIO RULE\nNo BGM, no music. Diegetic ambience and synchronized physical SFX only. No dialogue or narration.\n\nTIMELINE\n0:00-0:025 WIDE handheld, water jets slam the car underbody, huge steam-and-smoke clouds billow. SFX: roaring water, hissing steam.\n0:025-0:05 HARD CUT CLOSER: water sheets off the pack but a dull orange glow persists deep inside. SFX: water roar, low internal rumble.\n0:05-0:075 HARD CUT LOW at asphalt level: runoff and reflections, smoke unrelenting above. SFX: splatter, hiss.\n0:075-0:09 HARD-CUT END FRAME: locked medium on water sheeting off the underbody while smoke still rises and the ember glow remains, camera settled. Hold 1.4s. No fade/dissolve/morph/drift. SFX: steady water and steam.",
+ "metadata": {
+  "resolution": "1080p",
+  "ratio": "16:9",
+  "generate_audio": false,
+  "duration": 9
+ }
+}

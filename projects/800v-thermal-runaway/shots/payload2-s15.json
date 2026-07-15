@@ -1,0 +1,26 @@
+{
+ "model": "doubao-seedance-2-0-260128",
+ "prompt": "SUBJECTS\nThe same 800V battery pack @Image1 as the opening, now calming down: the one cell's glow contained and fading to a dull ember, thin smoke settling, the whole pack intact and dark. Style/lighting reference @Image2.\n\nENVIRONMENT\nPitch-black forensic studio, matte floor, same low-key light as the opening, haze thinning.\n\nSTYLE\nForensic engineering-documentary cinematography. Deep carbon-black (#0C0F14) environment, low-key dramatic raking light. Heat reads as ONE color ramp only - amber #FFB02E to orange #FF5A1F to white-hot #FFF3E0; cool coolant-blue #3D9DF6 only on still-normal parts. Bone-white crisp edge highlights. Physically real brushed-metal and matte materials, shallow depth of field, subtle volumetric haze. NO text, NO logos, NO on-screen labels, NO rainbow colors, NO sci-fi HUD, NO blue particle FX, NO cartoon look.\n\nCONTINUITY\nKeep @Image1 pack and cell design exact — visually the same pack as the opening shot for a bookend. Damage contained to one cell; neighbors stayed cool-blue normal. Resolution/calm, no active flame or jet.\n\nAUDIO RULE\nNo BGM, no music, no score. Diegetic ambience and synchronized physical SFX only. No dialogue or narration.\n\nTIMELINE\n0:00-0:03 Medium-close on the ember cell, its glow dimming from orange toward dull red, last vapor curling away. SFX: settling ticks, fading hiss.\n0:03-0:06 Slow pull-out revealing the whole intact pack in the tray, the single contained cell the only warm point among cool-blue neighbors. SFX: quiet room tone.\n0:06-0:08 HARD-CUT END FRAME: locked wide on the settled pack, one faint sealed glow, camera fully still. Hold 0.7s. No fade, dissolve, morph, or camera drift. SFX: low room tone.",
+ "metadata": {
+  "resolution": "1080p",
+  "ratio": "16:9",
+  "generate_audio": false,
+  "duration": 8,
+  "content": [
+   {
+    "type": "image_url",
+    "image_url": {
+     "url": "https://storage.neodrop.ai/kuleshov/800v-thermal-runaway/a02_pack.png"
+    },
+    "role": "reference_image"
+   },
+   {
+    "type": "image_url",
+    "image_url": {
+     "url": "https://storage.neodrop.ai/kuleshov/800v-thermal-runaway/a01_styleframe.png"
+    },
+    "role": "reference_image"
+   }
+  ]
+ }
+}

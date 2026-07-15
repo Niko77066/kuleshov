@@ -1,0 +1,26 @@
+{
+ "model": "doubao-seedance-2-0-260128",
+ "prompt": "SUBJECTS\nAn 800V battery pack @Image1 close along its row; thermal runaway propagating cell to cell like dominoes, heat color spreading to neighbors, vapor rising. Style/light ref @Image2.\n\nENVIRONMENT\nPitch-black studio, camera low and close along the row receding into darkness, volumetric haze.\n\nSTYLE\nForensic engineering-documentary cinematography with HIGH VISUAL IMPACT and dynamic scale. Deep carbon-black (#0C0F14), low-key dramatic light. Heat is ONE ramp only: amber #FFB02E -> orange #FF5A1F -> white-hot #FFF3E0; cool coolant-blue #3D9DF6 only on still-normal parts. Bone-white crisp edges. Physically real brushed metal, macro detail, volumetric haze, fast decisive camera. NO text, NO logos, NO on-screen labels, NO rainbow, NO sci-fi HUD, NO blue particle FX, NO cartoon look.\n\nCONTINUITY\nKeep @Image1 exact. Clear directional wave: hot cells white/orange, next igniting amber, far cells cool-blue. No flame. Fast dynamic cuts.\n\nAUDIO RULE\nNo BGM, no music. Diegetic ambience and synchronized physical SFX only. No dialogue or narration.\n\nTIMELINE\n0:00-0:02 CLOSE tracking along the row, first cell white-hot, adjacent flaring orange, heat creeping. SFX: low roar, ticking metal.\n0:02-0:04 HARD CUT OVERHEAD: the heat wave visibly jumps one more cell, a clean domino read down the row. SFX: escalating crackle.\n0:04-0:055 HARD CUT LOW ANGLE: vapor thickening, the next cell igniting amber, cool-blue cells waiting ahead. SFX: hiss, rumble.\n0:055-0:07 HARD-CUT END FRAME: locked medium on three or four hot cells with the very next just starting to glow amber, camera settled. Hold 1.4s. No fade/dissolve/morph/drift. SFX: sustained roar.",
+ "metadata": {
+  "resolution": "1080p",
+  "ratio": "16:9",
+  "generate_audio": false,
+  "duration": 7,
+  "content": [
+   {
+    "type": "image_url",
+    "image_url": {
+     "url": "https://storage.neodrop.ai/kuleshov/800v-thermal-runaway/a02_pack.png"
+    },
+    "role": "reference_image"
+   },
+   {
+    "type": "image_url",
+    "image_url": {
+     "url": "https://storage.neodrop.ai/kuleshov/800v-thermal-runaway/a01_styleframe.png"
+    },
+    "role": "reference_image"
+   }
+  ]
+ }
+}

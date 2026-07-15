@@ -8,3 +8,12 @@ projects/**/*.wav
 projects/**/*.mp3
 node_modules/
 .DS_Store
+
+# compose 中间产物(可由脚本复现)
+projects/**/compose/bake_frames/
+projects/**/compose/snapshots/
+projects/**/compose/snap3d/
+projects/**/compose/snapv2/
+projects/**/shots/frames*/
+projects/**/review_frames/
+projects/**/compose/.hyperframes/

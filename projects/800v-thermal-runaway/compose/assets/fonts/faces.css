@@ -1,0 +1,5 @@
+@font-face{font-family:'Noto Sans SC';font-style:normal;font-weight:400;font-display:block;src:url('assets/fonts/notosanssc-400.woff2') format('woff2');}
+@font-face{font-family:'Noto Sans SC';font-style:normal;font-weight:700;font-display:block;src:url('assets/fonts/notosanssc-700.woff2') format('woff2');}
+@font-face{font-family:'Noto Sans SC';font-style:normal;font-weight:900;font-display:block;src:url('assets/fonts/notosanssc-900.woff2') format('woff2');}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:700;font-display:block;src:url('assets/fonts/jetbrainsmono-700.woff2') format('woff2');}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:800;font-display:block;src:url('assets/fonts/jetbrainsmono-800.woff2') format('woff2');}

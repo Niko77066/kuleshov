@@ -1,0 +1,26 @@
+{
+ "model": "doubao-seedance-2-0-260128",
+ "prompt": "SUBJECTS\nAn 800V lithium battery pack @Image1 (a row of dark prismatic cells with metal terminal posts in a dark-metal tray); one cell faintly glowing amber from within, thin vapor at its vent. Style/lighting reference @Image2.\n\nENVIRONMENT\nPitch-black forensic studio, low camera height, stronger haze, generous negative space above the pack.\n\nSTYLE\nForensic engineering-documentary cinematography. Deep carbon-black (#0C0F14) environment, low-key dramatic raking light. Heat reads as ONE color ramp only - amber #FFB02E to orange #FF5A1F to white-hot #FFF3E0; cool coolant-blue #3D9DF6 only on still-normal parts. Bone-white crisp edge highlights. Physically real brushed-metal and matte materials, shallow depth of field, subtle volumetric haze. NO text, NO logos, NO on-screen labels, NO rainbow colors, NO sci-fi HUD, NO blue particle FX, NO cartoon look.\n\nCONTINUITY\nKeep @Image1 pack and cell design exact. Exactly one cell is heating; others cool-blue normal. Earliest onset, no flame.\n\nAUDIO RULE\nNo BGM, no music, no score. Diegetic ambience and synchronized physical SFX only. No dialogue or narration.\n\nTIMELINE\n0:00-0:03 Low-angle wide, slow push-in along the tray toward the pack, silhouettes rimmed cool-blue. SFX: deep room tone.\n0:03-0:06 Rack focus lands on the single amber cell as the push continues; internal glow pulses once, vapor rising. SFX: faint hum, soft crackle.\n0:06-0:08 HARD-CUT END FRAME: locked close on the amber cell off-center right, camera settled, glow steady, haze drifting, neighbors cool-blue. Hold 0.5s. No fade, dissolve, morph, or camera drift. SFX: settles to room tone.",
+ "metadata": {
+  "content": [
+   {
+    "type": "image_url",
+    "image_url": {
+     "url": "https://storage.neodrop.ai/kuleshov/800v-thermal-runaway/a02_pack.png"
+    },
+    "role": "reference_image"
+   },
+   {
+    "type": "image_url",
+    "image_url": {
+     "url": "https://storage.neodrop.ai/kuleshov/800v-thermal-runaway/a01_styleframe.png"
+    },
+    "role": "reference_image"
+   }
+  ],
+  "resolution": "1080p",
+  "ratio": "16:9",
+  "generate_audio": false
+ },
+ "duration": 8
+}

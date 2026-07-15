@@ -1,0 +1,26 @@
+{
+ "model": "doubao-seedance-2-0-260128",
+ "prompt": "SUBJECTS\nExtreme macro inside a prismatic cell @Image1: wound electrode-and-separator layers; the thin polymer separator melting and shrinking, letting anode and cathode layers touch. Style/lighting reference @Image2.\n\nENVIRONMENT\nMicroscopic interior, pitch-black voids between layers, hot glow the only light, drifting particulate haze.\n\nSTYLE\nForensic engineering-documentary cinematography. Deep carbon-black (#0C0F14) environment, low-key dramatic raking light. Heat reads as ONE color ramp only - amber #FFB02E to orange #FF5A1F to white-hot #FFF3E0; cool coolant-blue #3D9DF6 only on still-normal parts. Bone-white crisp edge highlights. Physically real brushed-metal and matte materials, shallow depth of field, subtle volumetric haze. NO text, NO logos, NO on-screen labels, NO rainbow colors, NO sci-fi HUD, NO blue particle FX, NO cartoon look.\n\nCONTINUITY\nKeep @Image1 internal layer look. Progression: melt -> contact -> short-circuit spark -> heat bloom. Single micro-event, hot gas and sparks only, no open flame.\n\nAUDIO RULE\nNo BGM, no music, no score. Diegetic ambience and synchronized physical SFX only. No dialogue or narration.\n\nTIMELINE\n0:00-0:03 Extreme macro, slow drift across the layered structure; the separator film sags and shrinks under heat, edges curling amber. SFX: faint sizzle, material creak.\n0:03-0:06 Rack focus as anode and cathode layers touch — a sharp short-circuit spark bursts, white-hot, heat glow blooming outward through the layers. SFX: electric snap, crackle.\n0:06-0:08 HARD-CUT END FRAME: locked extreme close on the white-hot micro-arc point, camera settled, glow radiating, layers silhouetted. Hold 0.5s. No fade, dissolve, morph, or camera drift. SFX: crackle into low roar.",
+ "metadata": {
+  "resolution": "1080p",
+  "ratio": "16:9",
+  "generate_audio": false,
+  "duration": 8,
+  "content": [
+   {
+    "type": "image_url",
+    "image_url": {
+     "url": "https://storage.neodrop.ai/kuleshov/800v-thermal-runaway/a03_module.png"
+    },
+    "role": "reference_image"
+   },
+   {
+    "type": "image_url",
+    "image_url": {
+     "url": "https://storage.neodrop.ai/kuleshov/800v-thermal-runaway/a01_styleframe.png"
+    },
+    "role": "reference_image"
+   }
+  ]
+ }
+}

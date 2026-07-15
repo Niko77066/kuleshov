@@ -1,0 +1,19 @@
+{
+ "model": "doubao-seedance-2-0-260128",
+ "prompt": "SUBJECTS\nMacro dark: a high-voltage copper busbar and insulation between cells; insulation chars and cracks; a blinding electric arc snaps across the gap and ignites escaping gas. Style/light ref @Image1.\n\nENVIRONMENT\nPitch-black interior; only charring glow and the arc as light; heavy haze from escaping gas.\n\nSTYLE\nForensic engineering-documentary cinematography with HIGH VISUAL IMPACT and dynamic scale. Deep carbon-black (#0C0F14), low-key dramatic light. Heat is ONE ramp only: amber #FFB02E -> orange #FF5A1F -> white-hot #FFF3E0; cool coolant-blue #3D9DF6 only on still-normal parts. Bone-white crisp edges. Physically real brushed metal, macro detail, volumetric haze, fast decisive camera. NO text, NO logos, NO on-screen labels, NO rainbow, NO sci-fi HUD, NO blue particle FX, NO cartoon look.\n\nCONTINUITY\n800V high-voltage. Progression char->arc->ignite. The arc is a blinding blue-white discharge (the ONE allowed non-heat light). End on a bright flash. Sharp fast cuts.\n\nAUDIO RULE\nNo BGM, no music. Diegetic ambience and synchronized physical SFX only. No dialogue or narration.\n\nTIMELINE\n0:00-0:015 MACRO creep to the busbar; insulation blackening, cracking, faint orange heat at edges. SFX: crackle, rising buzz.\n0:015-0:03 HARD CUT: a sudden blinding electric arc snaps across the charred gap, sparks explode outward. SFX: sharp electrical crack.\n0:03-0:045 HARD CUT: the arc ignites a puff of escaping gas with a flare, light blasting the frame. SFX: ignition whoomp.\n0:045-0:06 HARD-CUT END FRAME: the arc flash at peak brightness nearly whiting the frame, camera locked. Hold 0.4s. No fade/dissolve/morph/drift. SFX: crack peaks then cuts.",
+ "metadata": {
+  "resolution": "1080p",
+  "ratio": "16:9",
+  "generate_audio": false,
+  "duration": 6,
+  "content": [
+   {
+    "type": "image_url",
+    "image_url": {
+     "url": "https://storage.neodrop.ai/kuleshov/800v-thermal-runaway/a01_styleframe.png"
+    },
+    "role": "reference_image"
+   }
+  ]
+ }
+}

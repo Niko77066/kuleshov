@@ -21,12 +21,10 @@ POST {base}/v1/videos
     ],
     "resolution": "480p|720p|1080p",     // 默认 720p
     "ratio": "16:9|4:3|1:1|3:4|9:16|21:9", // 要默认就整个省略,不接受 "auto" 字面量
-    "generate_audio": false,              // 默认 true;我们默认 false(旁白走 TTS 轨)
-    "duration": 4                         // 整数 4–15;⚠️必须放在 metadata 内(见下),省略=默认约 5s
-  } }
+    "generate_audio": false               // 默认 true;我们默认 false(旁白走 TTS 轨)
+  },
+  "duration": 4 }                         // 整数 4–15;省略=auto。范围外的值在排队后才被拒且已计费,提交前必须本地校验
 ```
-
-> ⚠️ **duration 必须放进 `metadata`(2026-07-14 实测纠正)**:只放顶层 `duration` 会被**忽略**,产出恒为约 5.04s(121帧/24fps)——旧契约把它写在顶层是错的。实测 `metadata.duration=10` → 产出 10.04s(241帧)。范围外的值在排队后才被拒且已计费,提交前必须本地校验。冒烟"请求4s→5.04s"其实是顶层被忽略后的默认值,非"时长漂移"。
 
 - submit 返回 `{ id/task_id, status: "queued" }`；轮询 `GET {base}/v1/videos/{id}`（10–20s 间隔），中间态实测为 `in_progress`（判定逻辑写"非 completed/failed 即继续等"，别枚举中间态）；
 - 成片 URL 在 **`metadata.url`**（火山 TOS 带签名 URL，**拿到立即下载**）；`metadata.duration` 实测可能缺失，ffprobe 兜底是必须动作；

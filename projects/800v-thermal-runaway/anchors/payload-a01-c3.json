@@ -1,0 +1,8 @@
+{
+  "model": "gpt-image-2",
+  "prompt": "Cross-section cutaway style frame for a forensic engineering documentary about EV battery thermal runaway. Subject: a single 800V lithium prismatic battery cell CUT OPEN to reveal its internal layered jelly-roll structure (tightly wound electrode-and-separator layers, metal terminal posts on top), standing among a row of intact dark prismatic cells in a dark-metal tray, pitch-black investigation studio. Deep carbon-black background (#0C0F14), dramatic raking light. Crisp bone-white (#E8E6E1) technical edge highlights on the cut faces. The exposed internal layers are glowing with a heat gradient from amber (#FFB02E) to orange (#FF5A1F) at the core where thermal runaway begins; a thin vapor wisp rises from the opening. Surrounding intact cells carry a cool coolant-blue (#3D9DF6) rim. Mood: precise anatomical cutaway, clinical, high-contrast, cinematic, physically real materials, shallow depth of field. Absolutely NO text, NO labels, NO logos, NO people, NO rainbow colors, NO sci-fi HUD, NO blue particles, NO cartoon look. 16:9.",
+  "quality": "medium",
+  "output_format": "png",
+  "size": "1536x864",
+  "n": 1
+}
