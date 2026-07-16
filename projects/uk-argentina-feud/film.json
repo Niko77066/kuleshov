@@ -1,0 +1,83 @@
+{
+  "meta": {
+    "title": "英国和阿根廷：什么仇什么怨",
+    "format": "faceless_explainer",
+    "style_pack": "pixel-chronicle",
+    "commitment": {
+      "type": "hybrid",
+      "duration_s": 220,
+      "tolerance_pct": 10
+    },
+    "aspect": "16:9",
+    "budget": {
+      "cap_usd": null,
+      "spent_usd": 0
+    },
+    "pipeline_version": "m0-v1",
+    "status": "script",
+    "next_action": "⏸ script v2 待用户过目（本 session 已停此处）。通过后：④ audio（TTS 分节 + 逐词时间戳，读 references/tts-audio.md）→ ⑤ storyboard 按 pixel-chronicle playbook §7 十一槽位分配。时效硬约束：最晚 7/18 发布。素材：apihub 凭据在 .env（API_HUB_TOKEN/BASE_URL），契约文档未落，兜底=档案照图片动效+Seedance 风格化空镜。"
+  },
+  "audio": {
+    "voiceover": null,
+    "music": null,
+    "timeline": null
+  },
+  "anchors": [],
+  "shot_groups": [],
+  "shots": [],
+  "overlays": [],
+  "edit": {
+    "transitions": [],
+    "lut": null,
+    "grain": null,
+    "loudness_lufs": -14
+  },
+  "ledger": {
+    "decisions": [
+      {
+        "date": "2026-07-16",
+        "stage": "brief",
+        "by": "用户",
+        "decision": "选题拍板：时事驱动《英国和阿根廷：什么仇什么怨》，挂 2026 世界杯热点",
+        "options_considered": [
+          "瑙鲁",
+          "荷兰农业",
+          "卢旺达",
+          "挪威主权基金",
+          "新加坡水（五候选全部让位于时事时效）"
+        ],
+        "reason": "紧跟时事；角度参考用户提供的微信文章（正文未抓到，见 brief）"
+      },
+      {
+        "date": "2026-07-16",
+        "stage": "brief",
+        "by": "EP",
+        "decision": "风格包 pixel-chronicle（首考）；16:9；3–4 分钟带",
+        "options_considered": [
+          "新建时事风格包（否：M1 不为首片新建包）"
+        ],
+        "reason": "人文志对标形态直接适配；像素 MG 重演可规避 FIFA 比赛画面版权"
+      },
+      {
+        "date": "2026-07-16",
+        "stage": "script",
+        "by": "用户→EP",
+        "decision": "script v1 判 AI 味过重，按 narration-voice 规则集全文重写 v2",
+        "options_considered": [
+          "v1 局部修补（否：排比/对仗是结构性问题）"
+        ],
+        "reason": "用户反馈+内化 Humanizer-zh/social-media-skills 方法论"
+      }
+    ],
+    "costs": [],
+    "gates": [
+      {
+        "date": "2026-07-16",
+        "stage": "script",
+        "gate": "narration-voice 出厂自查",
+        "result": "pass",
+        "notes": "v2：linter 硬查 0 命中；五维自评 46/50；金句仅收尾 1 处"
+      }
+    ]
+  }
+}
