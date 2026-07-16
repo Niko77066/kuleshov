@@ -14,7 +14,8 @@
       "spent_usd": 0
     },
     "pipeline_version": "m0-v1",
-    "status": "script"
+    "status": "script",
+    "next_action": "⏸ script v2 待用户过目（本 session 已停此处）。通过后：④ audio → ⑤ storyboard（daily-brief 版式模板）。待确认：9:16 画幅、荆华密算品牌色/logo（缺省用默认印刷红）。时效硬约束：最晚 7/17 发布（办法施行 48h 窗）。"
   },
   "audio": {
     "voiceover": null,

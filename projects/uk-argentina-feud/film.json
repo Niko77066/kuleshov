@@ -14,7 +14,8 @@
       "spent_usd": 0
     },
     "pipeline_version": "m0-v1",
-    "status": "script"
+    "status": "script",
+    "next_action": "⏸ script v2 待用户过目（本 session 已停此处）。通过后：④ audio（TTS 分节 + 逐词时间戳，读 references/tts-audio.md）→ ⑤ storyboard 按 pixel-chronicle playbook §7 十一槽位分配。时效硬约束：最晚 7/18 发布。素材：apihub 凭据在 .env（API_HUB_TOKEN/BASE_URL），契约文档未落，兜底=档案照图片动效+Seedance 风格化空镜。"
   },
   "audio": {
     "voiceover": null,
