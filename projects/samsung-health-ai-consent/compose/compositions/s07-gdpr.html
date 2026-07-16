@@ -1,0 +1,102 @@
+<template id="s07-gdpr-template">
+  <div
+    data-composition-id="s07-gdpr"
+    data-width="1920" data-height="1080"
+    data-start="0" data-duration="3.317"
+  >
+    <div class="bg"></div>
+    <div class="glow-pool"></div>
+    <div class="kicker">GDPR · 欧盟通用数据保护条例</div>
+    <div class="bigq">自由同意？</div>
+    <div class="law">Consent must be “freely given” — GDPR Art. 7(4)</div>
+    <div class="status-chip">正被质疑</div>
+
+    <div class="poll">
+      <div class="pct"><span class="num">0</span>%</div>
+      <div class="plabel">读者投票：表示会拒绝</div>
+      <div class="psrc">Android Authority · 2026-07-13</div>
+    </div>
+
+    <style>
+      @font-face { font-family: "PingFang SC"; src: local("PingFang SC"); }
+      @font-face { font-family: "Noto Sans SC"; src: local("Noto Sans SC"); }
+      @font-face { font-family: "SF Mono"; src: local("SF Mono"); }
+
+      [data-composition-id="s07-gdpr"] {
+        width: 1920px; height: 1080px; position: relative; overflow: hidden;
+        font-family: "PingFang SC", "Noto Sans SC", sans-serif;
+      }
+      [data-composition-id="s07-gdpr"] .bg {
+        position: absolute; inset: 0; background: transparent;
+      }
+      /* 大字表态处的局部辉光加强 */
+      [data-composition-id="s07-gdpr"] .glow-pool {
+        position: absolute; left: -160px; top: 200px; width: 900px; height: 640px;
+        background: radial-gradient(circle at 40% 45%, rgba(74,158,255,0.16), transparent 65%);
+        filter: blur(20px); pointer-events: none;
+      }
+      [data-composition-id="s07-gdpr"] .kicker {
+        position: absolute; left: 204px; top: 300px; font-size: 26px; color: #6BB0FF;
+        letter-spacing: 0.08em; font-weight: 600; opacity: 0;
+        text-shadow: 0 0 18px rgba(74,158,255,0.4);
+      }
+      [data-composition-id="s07-gdpr"] .bigq {
+        position: absolute; left: 200px; top: 356px; font-size: 112px; font-weight: 800;
+        color: #F2F5F9; letter-spacing: 0.02em; opacity: 0;
+        text-shadow: 0 0 44px rgba(74,158,255,0.4), 0 4px 16px rgba(0,0,0,0.4);
+      }
+      [data-composition-id="s07-gdpr"] .law {
+        position: absolute; left: 206px; top: 530px; font-family: "SF Mono", Menlo, monospace;
+        font-size: 29px; color: #AAB2BD; opacity: 0;
+      }
+      [data-composition-id="s07-gdpr"] .status-chip {
+        position: absolute; left: 206px; top: 610px; font-size: 28px; color: #EEF1F5;
+        border: 1px solid rgba(255,255,255,0.14); border-radius: 10px; padding: 10px 24px;
+        background: linear-gradient(160deg, rgba(32,38,48,0.55), rgba(16,19,25,0.4));
+        backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); opacity: 0;
+      }
+      [data-composition-id="s07-gdpr"] .poll {
+        position: absolute; left: 1270px; top: 380px; width: 500px; opacity: 0;
+      }
+      [data-composition-id="s07-gdpr"] .pct {
+        font-size: 152px; font-weight: 800; color: #F2F5F9;
+        font-variant-numeric: tabular-nums; font-feature-settings: "tnum";
+        text-shadow: 0 0 40px rgba(74,158,255,0.30);
+      }
+      [data-composition-id="s07-gdpr"] .plabel { font-size: 27px; color: #9AA0A8; margin-top: 6px; }
+      [data-composition-id="s07-gdpr"] .psrc {
+        font-family: "SF Mono", Menlo, monospace; font-size: 20px; color: #9AA0A8;
+        opacity: 0.7; margin-top: 12px;
+      }
+    </style>
+
+    <script src="assets/gsap.min.js"></script>
+    <script>
+      (function () {
+        window.__timelines = window.__timelines || {};
+        const tl = gsap.timeline({ paused: true });
+        const root = document.querySelector('[data-composition-id="s07-gdpr"]');
+        const bigq = root.querySelector(".bigq");
+        const num = root.querySelector(".num");
+        const counter = { v: 0 };
+
+        tl.to(root.querySelector(".kicker"), { opacity: 1, duration: 0.25, ease: "power2.out" }, 0.15);
+        gsap.set(bigq, { y: 34, filter: "blur(20px)" });
+        tl.to(bigq, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.5, ease: "power3.out" }, 0.7);
+        tl.to(root.querySelector(".law"), { opacity: 1, duration: 0.3, ease: "power2.out" }, 1.25);
+        // "正被质疑"（34.19 → local 2.32）
+        tl.to(root.querySelector(".status-chip"), { opacity: 1, duration: 0.3, ease: "power2.out" }, 2.32);
+
+        // 86% count-up（数字强调 ≤0.6s，tabular-nums 防抖）
+        tl.to(root.querySelector(".poll"), { opacity: 1, duration: 0.3, ease: "power2.out" }, 0.5);
+        tl.to(counter, {
+          v: 86, duration: 0.6, ease: "power2.out",
+          onUpdate: function () { num.textContent = Math.round(counter.v); }
+        }, 0.55);
+
+        tl.to({}, { duration: 3.317 }, 0);
+        window.__timelines["s07-gdpr"] = tl;
+      })();
+    </script>
+  </div>
+</template>

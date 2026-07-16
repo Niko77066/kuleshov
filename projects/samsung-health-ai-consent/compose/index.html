@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Samsung Health AI 同意条款追问 — root</title>
+    <script src="assets/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "PingFang SC"; src: local("PingFang SC"); }
+      @font-face { font-family: "Noto Sans SC"; src: local("Noto Sans SC"); }
+      @font-face { font-family: "SF Mono"; src: local("SF Mono"); }
+
+      html, body {
+        margin: 0; padding: 0;
+        width: 1920px; height: 1080px;
+        background: #0A0C10; overflow: hidden;
+        font-family: "PingFang SC", "Noto Sans SC", sans-serif;
+      }
+      #master-root { width: 1920px; height: 1080px; position: relative; }
+      [data-composition-id="master"] > div[data-composition-id] {
+        position: absolute; inset: 0; z-index: 10;
+      }
+      /* ── 烘焙 clip ── */
+      #v-s01 {
+        position: absolute; inset: 0; width: 1920px; height: 1080px;
+        object-fit: cover; z-index: 12;
+        filter: saturate(0.94) contrast(1.05);
+      }
+      /* 数字人抠像全屏合成：坐在场景 MG（z10）之上、前景 chrome（z40+）之下 —— MG 落在她身后/身侧 */
+      .presenter {
+        position: absolute; inset: 0; width: 1920px; height: 1080px;
+        object-fit: cover; object-position: center bottom; z-index: 20;
+        filter: saturate(0.96) contrast(1.05) drop-shadow(0 18px 40px rgba(0,0,0,0.55));
+      }
+      /* ── 出处 / 数据角标（烟熏玻璃） ── */
+      .badge {
+        position: absolute; right: 48px; bottom: 42px;
+        font-size: 22px; color: #AAB2BD; letter-spacing: 0.02em;
+        background: linear-gradient(160deg, rgba(30,36,46,0.62), rgba(16,18,22,0.44));
+        backdrop-filter: blur(14px) saturate(1.1);
+        -webkit-backdrop-filter: blur(14px) saturate(1.1);
+        border: 1px solid rgba(255, 255, 255, 0.10);
+        box-shadow: 0 8px 30px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.12);
+        padding: 11px 20px; border-radius: 10px; z-index: 40;
+      }
+      /* ── 字幕轨（烟熏玻璃胶囊） ── */
+      .cap {
+        position: absolute; bottom: 62px; left: 50%; transform: translateX(-50%);
+        text-align: center; white-space: nowrap;
+        font-size: 34px; font-weight: 500; color: rgba(238, 240, 243, 0.96);
+        background: linear-gradient(160deg, rgba(18,21,26,0.60), rgba(10,12,15,0.48));
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255,255,255,0.07);
+        padding: 11px 30px; border-radius: 13px;
+        box-shadow: 0 8px 28px rgba(0,0,0,0.42);
+        letter-spacing: 0.01em; z-index: 50; pointer-events: none;
+        text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+      }
+      /* ── 全片缝合层 ── */
+      #vignette {
+        position: absolute; inset: 0; z-index: 60; pointer-events: none;
+        background: radial-gradient(ellipse 132% 112% at 50% 46%, transparent 60%, rgba(4, 5, 7, 0.42) 100%);
+      }
+      #grain {
+        position: absolute; inset: 0; z-index: 61; pointer-events: none;
+        background: url("assets/grain.png"); background-size: 512px 512px;
+        opacity: 0.045; mix-blend-mode: overlay;
+      }
+      #whiteflash {
+        position: absolute; inset: 0; z-index: 70; background: #F4F1EA; pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="master-root"
+      data-composition-id="master"
+      data-width="1920" data-height="1080"
+      data-start="0" data-duration="44.04"
+    >
+      <!-- 动态氛围背景（全片连续，坐所有场景之下） -->
+      <div id="c-bg" data-composition-id="bg-ambient"
+           data-composition-src="compositions/bg-ambient.html"
+           data-start="0" data-duration="44.04"
+           data-width="1920" data-height="1080" data-track-index="3"></div>
+
+      <!-- s02 追问开场卡（数字人 chrome + 大字） 4.99–7.187 -->
+      <div id="c-s02" data-composition-id="s02-hook-card"
+           data-composition-src="compositions/s02-hook-card.html"
+           data-start="4.99" data-duration="2.197"
+           data-width="1920" data-height="1080" data-track-index="1"></div>
+
+      <!-- s03 实录精读 7.187–15.75 -->
+      <div id="c-s03" data-composition-id="s03-consent-read"
+           data-composition-src="compositions/s03-consent-read.html"
+           data-start="7.187" data-duration="8.563"
+           data-width="1920" data-height="1080" data-track-index="1"></div>
+
+      <!-- s04 实录特写 human review 15.75–17.507 -->
+      <div id="c-s04" data-composition-id="s04-review-close"
+           data-composition-src="compositions/s04-review-close.html"
+           data-start="15.75" data-duration="1.757"
+           data-width="1920" data-height="1080" data-track-index="1"></div>
+
+      <!-- s05 撤回承诺 vs 拒绝弹窗 17.507–25.467 -->
+      <div id="c-s05" data-composition-id="s05-promise-popup"
+           data-composition-src="compositions/s05-promise-popup.html"
+           data-start="17.507" data-duration="7.96"
+           data-width="1920" data-height="1080" data-track-index="1"></div>
+
+      <!-- s06 数据流图 25.467–31.87 -->
+      <div id="c-s06" data-composition-id="s06-dataflow"
+           data-composition-src="compositions/s06-dataflow.html"
+           data-start="25.467" data-duration="6.403"
+           data-width="1920" data-height="1080" data-track-index="1"></div>
+
+      <!-- s07 GDPR 注文卡 31.87–35.187 -->
+      <div id="c-s07" data-composition-id="s07-gdpr"
+           data-composition-src="compositions/s07-gdpr.html"
+           data-start="31.87" data-duration="3.317"
+           data-width="1920" data-height="1080" data-track-index="1"></div>
+
+      <!-- s08 裁决收尾卡 35.187–44.04 -->
+      <div id="c-s08" data-composition-id="s08-verdict"
+           data-composition-src="compositions/s08-verdict.html"
+           data-start="35.187" data-duration="8.853"
+           data-width="1920" data-height="1080" data-track-index="1"></div>
+
+      <script>
+        window.__timelines = window.__timelines || {};
+        const masterTL = gsap.timeline({ paused: true });
+        window.__timelines["master"] = masterTL;
+      </script>
+    </div>
+
+    <!-- ── 烘焙 clip（root 级，压在对应 chrome 之上） ── -->
+    <!-- s01 Seedance hook 全屏；实际产出略超 4.99s，data-duration 即尾裁 -->
+    <video id="v-s01" class="clip" src="assets/s01.mp4" muted playsinline
+           data-start="0" data-duration="4.99" data-track-index="12"></video>
+    <!-- s02/s06/s08 数字人抠像（透明 webm），全屏合成，MG 落其身后 -->
+    <video id="v-s02" class="presenter clip" src="assets/s02-cut.webm" muted playsinline
+           data-start="4.99" data-duration="2.197" data-track-index="20"></video>
+    <video id="v-s06" class="presenter clip" src="assets/s06-cut.webm" muted playsinline
+           data-start="25.467" data-duration="6.403" data-track-index="20"></video>
+    <video id="v-s08" class="presenter clip" src="assets/s08-cut.webm" muted playsinline
+           data-start="35.187" data-duration="8.853" data-track-index="20"></video>
+
+    <!-- ── 出处 / 数据角标（overlays o02/o05；o03/o04 在各自子 composition 内） ── -->
+    <div class="badge clip" data-start="7.187" data-duration="10.32" data-track-index="40">
+      samsunghealth.com/shd/gen-ai · 2026-07-14 实录</div>
+    <div class="badge clip" data-start="42.6" data-duration="1.44" data-track-index="41">
+      条款原文链接见简介 · 数据截至 2026-07-14</div>
+
+    <!-- ── 白帧 2 帧（结论前，s07→s08 缝） ── -->
+    <div id="whiteflash" class="clip" data-start="35.187" data-duration="0.067" data-track-index="47"></div>
+
+    <!-- ── 全片字幕轨（TTS 句级时间戳，长句按词拍切分） ── -->
+    <div class="cap clip" data-start="0.11" data-duration="2.72" data-track-index="30">你的睡眠、处方、甚至经期记录，</div>
+    <div class="cap clip" data-start="2.83" data-duration="2.16" data-track-index="31">三星想拿去训练 AI。</div>
+    <div class="cap clip" data-start="5.07" data-duration="2.12" data-track-index="32">这个弹窗，值得你停三秒。</div>
+    <div class="cap clip" data-start="7.19" data-duration="1.48" data-track-index="33">官方条款写得明白：</div>
+    <div class="cap clip" data-start="8.67" data-duration="2.48" data-track-index="34">四类健康数据将用于 AI 训练——</div>
+    <div class="cap clip" data-start="11.15" data-duration="4.6" data-track-index="35">身体与睡眠、用药和剂量、诊断与检验结果、经期周期，</div>
+    <div class="cap clip" data-start="15.75" data-duration="1.76" data-track-index="36">并且包含人工审看。</div>
+    <div class="cap clip" data-start="17.51" data-duration="2.04" data-track-index="37">三星说，随时可以撤回。</div>
+    <div class="cap clip" data-start="19.55" data-duration="2.48" data-track-index="38">但拒绝的代价写在另一个弹窗里：</div>
+    <div class="cap clip" data-start="22.03" data-duration="1.0" data-track-index="39">云同步关闭，</div>
+    <div class="cap clip" data-start="23.03" data-duration="2.36" data-track-index="42">已同步的健康数据将被删除。</div>
+    <div class="cap clip" data-start="25.47" data-duration="2.44" data-track-index="43">删的是云端，手机本地还在。</div>
+    <div class="cap clip" data-start="27.91" data-duration="2.4" data-track-index="44">可跨设备使用全靠云同步——</div>
+    <div class="cap clip" data-start="30.31" data-duration="1.56" data-track-index="45">用功能换同意，</div>
+    <div class="cap clip" data-start="31.87" data-duration="2.32" data-track-index="46">这在 GDPR「自由同意」的标尺下，</div>
+    <div class="cap clip" data-start="34.19" data-duration="1.0" data-track-index="48">正被质疑。</div>
+
+    <!-- ── 缝合层 ── -->
+    <div id="vignette" class="clip" data-start="0" data-duration="44.04" data-track-index="60"></div>
+    <div id="grain" class="clip" data-start="0" data-duration="44.04" data-track-index="61"></div>
+
+    <!-- ── 旁白轨 ── -->
+    <audio id="voiceover" src="assets/voiceover.mp3"
+           data-start="0" data-duration="44.04" data-track-index="0" data-volume="1"></audio>
+  </body>
+</html>
