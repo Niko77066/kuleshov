@@ -1,0 +1,64 @@
+{
+  "meta": {
+    "title": "英国和阿根廷：什么仇什么怨",
+    "format": "faceless_explainer",
+    "style_pack": "pixel-chronicle",
+    "commitment": {
+      "type": "hybrid",
+      "duration_s": 220,
+      "tolerance_pct": 10
+    },
+    "aspect": "16:9",
+    "budget": {
+      "cap_usd": null,
+      "spent_usd": 0
+    },
+    "pipeline_version": "m0-v1",
+    "status": "brief"
+  },
+  "audio": {
+    "voiceover": null,
+    "music": null,
+    "timeline": null
+  },
+  "anchors": [],
+  "shot_groups": [],
+  "shots": [],
+  "overlays": [],
+  "edit": {
+    "transitions": [],
+    "lut": null,
+    "grain": null,
+    "loudness_lufs": -14
+  },
+  "ledger": {
+    "decisions": [
+      {
+        "date": "2026-07-16",
+        "stage": "brief",
+        "by": "用户",
+        "decision": "选题拍板：时事驱动《英国和阿根廷：什么仇什么怨》，挂 2026 世界杯热点",
+        "options_considered": [
+          "瑙鲁",
+          "荷兰农业",
+          "卢旺达",
+          "挪威主权基金",
+          "新加坡水（五候选全部让位于时事时效）"
+        ],
+        "reason": "紧跟时事；角度参考用户提供的微信文章（正文未抓到，见 brief）"
+      },
+      {
+        "date": "2026-07-16",
+        "stage": "brief",
+        "by": "EP",
+        "decision": "风格包 pixel-chronicle（首考）；16:9；3–4 分钟带",
+        "options_considered": [
+          "新建时事风格包（否：M1 不为首片新建包）"
+        ],
+        "reason": "人文志对标形态直接适配；像素 MG 重演可规避 FIFA 比赛画面版权"
+      }
+    ],
+    "costs": [],
+    "gates": []
+  }
+}

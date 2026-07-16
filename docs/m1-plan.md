@@ -12,10 +12,14 @@
 
 ## 7/17（五）当日 todo
 
+**已提前完成（7/16 晚拍板立项）**
+- [x] A 线选题拍板：**《英国和阿根廷：什么仇什么怨》**（时事驱动，用户改选，五候选让位，记 ledger）→ `projects/uk-argentina-feud/` 已立项（brief + film.json；research 调查中：世界杯对阵时效锚 + 史实核查）
+- [x] B 线热点拍板：**B1+B2 并置**（OpenAI 7800 万对话库 × 拟人化办法 7/15 施行）→ `projects/openai-78m-logs/` 已立项（brief + research 8 条带出处 + film.json）
+
 **上午 —— 双线开拍**
-- [ ] A 线选题：`/rednote-mentor` 场景 B 出 5 候选（带搜索词/封面文案/系列归属），用户选 1 → brief → research（事实带出处）
-- [ ] B 线热点：扫全球 AI 隐私/泄露新闻 → 三票筛选（热度 × 场景贴合 × 可解读深度）→ 用户拍板 1 条 → 三段框架写 script → **过 compliance.md 判定框**
-- [ ] 两线 script 过用户 ⏸ → TTS + timeline 定稿（音频先行）
+- [ ] A 线 research 定稿（时效锚必须核实：对阵场次与开球时间决定发布窗）
+- [ ] 两线 script 过用户 ⏸（B 线同时过 compliance 判定框）→ TTS + timeline 定稿（音频先行）
+- [ ] B 线品牌素材确认：荆华密算品牌色/logo 需业务侧提供，缺省用 daily-brief 默认色出 v1
 
 **下午 —— 生产**
 - [ ] 两线 storyboard（八项自查）+ anchors（N 选 1）⏸ → motion / compose 交错流水

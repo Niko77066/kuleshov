@@ -1,0 +1,64 @@
+{
+  "meta": {
+    "title": "你以为删掉的 AI 对话，OpenAI 替你存着（暂名）",
+    "format": "faceless_news_recap",
+    "style_pack": "daily-brief（荆华密算品牌色覆写）",
+    "commitment": {
+      "type": "typography_led",
+      "duration_s": 75,
+      "tolerance_pct": 5
+    },
+    "aspect": "9:16（待用户开拍确认）",
+    "budget": {
+      "cap_usd": null,
+      "spent_usd": 0
+    },
+    "pipeline_version": "m0-v1",
+    "status": "brief"
+  },
+  "audio": {
+    "voiceover": null,
+    "music": null,
+    "timeline": null
+  },
+  "anchors": [],
+  "shot_groups": [],
+  "shots": [],
+  "overlays": [],
+  "edit": {
+    "transitions": [],
+    "lut": null,
+    "grain": null,
+    "loudness_lufs": -14
+  },
+  "ledger": {
+    "decisions": [
+      {
+        "date": "2026-07-16",
+        "stage": "brief",
+        "by": "用户",
+        "decision": "选题拍板：B1+B2 并置（OpenAI 7800 万对话库 × 拟人化办法 7/15 施行）",
+        "options_considered": [
+          "GitLost（GitHub Agent 泄漏）",
+          "智能体自律公约",
+          "AssuranceAmerica 驾照泄露",
+          "EU AI Act 倒计时"
+        ],
+        "reason": "国际热度 × 国内 48h 时效双吃；三段解读框架天然承载；合规风险最低档"
+      },
+      {
+        "date": "2026-07-16",
+        "stage": "brief",
+        "by": "EP",
+        "decision": "风格包 daily-brief + 品牌色覆写；75s ± 5%；9:16（待确认）",
+        "options_considered": [
+          "pixel-chronicle（否：企业号快报体不匹配人文志形态）",
+          "新建企业风格包（否：M1 预案不新建）"
+        ],
+        "reason": "typography_led 零成本通路 + 时效最快；品牌素材缺省时用默认印刷红出 v1"
+      }
+    ],
+    "costs": [],
+    "gates": []
+  }
+}
