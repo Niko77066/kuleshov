@@ -121,11 +121,12 @@ WebSearch / 用户素材整理出 5–10 条核心事实，**每条带出处 URL
 - **时长调和**（烘焙 clip 超长时按序）：尾部裁切（保动作完成点）→ 变速 ± 5% → 均不可则该镜 fail 重做；**禁止冻结帧补时长**；
 - 混排缝合：统一 LUT（以 style frame 为基准）+ 共享颗粒；剪辑点落句读/节拍，默认 J-cut/L-cut；转场 ≤ 4 种；
 - `npx hyperframes lint` 不过禁 render；render 用 `--docker` 保帧级复现，出 `out/final.mp4`。
+- 服务器渲染 API（用户提供，待接入）就位后替代本地渲染跑 final；切换前必须用同一 composition 双跑对比一次帧级一致性，通过才切，切换记 `ledger.decisions`。
 
 ### ⑨ review ⏸
 1. **L0 手动仪器**（结果与证据写 `review.md`）：`ffprobe` 查时长/分辨率/帧率；blackdetect / freezedetect 查黑帧冻结；响度是否 -14 LUFS；成片音轨回转写 vs 剧本；承诺复验（时长、运动占比、转场数）。出示证据，"我检查过了"不算数。
 2. ⏸ **用户亲自看片**（M0 的评委团就是用户）。
-3. 引导用户跑 `/video-score` 登记 7 维分；有问题跑 `/video-triage` 归因到环节。
+3. 引导用户跑 `/video-score` 登记 9 维分（2026-07-16 起含 D8 创意 / D9 网感）；有问题跑 `/video-triage` 归因到环节。
 
 ### ⑩ deliver
 `out/` 里放齐：成片 + `film.json` + `review.md` + 成本小结（`ledger.costs` 汇总）。git commit（一片一提交）。向用户汇报：总成本、总墙钟、各阶段耗时、留下的 DEBT 标记。
@@ -139,7 +140,7 @@ WebSearch / 用户素材整理出 5–10 条核心事实，**每条带出处 URL
 | 数字人（HeyGen Avatar 4） | ✅ | 口播、主持、结论、人设 IP | 时长=音频时长；aspect_ratio 必填；形象锚点按目标画幅构图 | `references/avatar.md` |
 | 图片 + 动效（GPT-Image-2） | ✅ | 风格化静帧、插画、概念示意、"准运动" | 连续 ≤ 2 镜（防幻灯片化） | `references/image-motion.md` |
 | TTS 音频（seed-audio-1.0） | ✅ | 一切旁白（+可单独生成 BGM/音效轨） | 旁白轨纪律见知识包 | `references/tts-audio.md` |
-| 实拍 / 检索剪辑 | ⛔ 素材语料库未建（M3） | 纪实感、证据声部、B-roll | provenance/license 硬门 | — |
+| 实拍 / 检索剪辑 | 🔜 检索 API 待接入（用户提供，契约到手即开通） | 纪实感、证据声部、B-roll | provenance/license 硬门照跑；接入前需素材的选人工投喂 | — |
 
 路由纪律：
 1. **平权 + 意图优先**（铁律 7）：逐镜头问"哪种来源最能表达这个 intent"，成本不进权重；混排是常态不是例外，声部语法（风格包）负责让切换成为叙事信号；
