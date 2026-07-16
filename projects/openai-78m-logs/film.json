@@ -14,7 +14,7 @@
       "spent_usd": 0
     },
     "pipeline_version": "m0-v1",
-    "status": "brief"
+    "status": "script"
   },
   "audio": {
     "voiceover": null,
