@@ -56,9 +56,27 @@
           "新建时事风格包（否：M1 不为首片新建包）"
         ],
         "reason": "人文志对标形态直接适配；像素 MG 重演可规避 FIFA 比赛画面版权"
+      },
+      {
+        "date": "2026-07-16",
+        "stage": "script",
+        "by": "用户→EP",
+        "decision": "script v1 判 AI 味过重，按 narration-voice 规则集全文重写 v2",
+        "options_considered": [
+          "v1 局部修补（否：排比/对仗是结构性问题）"
+        ],
+        "reason": "用户反馈+内化 Humanizer-zh/social-media-skills 方法论"
       }
     ],
     "costs": [],
-    "gates": []
+    "gates": [
+      {
+        "date": "2026-07-16",
+        "stage": "script",
+        "gate": "narration-voice 出厂自查",
+        "result": "pass",
+        "notes": "v2：linter 硬查 0 命中；五维自评 46/50；金句仅收尾 1 处"
+      }
+    ]
   }
 }

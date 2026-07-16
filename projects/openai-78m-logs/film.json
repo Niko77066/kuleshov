@@ -56,9 +56,27 @@
           "新建企业风格包（否：M1 预案不新建）"
         ],
         "reason": "typography_led 零成本通路 + 时效最快；品牌素材缺省时用默认印刷红出 v1"
+      },
+      {
+        "date": "2026-07-16",
+        "stage": "script",
+        "by": "用户→EP",
+        "decision": "script v1 判 AI 味过重，按 narration-voice 规则集全文重写 v2",
+        "options_considered": [
+          "v1 局部修补（否：排比/对仗是结构性问题）"
+        ],
+        "reason": "用户反馈+内化 Humanizer-zh/social-media-skills 方法论"
       }
     ],
     "costs": [],
-    "gates": []
+    "gates": [
+      {
+        "date": "2026-07-16",
+        "stage": "script",
+        "gate": "narration-voice 出厂自查 + 合规判定框",
+        "result": "pass",
+        "notes": "v2：linter 0 命中；五维 47/50；合规四项复核通过"
+      }
+    ]
   }
 }

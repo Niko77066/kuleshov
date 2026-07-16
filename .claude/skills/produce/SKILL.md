@@ -74,6 +74,7 @@ film.json
 WebSearch / 用户素材整理出 5–10 条核心事实，**每条带出处 URL 与获取日期**，写 `research.md` 并编号（`F01…`）。news_recap 加时效戳（数据抓取时间）。解说片的事实底座——script 里的每个事实主张必须回链编号。
 
 ### ③ blueprint + script（M0 合并回合）⏸
+**先读 `references/narration-voice.md`（旁白人话规则集）**——写完必须跑其"出厂自查"五步（linter 硬查 / 朗读 / 金句测试 / 五维分 ≥45 / 灵魂检查），结果记 `ledger.gates`。
 写 `script.md`：
 - **结构**：But/Therefore 叙事链（禁 And then 流水账）；开头 3 秒必须有钩子。
 - **字数预算硬校验**（写完先自己数，超了砍内容不掺水）：中文常速 60s ≈ 220–260 字，快报体 ≈ 280–320 字；英文 60s ≈ 130–150 词，news 密度 165–180 wpm。
