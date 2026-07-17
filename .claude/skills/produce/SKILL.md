@@ -126,8 +126,9 @@ WebSearch / 用户素材整理出 5–10 条核心事实，**每条带出处 URL
 
 ### ⑨ review ⏸
 1. **L0 手动仪器**（结果与证据写 `review.md`）：`ffprobe` 查时长/分辨率/帧率；blackdetect / freezedetect 查黑帧冻结；响度是否 -14 LUFS；成片音轨回转写 vs 剧本；承诺复验（时长、运动占比、转场数）。出示证据，"我检查过了"不算数。
-2. ⏸ **用户亲自看片**（M0 的评委团就是用户）。
-3. 引导用户跑 `/video-score` 登记 9 维分（2026-07-16 起含 D8 创意 / D9 网感）；有问题跑 `/video-triage` 归因到环节。
+2. **视觉出厂自查**（读 `references/visual-selfcheck.md`）：抽帧逐项过版式反模式硬查（竖屏视觉重心 / 双角标 PPT 味 / 文件实证 / 死尾 / 幻灯片化 / 模板味 / 三面开钩一致 / 文字拆词），**任一命中必改再出厂**，结果记 `ledger.gates`——这是 agent 出厂前**自己发现并指出问题**的门，不靠用户挑（脚本层有 narration-voice、拼贴层有 collage-broll 死尾、技术层有 hyperframes check，本门补视觉层）。
+3. ⏸ **用户亲自看片**（M0 的评委团就是用户）。
+4. 引导用户跑 `/video-score` 登记 9 维分（2026-07-16 起含 D8 创意 / D9 网感）；有问题跑 `/video-triage` 归因到环节。
 
 ### ⑩ deliver
 `out/` 里放齐：成片 + `film.json` + `review.md` + 成本小结（`ledger.costs` 汇总）。git commit（一片一提交）。向用户汇报：总成本、总墙钟、各阶段耗时、留下的 DEBT 标记。
