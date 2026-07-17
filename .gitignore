@@ -1,6 +1,10 @@
 # 密钥永不入库
 .env
 
+# Generated provider responses can contain expiring signed media URLs.
+projects/**/shots/*result*.json
+projects/**/shots/*status*.json
+
 # 重媒体产物不进 git;留痕(film.json/md/prompt)与锚点图必须进
 projects/**/*.mp4
 projects/**/*.mov
