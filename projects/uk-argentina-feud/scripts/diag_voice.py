@@ -7,7 +7,7 @@ try:
 except Exception:
     from speechbrain.pretrained import SpeakerRecognition
 m = SpeakerRecognition.from_hparams(source="speechbrain/spkrec-ecapa-voxceleb", savedir="/tmp/spkrec-ecapa")
-A = "/Users/admin/kuleshov/.claude/worktrees/argentina-england-video-3c2044/projects/uk-argentina-feud/audio"
+A = "/Users/admin/kuleshov/.claude/worktrees/estee-lauder-night-video-7162e0/projects/uk-argentina-feud/audio"
 segs = [(2, 18), (40, 56), (85, 101), (125, 141), (165, 181), (215, 231)]
 for i, (s, e) in enumerate(segs):
     subprocess.run(["ffmpeg", "-y", "-ss", str(s), "-to", str(e), "-i", f"{A}/voiceover.mp3",

@@ -4,7 +4,7 @@
 用风格标签（磁性/气泡音/温柔讲述/知性清冷）拉开差异；均守冷静克制零表演腔。"""
 import json
 
-ROOT = "/Users/admin/kuleshov/.claude/worktrees/argentina-england-video-3c2044/projects/uk-argentina-feud"
+ROOT = "/Users/admin/kuleshov/.claude/worktrees/estee-lauder-night-video-7162e0/projects/uk-argentina-feud"
 d = json.load(open(f"{ROOT}/film.json", encoding="utf-8"))
 text = next(s for s in d["audio"]["voiceover"]["sections"] if s["id"] == "sec01")["text"]
 

@@ -3,7 +3,7 @@
 """探针：测 v3/tts/create 是否认参考音频字段。以 sec01 为参考，重合成 sec02，试 3 种格式。"""
 import json, base64
 
-ROOT = "/Users/admin/kuleshov/.claude/worktrees/argentina-england-video-3c2044/projects/uk-argentina-feud"
+ROOT = "/Users/admin/kuleshov/.claude/worktrees/estee-lauder-night-video-7162e0/projects/uk-argentina-feud"
 b64 = base64.b64encode(open(f"{ROOT}/audio/sec01.mp3", "rb").read()).decode()
 d = json.load(open(f"{ROOT}/film.json", encoding="utf-8"))
 vo = d["audio"]["voiceover"]

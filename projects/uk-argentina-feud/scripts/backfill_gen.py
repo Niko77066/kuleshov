@@ -4,7 +4,7 @@
 用法: backfill_gen.py <sid> [wallclock_s] [speech_rate]"""
 import json, sys
 
-ROOT = "/Users/admin/kuleshov/.claude/worktrees/argentina-england-video-3c2044/projects/uk-argentina-feud"
+ROOT = "/Users/admin/kuleshov/.claude/worktrees/estee-lauder-night-video-7162e0/projects/uk-argentina-feud"
 sid = sys.argv[1]
 wall = float(sys.argv[2]) if len(sys.argv) > 2 else None
 sr = int(sys.argv[3]) if len(sys.argv) > 3 else 0

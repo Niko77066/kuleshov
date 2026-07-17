@@ -3,7 +3,7 @@
 """④ audio 开工：把 IR 从 script 推进到 audio。先写 IR 再花钱。"""
 import json
 
-P = "/Users/admin/kuleshov/.claude/worktrees/argentina-england-video-3c2044/projects/uk-argentina-feud/film.json"
+P = "/Users/admin/kuleshov/.claude/worktrees/estee-lauder-night-video-7162e0/projects/uk-argentina-feud/film.json"
 d = json.load(open(P, encoding="utf-8"))
 
 # 6 节旁白（逐字复制自 script.md v2）+ 语速/表演指令

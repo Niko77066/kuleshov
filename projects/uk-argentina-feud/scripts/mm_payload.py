@@ -4,7 +4,7 @@
 用法: mm_payload.py <section_id> <voice_id> [speed] [emotion]"""
 import json, sys
 
-ROOT = "/Users/admin/kuleshov/.claude/worktrees/argentina-england-video-3c2044/projects/uk-argentina-feud"
+ROOT = "/Users/admin/kuleshov/.claude/worktrees/estee-lauder-night-video-7162e0/projects/uk-argentina-feud"
 sid = sys.argv[1]
 voice = sys.argv[2]
 speed = float(sys.argv[3]) if len(sys.argv) > 3 else 1.0

@@ -4,7 +4,7 @@
 前提：sec01..sec06 的 <sid>.mp3 与 timeline_<sid>.json 均已就绪。"""
 import json, subprocess
 
-ROOT = "/Users/admin/kuleshov/.claude/worktrees/argentina-england-video-3c2044/projects/uk-argentina-feud"
+ROOT = "/Users/admin/kuleshov/.claude/worktrees/estee-lauder-night-video-7162e0/projects/uk-argentina-feud"
 A = f"{ROOT}/audio"
 SEQ = ["sec01", "sec02", "sec03", "sec04", "sec05", "sec06"]
 GAP = 0.35

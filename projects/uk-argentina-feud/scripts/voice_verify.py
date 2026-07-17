@@ -4,7 +4,7 @@
 speechbrain ECAPA speaker verification，分数越高越像同一说话人。"""
 import json, base64, subprocess, os
 
-ROOT = "/Users/admin/kuleshov/.claude/worktrees/argentina-england-video-3c2044/projects/uk-argentina-feud"
+ROOT = "/Users/admin/kuleshov/.claude/worktrees/estee-lauder-night-video-7162e0/projects/uk-argentina-feud"
 A = f"{ROOT}/audio"
 
 try:

@@ -5,7 +5,7 @@
 旁白轨纪律：text_prompt 只含 声音档描述 + 朗读 + 文本；不写音效/音乐/多角色。"""
 import json, sys, base64
 
-ROOT = "/Users/admin/kuleshov/.claude/worktrees/argentina-england-video-3c2044/projects/uk-argentina-feud"
+ROOT = "/Users/admin/kuleshov/.claude/worktrees/estee-lauder-night-video-7162e0/projects/uk-argentina-feud"
 P = f"{ROOT}/film.json"
 sid = sys.argv[1]
 speech_rate = int(sys.argv[2]) if len(sys.argv) > 2 else 0

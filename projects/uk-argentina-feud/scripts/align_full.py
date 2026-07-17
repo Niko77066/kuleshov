@@ -3,7 +3,7 @@
 """整条音轨(单次MiniMax)→ 48k + mlx-whisper 逐词对齐 → 新 timeline.json(音画同步基准)。"""
 import json, subprocess, re
 
-ROOT = "/Users/admin/kuleshov/.claude/worktrees/argentina-england-video-3c2044/projects/uk-argentina-feud"
+ROOT = "/Users/admin/kuleshov/.claude/worktrees/estee-lauder-night-video-7162e0/projects/uk-argentina-feud"
 A = f"{ROOT}/audio"
 
 # 1. 转 48k stereo，覆盖 voiceover.mp3 为新整条

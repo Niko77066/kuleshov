@@ -4,7 +4,7 @@
 剧本句→whisper全字位置(全局累积映射)→句首尾词真实戳。同时导出 shot cue 供画面对齐。"""
 import json, re
 
-ROOT = "/Users/admin/kuleshov/.claude/worktrees/argentina-england-video-3c2044/projects/uk-argentina-feud"
+ROOT = "/Users/admin/kuleshov/.claude/worktrees/estee-lauder-night-video-7162e0/projects/uk-argentina-feud"
 tl = json.load(open(f"{ROOT}/audio/timeline.json", encoding="utf-8"))
 words = tl["words"]
 def isw(ch): return bool(re.match(r'[一-鿿A-Za-z0-9]', ch))

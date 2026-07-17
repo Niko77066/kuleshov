@@ -3,7 +3,7 @@
 """字幕：剧本原文切 8–16 字/屏，时间按 timeline 分节区间字数比例分配。输出 captions_data.js。"""
 import json, re
 
-ROOT = "/Users/admin/kuleshov/.claude/worktrees/argentina-england-video-3c2044/projects/uk-argentina-feud"
+ROOT = "/Users/admin/kuleshov/.claude/worktrees/estee-lauder-night-video-7162e0/projects/uk-argentina-feud"
 d = json.load(open(f"{ROOT}/film.json", encoding="utf-8"))
 tl = json.load(open(f"{ROOT}/audio/timeline.json", encoding="utf-8"))
 secmap = {s["id"]: s["t"] for s in tl["sections"]}

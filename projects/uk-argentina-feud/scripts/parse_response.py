@@ -4,7 +4,7 @@
 用法: parse_response.py <section_id>"""
 import json, sys, base64, subprocess
 
-ROOT = "/Users/admin/kuleshov/.claude/worktrees/argentina-england-video-3c2044/projects/uk-argentina-feud"
+ROOT = "/Users/admin/kuleshov/.claude/worktrees/estee-lauder-night-video-7162e0/projects/uk-argentina-feud"
 sid = sys.argv[1]
 r = json.load(open(f"{ROOT}/audio/response_{sid}.json"))
 

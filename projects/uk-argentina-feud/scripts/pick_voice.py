@@ -3,7 +3,7 @@
 """音色定稿：用户选 候选B（气泡音个性），要求放慢。更新 voice_profile，重置 sec01。"""
 import json
 
-ROOT = "/Users/admin/kuleshov/.claude/worktrees/argentina-england-video-3c2044/projects/uk-argentina-feud"
+ROOT = "/Users/admin/kuleshov/.claude/worktrees/estee-lauder-night-video-7162e0/projects/uk-argentina-feud"
 d = json.load(open(f"{ROOT}/film.json", encoding="utf-8"))
 vo = d["audio"]["voiceover"]
 

@@ -3,7 +3,7 @@
 """定位 sec04 内容审核触发段：前半/后半分别测。诊断用，不入片。"""
 import json
 
-ROOT = "/Users/admin/kuleshov/.claude/worktrees/argentina-england-video-3c2044/projects/uk-argentina-feud"
+ROOT = "/Users/admin/kuleshov/.claude/worktrees/estee-lauder-night-video-7162e0/projects/uk-argentina-feud"
 d = json.load(open(f"{ROOT}/film.json", encoding="utf-8"))
 vp = d["audio"]["voiceover"]["voice_profile"]
 

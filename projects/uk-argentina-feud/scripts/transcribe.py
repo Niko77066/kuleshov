@@ -3,7 +3,7 @@
 """G1 回转写：独立转写 voiceover.mp3，与剧本比对字级相似度（不用 TTS 自带字幕自证）。"""
 import json, re, difflib
 
-ROOT = "/Users/admin/kuleshov/.claude/worktrees/argentina-england-video-3c2044/projects/uk-argentina-feud"
+ROOT = "/Users/admin/kuleshov/.claude/worktrees/estee-lauder-night-video-7162e0/projects/uk-argentina-feud"
 def norm(s):
     return re.sub(r"[^一-鿿A-Za-z0-9]", "", s)
 

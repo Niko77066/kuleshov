@@ -4,7 +4,7 @@
 前提：mm_sec01..mm_sec06.mp3 已生成。SEQ 若 sec04 拆分则改。"""
 import json, subprocess, os
 
-ROOT = "/Users/admin/kuleshov/.claude/worktrees/argentina-england-video-3c2044/projects/uk-argentina-feud"
+ROOT = "/Users/admin/kuleshov/.claude/worktrees/estee-lauder-night-video-7162e0/projects/uk-argentina-feud"
 A = f"{ROOT}/audio"
 SEQ = ["sec01", "sec02", "sec03", "sec04", "sec05", "sec06"]
 GAP = 0.35

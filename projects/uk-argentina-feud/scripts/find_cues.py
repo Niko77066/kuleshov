@@ -3,7 +3,7 @@
 """从 timeline.words 定位各镜切换锚点(内容词首次出现的音频戳)——音画同步基准。"""
 import json
 
-ROOT = "/Users/admin/kuleshov/.claude/worktrees/argentina-england-video-3c2044/projects/uk-argentina-feud"
+ROOT = "/Users/admin/kuleshov/.claude/worktrees/estee-lauder-night-video-7162e0/projects/uk-argentina-feud"
 tl = json.load(open(f"{ROOT}/audio/timeline.json", encoding="utf-8"))
 words = tl["words"]
 # 拼接字符 + 每字符起戳

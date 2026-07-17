@@ -8,7 +8,7 @@ except Exception:
     from speechbrain.pretrained import SpeakerRecognition
 m = SpeakerRecognition.from_hparams(source="speechbrain/spkrec-ecapa-voxceleb", savedir="/tmp/spkrec-ecapa")
 
-ROOT = "/Users/admin/kuleshov/.claude/worktrees/argentina-england-video-3c2044/projects/uk-argentina-feud"
+ROOT = "/Users/admin/kuleshov/.claude/worktrees/estee-lauder-night-video-7162e0/projects/uk-argentina-feud"
 KEY = os.environ["MINIMAX_MUSIC_API_KEY"]; BASE = os.environ["MINIMAX_MUSIC_BASE_URL"]
 d = json.load(open(f"{ROOT}/film.json", encoding="utf-8"))
 sec03 = next(s["text"] for s in d["audio"]["voiceover"]["sections"] if s["id"] == "sec03")

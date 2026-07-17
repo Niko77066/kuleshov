@@ -4,7 +4,7 @@
 用法: gen_seedance.py <sid> <first_url> <last_url> [duration]"""
 import json, sys
 
-ROOT = "/Users/admin/kuleshov/.claude/worktrees/argentina-england-video-3c2044/projects/uk-argentina-feud"
+ROOT = "/Users/admin/kuleshov/.claude/worktrees/estee-lauder-night-video-7162e0/projects/uk-argentina-feud"
 sid, first, last = sys.argv[1], sys.argv[2], sys.argv[3]
 dur = int(sys.argv[4]) if len(sys.argv) > 4 else 5
 
@@ -38,6 +38,18 @@ ORDER = {
                "down defiantly in the last second to complete Image 2.",
  "s05_goal": "first the field and goal slide in, then the row of white-shirted defenders, then the navy-blue player "
              "dribbles past them with pixel afterimages toward the goal in the last second to complete Image 2.",
+ "s02_map": "first the pixel sea-wave texture slides in across the middle, then the lower-left landmass with the "
+            "sky-blue-and-white highlighted country snaps into place, then the upper-right landmasses with the "
+            "red-and-blue highlighted isles snap into place, and finally the cream dashed route line extends dash by "
+            "dash across the ocean from lower-left to upper-right, connecting them in the last second to complete Image 2.",
+ "s04_ruler": "first the big green continent landmass and the tiny two-island cluster assemble piece by piece, then the "
+              "very short solid cream arc draws quickly from the mainland coast to the small islands, and then the "
+              "extremely long cream dashed arc slowly extends dash by dash from the islands toward the upper-right "
+              "corner until it runs off the edge of the frame in the last second to complete Image 2.",
+ "s05_9802": "first the green pitch and the white goal frame with the crowd wall slide in, then the red goalkeeper and "
+             "the sky-blue-and-white striped shooter slide into place, and in the final second the shooter kicks and the "
+             "ball streaks with a pixel afterimage trail into the far top corner while the keeper dives the other way, "
+             "completing Image 2.",
 }
 prompt = HEAD + ORDER[sid] + TAIL
 p = {"model": "doubao-seedance-2-0-260128", "prompt": prompt,

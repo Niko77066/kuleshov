@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """生成 compose v3 index.html：空镜≤3s快切 + 像素事件贴cue + 角标叠画面 + 精确字幕。"""
 import os
-ROOT = "/Users/admin/kuleshov/.claude/worktrees/argentina-england-video-3c2044/projects/uk-argentina-feud"
+ROOT = "/Users/admin/kuleshov/.claude/worktrees/estee-lauder-night-video-7162e0/projects/uk-argentina-feud"
 DUR = 222.76
 SEG = 3.0  # 空镜单素材最长3s
 

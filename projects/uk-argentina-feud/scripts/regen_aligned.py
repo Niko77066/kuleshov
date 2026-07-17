@@ -4,7 +4,7 @@
 sec01 保留为音色源不动；sec04 仍拆 a/b 规避审核。speech_rate 逐节保留。"""
 import json, base64
 
-ROOT = "/Users/admin/kuleshov/.claude/worktrees/argentina-england-video-3c2044/projects/uk-argentina-feud"
+ROOT = "/Users/admin/kuleshov/.claude/worktrees/estee-lauder-night-video-7162e0/projects/uk-argentina-feud"
 b64 = base64.b64encode(open(f"{ROOT}/audio/sec01.mp3", "rb").read()).decode()
 d = json.load(open(f"{ROOT}/film.json", encoding="utf-8"))
 vo = d["audio"]["voiceover"]; vp = vo["voice_profile"]

@@ -4,7 +4,7 @@
 差异大=speaker生效(真换音色)；几乎相同=又被吞（无效）。"""
 import json, base64, subprocess, os
 
-ROOT = "/Users/admin/kuleshov/.claude/worktrees/argentina-england-video-3c2044/projects/uk-argentina-feud"
+ROOT = "/Users/admin/kuleshov/.claude/worktrees/estee-lauder-night-video-7162e0/projects/uk-argentina-feud"
 A = f"{ROOT}/audio"
 r = json.load(open(f"{A}/response_spk.json"))
 open(f"{A}/spk_a.mp3", "wb").write(base64.b64decode(r["audio"]))  # speaker=思思, sec02文本

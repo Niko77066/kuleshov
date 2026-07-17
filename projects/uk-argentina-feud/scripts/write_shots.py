@@ -3,7 +3,7 @@
 """⑤ storyboard 落盘：21 镜绑 timeline + edit + 自查八项 gate。"""
 import json
 
-ROOT = "/Users/admin/kuleshov/.claude/worktrees/argentina-england-video-3c2044/projects/uk-argentina-feud"
+ROOT = "/Users/admin/kuleshov/.claude/worktrees/estee-lauder-night-video-7162e0/projects/uk-argentina-feud"
 d = json.load(open(f"{ROOT}/film.json", encoding="utf-8"))
 
 # provider 缩写：hf=HyperFrames MG | cp=collage-broll-pixel | sd=seedance空镜 | arc=档案照图片动效

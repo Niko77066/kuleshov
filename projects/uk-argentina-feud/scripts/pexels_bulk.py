@@ -4,7 +4,7 @@
 import json, os, urllib.request, urllib.parse, subprocess
 
 KEY = os.environ["PEXELS_API_KEY"]
-ROOT = "/Users/admin/kuleshov/.claude/worktrees/argentina-england-video-3c2044/projects/uk-argentina-feud"
+ROOT = "/Users/admin/kuleshov/.claude/worktrees/estee-lauder-night-video-7162e0/projects/uk-argentina-feud"
 OUT = f"{ROOT}/compose/assets/broll2"; os.makedirs(OUT, exist_ok=True)
 
 # 每内容点 2 个关键词，各取 1 条

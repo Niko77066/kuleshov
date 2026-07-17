@@ -3,7 +3,7 @@
 """音色 gate 第二轮：用户要 年轻女声 + 更快。更新 voice_profile，重置 sec01 重生成。"""
 import json
 
-ROOT = "/Users/admin/kuleshov/.claude/worktrees/argentina-england-video-3c2044/projects/uk-argentina-feud"
+ROOT = "/Users/admin/kuleshov/.claude/worktrees/estee-lauder-night-video-7162e0/projects/uk-argentina-feud"
 d = json.load(open(f"{ROOT}/film.json", encoding="utf-8"))
 vo = d["audio"]["voiceover"]
 

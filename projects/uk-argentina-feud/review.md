@@ -1,51 +1,37 @@
 # Review / 交接文档 · 英国和阿根廷：什么仇什么怨
 
-> **状态**：compose v3 draft 已出，用户看片仍有问题（未细化）。session 上下文满，交接新 session。
-> **新 session 第一步**：读 `film.json` 的 `meta.next_action` + 本文件；然后**请用户逐条列出 draft_v3 的具体问题**（用户只说"还是有很多问题"，需细化才能定点改）。
+> **状态**：compose v4 draft 已出（`out/draft_v4.mp4`），针对用户 v3 五项反馈逐项定点重做。待用户看片。
+
+## v4 相对 v3 改了什么（对应用户 2026-07-17 反馈）
+
+1. **音色漂移** → 实测对比 seed-audio vs MiniMax 长音频：
+   - seed-audio `original_duration=120` **硬上限坐实**（整条 1215 字：两次 500 `TextPromptAgentResultError`/截断；790 字被压进 109s 语速失真 6.4 字/s）；两段拆分跨段声纹 **0.824**（漂移明显）。长音频能力不成立，出局。
+   - MiniMax speech-2.8-hd 整条 single-pass 三候选（shaonv 1.0 / 1.05 / 1.0+calm）声纹两两对比，**选定 shaonv + calm + speed 1.0**（244.6s，min 0.904 / mean 0.928，追平 v3 一致性且语速不赶）。whisper 反查全文无念错（差异全是数字格式/同音字转写噪声）。
+   - 天花板提示不变：要 >0.95 需用户提供真人音源走 MiniMax 克隆（`ndclone-`）。
+2. **音画/字幕不同步** → **根因坐实并根治**：v3 字幕是"剧本字数→whisper 转写字数"按**全局比例**映射（`gen_captions_v2.py:44`），whisper 把中文数字写成阿拉伯数字（"四十四"→"44"），全片差 ~80 字，中段字幕系统性拉歪数秒。v4 改**已知文本强制对齐**：`scripts/forced_align.py`（wav2vec2-zh CTC + torchaudio.forced_align，40s 块/5s 重叠拼接），剧本 1076 字每字直拿真实戳（1069 直对齐 + 7 OOV 插值），silencedetect 交叉验证中段零漂移。字幕 `gen_captions_v3.py`（1:1，无估算），画面 cue `find_cues_v2.py` → `audio/cues_v4.json`。
+3. **像素动画太快/不匹配** → 8 条 5.04s 旧镜头 `setpts 2x` 降到 10.03s（15fps 有效帧=定格质感）；挂载**尾对齐**（`media_start = clip_len - mount_len`，组装完成拍点落在对应文案上；belgrano 例外头对齐防空纸场撞沉船文案）。**新增 4 条** 10s 原生慢组装：s02_map（两国点亮拉线）/s03_trade（贸易线）/s04_ruler（距离标尺）/s05_9802（点球）——`shots/backfill_v4.json`。像素叙事覆盖 41s → **105.8s**。
+4. **真实画面重复/相关性差** → broll3 重构（36 条 + broll2 留 10 剔 9）：Pexels/Pixabay 只做纯空镜；叙事素材走 archive.org/Wikimedia 公域（1806 版画、1928 阿根廷纪录片×3、1920 伦敦、1982 IWM/AP 档案）+ **APIhub youtube 下载**（Sky/AP 2026 半决赛横幅新闻，标 broadcast-risk 限 ≤3s 闪切）。池按 desc 关键词过滤防时代错位（1806 段禁 1920s 汽车街景）、全局轮换 + 复用时错开 media-start 防同画面重复（34 素材/最多复用 2 次，v3 是 28 素材大量循环）。manifest（含 gaps 7 项、license 分级）：`compose/assets/broll3/manifest.json`。
+5. **BGM** → MiniMax music-2.6 生成 82.6s → 交叉淡化拼 243s（-29.7 LUFS / LRA 4.2），composition 内挂 `data-volume 0.23`（低旁白 20 LU），随渲染一体输出。`compose/assets/bgm_meta.json`。
 
 ## 当前产物
-- **draft_v3**：`out/draft_v3.mp4`（222.78s，冻结仅 3 段，lint+check 双过）← 最新
-- 历史：`out/draft.mp4`(v1) · `out/draft_v2.mp4`
+- **draft_v4**：`out/draft_v4.mp4`（246.0s = VO 244.6 + 尾黑场；1280x720/30fps）
+- 抽帧自查：`out/v4_review1.jpg` / `v4_review2.jpg`（两轮，第二轮修掉 1806 段 1920s 街景、"昨天"段夜景雕像/晴天国旗错位、belgrano 空头）
+- 历史：draft.mp4(v1) / draft_v2 / draft_v3
 
-## 三版迭代史 + 用户反馈（重要）
-- **v1（文字卡为主）**：13 个 MG 文字卡 + 9 collage + 1 空镜，冻结 20+。用户打回：①布局穿字 ②音色 6 节拼接有跳变 ③音画不同步、画面提前 ④文字画面占比高、转换慢、没耐心。
-- **v2（引入真实空镜）**：Pexels 7 真实空镜代文字卡 + MiniMax 整条音轨，冻结 5。用户打回：①音色还在变 ②**音画还不同步（最重要痛点）** ③空镜时间久/反复重复/相关性差。
-- **v3（≤3s 快切 + 精确音画 + 最稳音色）← 当前**：音色换 shaonv（测 5 女声最稳 0.907）；音画字幕+画面全钉 whisper 逐词真实戳；空镜 ≤3s 大量快切（28 素材轮换），冻结 3。用户：**"还是有很多问题"（未细化）**。
+## 关键资产（v4）
+- 音轨：`audio/voiceover_v4.mp3`（=compose/assets/voiceover.mp3，mmC）；候选与 seed-audio 实验响应都在 `audio/`（vo_mmA/B/C、vo_seedA/B、response_full_seed*）
+- 对齐：`audio/timeline_fa.json`（逐字 1076 戳）+ `audio/cues_v4.json`（52 锚点）
+- 字幕：`compose/assets/captions_data.js`（108 句）
+- 像素：`compose/assets/s0*_s.mp4`（13 挂载用；8 降速 + 4 新 + banner 复用）
+- compose：`compose/index.html`（v4，由 `scripts/build_compose_v4.py` 生成——改 PIX/POOL_SEGS/TAG_FILTER/BADGE 后重跑）
 
-## 关键决策 / 踩坑（避免重踩）
-- **音色**：火山 seed-audio 分节漂移，`reference_audio`/`speaker`/`voice_type` 字段被接口"接受但忽略"（声纹坐实无效）；改 MiniMax `speech-2.8-hd`，**单次可出整条**（无 120s 限）、固定 voice 零拼接。但 MiniMax 所有女声整条声纹仍 **0.84–0.91**（生成式起伏天花板），shaonv 最稳（0.907）。要 >0.95 只能让**用户提供真人音源走 MiniMax 克隆**（`ndclone-` 前缀，代码源 grain `minimax-voice-client.ts`）。详见 memory `tts-longform-minimax`。
-- **音画同步（最重要，v3 仍被指有问题）**：根因是 v1/v2 字幕用"字数比例估算"（不准）+ 画面时间自估。v3 已改：字幕(`gen_captions_v2.py`)+ 画面(`find_cues.py` 的 cue)全钉 mlx-whisper 逐词真实戳。**若 v3 仍不同步，下一步试**：① whisperx forced alignment（比 mlx 转写更精确的逐词对齐）② 核查 HyperFrames render 的音/视频轨对齐 ③ 字幕显隐延迟（当前 0.1s）。
-- **空镜**：用户要单素材 ≤3s + 大量相关素材快切 + 找不到降文本。v3 已做（`build_compose_v3.py` 的 POOLS 按节相关素材 ≤3s 轮换）。**相关性可再提**：部分是通用素材（如欧洲老城代殖民、现代集装箱船代 1900s 货运），可换更贴的关键词重检索。
-- **素材下载**：Pexels 检索(urllib)必须加 `User-Agent`（否则 403）；下载(curl)必须 `-A UA -e https://www.pexels.com/`（Referer）。
-- **Seedance collage**：首帧空色场 + 尾帧成品 → assemble-from-empty；实产 ~5.04s/条；死尾查 YDIF；compose 挂载 ≤5s。
-- **HyperFrames**：collage/broll 挂入前重编码 `-g 12 -keyint_min 12 -sc_threshold 0` 防 seek 冻帧；`<video>` 必须 muted；`render --strict` 含 lint gate；`--docker` 帧级复现。
+## 未做 / 待办
+1. 用户看片 draft_v4 → 反馈定点改
+2. 响度归一 -14 LUFS（渲染后处理，命令见下）+ `docker high` final render → `out/final.mp4`
+3. ⑩ deliver：发布包（双平台）+ `/video-score` 登记 + 成本单价回填（Seedance/GPT-Image 无计价字段，x-oneapi-request-id 在 backfill_v4.json 可反查；BGM 两笔 trace 见 bgm_meta.json）
+4. broadcast-risk 素材使用告知用户（Sky/AP/1966 转播/1982 AP 档案共 9 条，都 ≤3s 闪切；manifest 有全清单）
+5. 响度归一命令：`ffmpeg -i out/draft_v4.mp4 -c:v copy -af loudnorm=I=-14:TP=-1.5:LRA=11 -c:a aac -b:a 192k out/final.mp4`
 
-## 资产
-- 音频：`audio/voiceover.mp3`（shaonv 整条 223s）+ `audio/timeline.json`（逐词 976 戳）
-- 像素事件 9：`shots/{s01_banner,s01_1806,s03_invade,s04_belgrano,s04_sheffield,s05_rattin,s05_hand,s05_goal}.mp4`（源静帧 `anchors/*.png`）
-- 真实空镜：`compose/assets/broll/`（7，`_g` 后缀）+ `compose/assets/broll2/`（21，`_g` 后缀重编码 720p/做旧）
-- 档案照：`anchors/s06_photo.png`（拉廷致敬，做旧黑白，非真人肖像）
-- 字幕：`compose/assets/captions_data.js`（108 句 whisper 戳）
-- composition：`compose/index.html`（v3）+ `compose/_css_v3.txt`（CSS）
-
-## 脚本（`scripts/`，从 session scratchpad 移入）
-- `build_compose_v3.py` — **compose 生成器**（改 PIX 事件 / POOLS 空镜池 / BADGE 角标 → 重跑生成 index.html）
-- `gen_captions_v2.py` — 字幕 whisper 逐词精确戳
-- `find_cues.py` — 内容词 cue 戳（音画同步锚点）
-- `align_full.py` — 整条音轨 → 48k + mlx 逐词 → timeline.json
-- `pexels_bulk.py` / `pexels_fetch.py` — Pexels 素材检索下载
-- `mm_payload.py` — MiniMax TTS payload（voice/speed/emotion）
-- `gen_seedance.py` — Seedance 首尾帧组装 payload
-- `gen_image.py` — GPT-Image 像素静帧
-- `test_voices.py` / `diag_voice.py` — 音色稳定性声纹
-
-## 未做（v3 问题解决后 → 交付）
-1. **解决用户 v3 具体问题**（待细化）
-2. BGM 垫乐（pixel-chronicle 要"BGM 垫底"；seed-audio/MiniMax 可生成）
-3. 响度归一 -14 LUFS（当前 ~-23）
-4. `docker high` final render → `out/final.mp4`
-5. ⑩ deliver：成片 + film.json + 成本小结 + git 提交合 main（worktree 合并纪律）
-6. `/video-score` 登记 + 成本单价回填（GPT-Image / Seedance / TTS 单价 DEBT）
-
-## 凭据（`.env` 仓库根，gitignored）
-`MINIMAX_MUSIC_API_KEY`/`_BASE_URL`(TTS) · `ARK_VIDEO_API_KEY`/`_BASE_URL`(Seedance+GPT-Image) · `PEXELS_API_KEY`/`PIXABAY_API_KEY`(素材) · `AWS_S3_*`(oss-upload.sh) · `VOLC_TTS_API_KEY`(旧 seed-audio，已废)
+## 凭据/工程坑（沿用 + 新增）
+- 沿用 v3 记录（Pexels UA/Referer、Seedance @ref、HyperFrames GOP12/muted）。
+- 新增：volc openspeech 认证头是 **`X-Api-Key`**（不是 Bearer）；new-api 网关封 python-urllib UA（轮询用 curl）；torchaudio forced_align 分块 emission 要在重叠中点拼接。
