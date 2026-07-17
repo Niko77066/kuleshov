@@ -1,0 +1,1 @@
+{"model": "speech-2.8-hd", "voice": "audiobook_female_1", "input": "什么仇什么怨。今天，英国和阿根廷。隔着一万两千公里的大西洋，掰了两百二十年的手腕。", "response_format": "hex", "metadata": {"audio_setting": {"format": "mp3"}, "voice_setting": {"speed": 1.1, "vol": 1, "pitch": 0, "emotion": "neutral", "english_normalization": true}, "language_boost": "Chinese"}}
