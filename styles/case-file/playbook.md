@@ -4,7 +4,7 @@
 
 ## 0. 档案
 
-- 状态：**新建 2026-07-17**，替代已淘汰的 `daily-brief`。首考随 `openai-78m-logs`（重构版）。
+- 状态：**首考通过 2026-07-17**（用户认可「这个风格包应该就没问题了」；首片 `openai-78m-logs` GS-11 · 4.22/5）。替代已淘汰的 `daily-brief`。
 - 交付承诺类型：`typography_led + collage_broll + document`（三语言混排）；**时长无锁**（音频/内容自然定）。
 - 由来：daily-brief 首片被用户判「全军覆没」（PPT 味 / 上堆下空 / 提文件却在摆字）。本包是那次尸检后的重构，吸收 samsung `tech-newsroom` 的文件精读技法 + `collage-broll` 声部 + 两个幸存镜（居中极简）的经验。
 
@@ -58,6 +58,6 @@
 
 ## 7. Golden 样片
 
-- `openai-78m-logs`（重构版，首考）——待 `/video-score` 登记。
+- `openai-78m-logs`（重构版，**首考通过 · GS-11 · 4.22/5 · 用户认可**）。
 - 范本镜：`s03d` 手机↔服务器分屏、`s04d` 密态计算标题（居中极简）；4 条拼贴 b-roll（隐喻间奏）。
 - 反例存档：daily-brief 版 `openai-78m-logs` v1（全军覆没，见其 `review.md` 与本包 §0/§6）。
