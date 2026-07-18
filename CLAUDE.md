@@ -12,7 +12,7 @@ M0 的交付物不是视频，是：**验证过的品味资产 + 带人工分的
 1. **知识科普类 3 分钟视频**（对标片：`/Users/admin/Downloads/6a36784a00000000110050d4_副本.mp4`，拆解与风格包见 `styles/pixel-chronicle/`）；
 2. **荆华密算 AI 隐私平台社媒视频**——内容引擎定稿：**搜集全球 AI 隐私与泄露热点新闻 → 专业解读 + 安全提醒 → 凸显六场景（法律/医疗/心理/职场/金融/科研）中的产品价值**。企业号红线见 `.claude/skills/rednote-mentor/references/compliance.md`。
 
-两个外部依赖由用户提供 API（契约到手即接入，todo 见 `docs/m1-plan.md`）：**检索/实拍素材 API**（补齐五源里最后一源）、**服务器渲染 API**（替代本地渲染，切换前须帧级一致性对比）。
+两个外部依赖由用户提供 API（todo 见 `docs/m1-plan.md`）：**检索/实拍素材 API**（补齐五源里最后一源）、**服务器渲染 API**（client 已接入 `tools/render-remote.sh`，待生产地址 / token 下发并完成帧级一致性对比后替代本地渲染）。
 
 账号运营层用 `/rednote-mentor`：选题从搜索词反推进 brief，出厂随片交付双平台发布包，冷启动数据按 L5 回流归因。M1 工程化设计（Film IR API、导演—子导演上下文、风格包注入机制）见 `docs/film-ir-context-architecture.md`，排期与 todo 见 `docs/m1-plan.md`。
 
@@ -22,6 +22,7 @@ M0 的交付物不是视频，是：**验证过的品味资产 + 带人工分的
 - `styles/` — 风格包（每包一个目录）+ 反主观翻译总表（`translation-table.md`）
 - `projects/<片名>/` — 每片一个目录：`film.json`（全片唯一真相源）+ 阶段 artifact + 产物
 - `tools/oss-upload.sh` — 本地资产传 grain S3 → 返回 `storage.neodrop.ai` 公网 URL（Seedance @ref 引用用）
+- `tools/render-remote.sh` — 把项目根打包后交给 Grain GPU 渲染机，直接取回 MP4；要求 `KULESHOV_RENDER_URL`、`KULESHOV_RENDER_TOKEN`、`HYPERFRAMES_VERSION`，远端不可用时显式失败、不静默回落本地
 
 ## 运行铁律（M0 版 Rule Zero）
 

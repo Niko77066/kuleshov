@@ -122,7 +122,7 @@ WebSearch / 用户素材整理出 5–10 条核心事实，**每条带出处 URL
 - **时长调和**（烘焙 clip 超长时按序）：尾部裁切（保动作完成点）→ 变速 ± 5% → 均不可则该镜 fail 重做；**禁止冻结帧补时长**；
 - 混排缝合：统一 LUT（以 style frame 为基准）+ 共享颗粒；剪辑点落句读/节拍，默认 J-cut/L-cut；转场 ≤ 4 种；
 - `npx hyperframes lint` 不过禁 render；render 用 `--docker` 保帧级复现，出 `out/final.mp4`。
-- 服务器渲染 API（用户提供，待接入）就位后替代本地渲染跑 final；切换前必须用同一 composition 双跑对比一次帧级一致性，通过才切，切换记 `ledger.decisions`。
+- 服务器渲染 API 就位后用 `tools/render-remote.sh projects/<片名>` 跑 final；它要求 `KULESHOV_RENDER_URL`、`KULESHOV_RENDER_TOKEN`、`HYPERFRAMES_VERSION`，缺配置或远端失败即停止，禁止静默回落本地。首次切换必须用同一 composition 与本地 `--docker` 双跑一次帧级一致性对比，通过才切，切换记 `ledger.decisions`。
 
 ### ⑨ review ⏸
 1. **L0 手动仪器**（结果与证据写 `review.md`）：`ffprobe` 查时长/分辨率/帧率；blackdetect / freezedetect 查黑帧冻结；响度是否 -14 LUFS；成片音轨回转写 vs 剧本；承诺复验（时长、运动占比、转场数）。出示证据，"我检查过了"不算数。
