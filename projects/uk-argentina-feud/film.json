@@ -15,8 +15,8 @@
    "spent_usd": 0.4985
   },
   "pipeline_version": "m0-v1",
-  "status": "draft-v4-review",
-  "next_action": "draft_v4 已出厂（out/draft_v4.mp4，246s，-14.5 LUFS），针对用户 v3 五项反馈逐项重做完毕，待用户看片。v3→v4 改动清单/根因/资产索引全在 review.md。若有反馈：改 scripts/build_compose_v4.py 的 PIX/POOL_SEGS/TAG_FILTER/BADGE 后重跑+render。看片过 → docker high final render + ⑩ deliver（发布包/video-score/成本回填）。broadcast-risk 素材 9 条(≤3s闪切)需用户知情，清单在 broll3/manifest.json。"
+  "status": "delivered",
+  "next_action": "成片已交付：out/final.mp4（255.7s，1280x720/30fps，-13.9 LUFS/TP -1.5，hyperframes 0.7.57 -q high --strict 本地渲染=与验收draft同引擎；docker通道网络超时降级已记ledger）。后续：/video-score 登记 + 双平台发布包（rednote-mentor）+ 成本单价回填（Seedance/GPT-Image x-oneapi-request-id 反查）。broadcast-risk 素材 9 条已按 ≤3s 闪切使用，发布前需用户对 manifest.json 的 broadcast-risk 清单最终拍板。"
  },
  "audio": {
   "voiceover": {
@@ -38,7 +38,7 @@
      "rate": "normal",
      "speech_rate": 0,
      "perf": "平叙开局；『马岛，是阿根廷的』放慢一字一顿；『这么说吧』贴近闲聊",
-     "text": "昨天凌晨，阿根廷把英格兰踢出了世界杯，补时第二分钟绝杀。但真正上热搜的，是庆祝时拉开的那条横幅：马岛，是阿根廷的。一场四十四年前的战争，被举到了半决赛的球场上。这两个国家到底多大仇？这么说吧，这本账，比阿根廷建国还要老。",
+     "text": "前两天凌晨，阿根廷把英格兰踢出了世界杯，补时第二分钟绝杀。但真正上热搜的，是庆祝时拉开的那条横幅：马岛，是阿根廷的。一场四十四年前的战争，被举到了半决赛的球场上。这两个国家到底多大仇？这么说吧，这本账，比阿根廷建国还要老。",
      "status": "generated",
      "gen": {
       "engine": "minimax speech-2.8-hd",
@@ -143,7 +143,7 @@
      "rate": "slow",
      "speech_rate": 0,
      "perf": "回到全片最低语速；拉廷两句之间留 0.5s 静默；末句逐字落下，收在『加时赛』后 1s 静默进音乐",
-     "text": "然后就是昨天。英格兰先进球，第八十五分钟被扳平，补时被绝杀。三十九岁的梅西，送了两次助攻。有个人没能看到这场球。拉廷，六十年前坐上红毯的那位队长，上礼拜刚刚去世，八十九岁。横幅在亚特兰大的夜里拉开。对英格兰，这是一场输掉的半决赛；而阿根廷人踢的，一直是那七十四天的加时赛。",
+     "text": "然后就是前两天。英格兰先进球，第八十五分钟被扳平，补时被绝杀。三十九岁的梅西，送了两次助攻。有个人没能看到这场球。拉廷，六十年前坐上红毯的那位队长，上礼拜刚刚去世，八十九岁。横幅在亚特兰大的夜里拉开。对英格兰，这是一场输掉的半决赛；而阿根廷人踢的，一直是那七十四天的加时赛。",
      "status": "generated",
      "gen": {
       "engine": "minimax speech-2.8-hd",
@@ -156,12 +156,12 @@
     }
    ],
    "chosen_candidate": "B-气泡音个性",
-   "file": "audio/voiceover_v4.mp3",
-   "voice": "female-shaonv",
+   "file": "audio/voiceover_v5.mp3",
+   "voice": "Chinese (Mandarin)_Gentle_Senior",
    "speed": 1.0,
    "mode": "single-pass(整条一次生成)",
-   "duration_actual_s": 244.62,
-   "note": "v4: 三候选对比(1.0/1.05/1.0+calm)+seed-audio长音频复测；mmC(calm,1.0)两两声纹min0.904/mean0.928追平v3且语速从容，选定。payload=audio/payload_mmC.json",
+   "duration_actual_s": 256.68,
+   "note": "v5: 用户要求试官方音色ID。grain minimax-voices-zh.tsv 拉6候选(纪录片/播客向女声)→韵律初筛(停顿/音高动态)→决赛2条整轨声纹：Laid_BackGirl 0.804出局(表现力=漂移)，Gentle_Senior 0.889/0.908入选(官方Documentary标签)。shaonv版(audio/vo_mmC.mp3 0.904)留档备退",
    "emotion": "calm"
   },
   "music": null,
@@ -169,14 +169,16 @@
    "file": "audio/timeline_fa.json",
    "method": "forced-align wav2vec2-zh (torchaudio.forced_align, 剧本1:1逐字真实戳)",
    "n_chars": 1076,
-   "validated": "silencedetect 交叉验证中段零漂移(39.02/45.56/48.34s 三处吻合)"
+   "validated": "silencedetect 交叉验证中段零漂移(39.02/45.56/48.34s 三处吻合)",
+   "note": "v5修正: 分块emission每缝重复125帧+均匀缩放→中段偏早(字幕略快根因)。改核心区精确平铺+固定20ms帧距；6锚点切片转写全片零偏验证"
   },
   "bgm": {
-   "file": "compose/assets/bgm.mp3",
+   "file": "compose/assets/bgm_v5.mp3",
    "source": "minimax music-2.6 (new-api网关) 生成82.6s→交叉淡化循环拼243s",
    "integrated_lufs": -29.7,
    "mount_volume": 0.23,
-   "meta": "compose/assets/bgm_meta.json"
+   "meta": "compose/assets/bgm_meta.json",
+   "note": "加长到256.2s(0-239.5 + 中段15-35 交叉淡化3s + 尾3s淡出)匹配新音轨"
   }
  },
  "anchors": [
@@ -1224,6 +1226,26 @@
     "date": "2026-07-17",
     "decision": "v4 素材池纪律固化：tag按desc关键词过滤(防时代错位)+全局轮换+复用错开media-start(防同画面)。broadcast-risk 素材(Sky/AP/1966转播/1982档案共9条)全部≤3s闪切并在manifest标注，交付时告知用户",
     "evidence": "scripts/build_compose_v4.py TAG_FILTER"
+   },
+   {
+    "date": "2026-07-18",
+    "decision": "v5三项(用户draft_v4反馈)：①字幕略快根因=对齐器分块拼接重复帧+均匀缩放，改精确平铺后6锚点转写零偏；②音色换官方 Gentle_Senior(6候选韵律筛+2决赛声纹，Laid_BackGirl 0.804漂移出局)；③broll改硬性一素材一次(41切段41素材,切段2.2~5s,池耗尽fallback链)，足球草皮特写回绕重复与azteca暗尾黑屏根治(素材窗尾留0.8s余量)，banner像素复用改真实横幅新闻≤3.2s",
+    "evidence": "scripts/forced_align.py scripts/build_compose_v5.py audio/payload_v5_*.json"
+   },
+   {
+    "date": "2026-07-19",
+    "decision": "时效文案更新：比赛已过3天，'昨天凌晨'→'前两天凌晨'、'然后就是昨天'→'然后就是前两天'（拉廷7-11去世,'上礼拜'仍准确保留；sec02'今天'为报题修辞不动）。整条音轨重生成+全链路重跑",
+    "evidence": "F01/F05 research.md"
+   },
+   {
+    "date": "2026-07-19",
+    "decision": "final render 降级说明(非静默)：docker 帧级复现通道因镜像构建网络超时(DeadlineExceeded, node:22-bookworm-slim 拉取失败)不可用，降级为本地渲染(同 CLI 0.7.57, -q high, --strict)——与全部已验收 draft 同引擎同版本，仅失去跨机字节级复现保证。已告知用户",
+    "evidence": "/tmp/final_render.log"
+   },
+   {
+    "date": "2026-07-19",
+    "decision": "final 首渲抽帧抓出两缺陷并修：①缝隙并入使尾对齐像素窗越媒体末尾0.24s(hand段尾黑帧)→并入逻辑改为优先后条前扩(削media_start,payoff不动)、否则前条延长且媒体窗前移防越界；②match_replay池被上游耗尽后三级回退抓到sheffield军舰照撞'补时被绝杀'文案→match_replay加RESERVE(fans_banner2/goal_action)+战争素材TAG_EXCLUDE",
+    "evidence": "out/final_review*.jpg"
    }
   ],
   "costs": [
@@ -1418,6 +1440,20 @@
    "pixel_coverage_s": 108.8,
    "render": "out/draft_v4.mp4 (246.04s, 180MB, loudnorm -14.5 LUFS/TP -1.5；pre-norm 备份 draft_v4_prenorm.mp4)",
    "self_check": "抽帧两轮(v4_review1/2.jpg)+定点帧4张：时代错位(1806段1920s街景)/池轮换错位(昨天段夜雕像+晴天旗)/belgrano空头 均已修；字幕121/125s空档为句间静音(正确)；素材34种最多复用2次"
+  },
+  "v5": {
+   "builder": "scripts/build_compose_v5.py",
+   "duration_s": 258.06,
+   "changes": "Gentle_Senior音轨256.7s+修正对齐+一素材一次(41/41)+缝隙自动并入+BGM 256.2s+真实横幅新闻收尾",
+   "render": "out/draft_v5.mp4(258.1s, loudnorm -14; prenorm 备份)",
+   "self_check": "断言:broll零重复(41/41)+轨道无缝;抽帧2轮+定点5帧:墨西哥段azteca预留生效/金句双夜景/横幅新闻卡'亚特兰大'句/字幕6锚点转写零偏"
+  },
+  "final": {
+   "file": "out/final.mp4",
+   "duration_s": 255.7,
+   "lufs": -13.9,
+   "tp": -1.5,
+   "self_check": "抽帧两轮+定点：hand payoff落'上帝之手'、无黑帧、回顾段全球赛素材、时效词'前两天'落音复核、broll 41/41零重复、素材错位零"
   }
  }
 }

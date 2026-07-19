@@ -61,6 +61,7 @@ C = {
   # sec05
   "rattin":           cue("一九六六年世界杯"),
   "rattin_sit":       cue("一屁股"),
+  "rattin_sit_end":   cue("红毯", end=True),
   "rattin_end":       cue("世纪劫案", end=True),
   "redcard":          cue("顺便说一句"),
   "redcard_end":      cue("才发明的", end=True),
@@ -75,7 +76,7 @@ C = {
   "y9802":            cue("之后还有两笔账"),
   "y9802_end":        cue("扳回一城", end=True),
   # sec06
-  "yesterday":        cue("然后就是昨天"),
+  "yesterday":        cue("然后就是前两天"),
   "messi":            cue("三十九岁的梅西"),
   "photo":            cue("有个人"),
   "photo_end":        cue("八十九岁", end=True),

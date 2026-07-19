@@ -55,6 +55,15 @@ POST {base}/v1/videos
 - 首尾帧：网关 content 角色支持 `first_frame`/`last_frame`（grain 未暴露、我们待实测），keyframe 锚点走这个角色；
 - **必须挂锚点**：无锚点的角色/产品镜头不许生成（一致性问题要在便宜的图像阶段解决，不在贵的视频阶段重摇）。
 
+## 组装类镜头（assemble-from-empty）：时长与挂载（2026-07-18 英阿片 v4/v5 定版）
+
+- **`metadata.duration` 直接要 10s**——5s 组装被用户打回"过得太快"是必然：定格拼装需要呼吸。10s 原生慢组装（prompt 配 `PACED EVENLY ACROSS THE ENTIRE CLIP`）一次过，动作密度正好。
+- 旧 5s 库存补救：`ffmpeg setpts=2.0*PTS` 降到 10s——有效帧率 15fps 恰好是定格动画质感，**不用插帧**（插帧出鬼影，毁像素/纸艺质感）。
+- **挂载尾对齐**：组装完成的拍点必须落在对应文案上——`media_start = clip长 − 挂载长`（截掉组装开头而不是结尾，payoff 保住：拳头触球帧对准旁白"上帝之手"落字）。**例外头对齐**（media_start=0）：组装早完成、后半是定场 hold 的镜头（如军舰定场），避免"空场撞关键文案"。
+- 所有挂载时间从 forced-align cue 派生（见 forced-alignment.md），compose 生成器里**禁止手写数字秒**。
+- 锚点静帧**禁一切文字数字**（TAIL 约束 + 尾帧自查放大看）——数字信息由 HTML 角标叠加，两层分工。
+- 挂进 HyperFrames 前重编码 `-g 12 -keyint_min 12 -sc_threshold 0`（防 seek 冻帧），`<video>` 必须 muted。
+
 ## 生成单元是镜头组，不是镜头
 
 同场景连续镜头合并为 shot group（**≤ 15s、≤ 5 镜**），用多镜头语法一次生成：
