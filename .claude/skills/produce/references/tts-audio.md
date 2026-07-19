@@ -6,7 +6,25 @@
 
 文字估时是 OpenMontage 时长反馈环（TTS 超时 → 打回重写）的病根。顺序倒过来：**旁白先定稿，视觉对齐真实音频**。`audio/timeline.json` 定稿后就是全片的时钟，任何视觉时长争议以它为准。
 
-## 接入：火山引擎 seed-audio-1.0（已定，2026-07-14）
+## 🔴 引擎路由先看时长（2026-07-18 英阿片实战定版）
+
+| 旁白总长 | 引擎 | 理由 |
+|---|---|---|
+| ≤ 120s | seed-audio-1.0 **整片一次生成**（下节） | 单次调用内音色一致；描述式声音档灵活 |
+| > 120s | **MiniMax speech-2.8-hd 官方音色 single-pass**（必须） | seed-audio `original_duration=120` 是**硬上限**（超长：500 报错或被压缩语速塞进 120s，790 字→109s 失真）；分节生成跨段声纹 0.82 级漂移且 `reference/speaker` 锁定字段被接口静默忽略 |
+
+**MiniMax 长片契约**：`POST {MINIMAX_MUSIC_BASE_URL}/audio/speech`（new-api 网关，OpenAI 兼容），`Authorization: Bearer`，body `{model:"speech-2.8-hd", voice:<官方音色id>, input:<全文一次>, response_format:"hex", metadata:{audio_setting:{format:"mp3"}, voice_setting:{speed:1.0, emotion:"calm", english_normalization:true}, language_boost:"Chinese"}}`——响应体即二进制 mp3。无时长上限（实测 257s 单次），无审核拦截，**代价：不带时间戳**（对齐走 `forced-alignment.md`）。
+
+### 官方音色选型协议（别再用 shaonv 这类旧别名裸猜）
+
+1. **音色表真相源**：grain `packages/db/prisma/seed-data/tts-voices/minimax-voices-zh.tsv`（官方全量快照，voice_id/gender/age/use_cases）。按 use_cases 先筛（Documentary / Corporate & Narration / Podcasts）。
+2. **韵律初筛**（一节文本 × 每候选）：停顿数与总停顿时长（贴句读=自然）、音高中位与 IQR（IQR 过小=平板电音味，过大警惕漂移）、语速 4.2–4.8 字/s。
+3. **整轨声纹决赛**（全文 × 前 2 名）：ECAPA（speechbrain spkrec-ecapa-voxceleb）全片 6 窗两两比对，**pairwise min ≥ 0.88 才准用**——表现力强的音色往往漂移（实测 Laid_BackGirl min 0.804 出局）；纪录片片型实证可用：`Chinese (Mandarin)_Gentle_Senior`（min 0.889，Documentary 标签）。
+4. **内容 QA**：whisper 独立转写 diff 剧本——中文数字→阿拉伯数字、同音字是转写噪声不算错；真吞字/念错才打回。
+5. 天花板：MiniMax 公共音色整片声纹 0.85–0.91 是生成式常态；要 >0.95 用真人音源克隆（`ndclone-` 前缀，网关账号隔离）。
+6. 改一个字也**整条重生成**（禁分节补丁拼接），并重跑对齐全链。
+
+## 接入：火山引擎 seed-audio-1.0（短片 ≤120s 用）
 
 - 端点：`POST https://openspeech.bytedance.com/api/v3/tts/create`（**同步**，非流式）
 - 鉴权：单 header `X-Api-Key: $VOLC_TTS_API_KEY`，key 在仓库根 `.env`（gitignored，禁入库）；控制台管理页 console.volcengine.com/speech/new/setting/apikeys
@@ -86,20 +104,7 @@ seed-audio-1.0 是生成式音频模型：能在一条音频里混环境音、BG
 
 ## 强制对齐（audio_timeline 的来源）
 
-首选 WhisperX：
-
-```bash
-pip install whisperx   # 首次
-whisperx audio/voiceover.wav --language zh --output_format json --output_dir audio/
-```
-
-把输出整理成：
-
-```json
-{ "duration_s": 61.2,
-  "sections": [{ "id": "sec01", "t": [0.0, 8.4] }],
-  "words": [{ "w": "今天", "t": [0.12, 0.44] }] }
-```
+**必读 `forced-alignment.md`**：剧本已知 → wav2vec2-zh CTC `forced_align` 逐字真实戳（1:1 零估算）。**禁用** whisper 转写戳做字幕/画面映射（中文数字转写差异必致中段漂移——英阿片 v3 反例）。seed-audio 短片自带逐字 subtitle 可直接用；MiniMax 长片必走 forced_align。
 
 **G1 自查（不过必须重做，禁放行）**：
 - 回转写文本 vs 剧本，词准确率 ≥ 95%（低于线 = TTS 吐词有问题或音频损坏）；

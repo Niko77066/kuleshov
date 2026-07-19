@@ -84,7 +84,7 @@ WebSearch / 用户素材整理出 5–10 条核心事实，**每条带出处 URL
 ⏸ **停：把剧本给用户看**，认可后才做音频。
 
 ### ④ audio ⏸
-读 `references/tts-audio.md`（接入方式、对齐工具、混音契约都在里面）。
+读 `references/tts-audio.md`（引擎按时长路由：>120s 必 MiniMax 官方音色 single-pass + 声纹 gate；≤120s 可 seed-audio 整片）。音轨定稿后**必读 `references/forced-alignment.md`** 建逐字 timeline（剧本 1:1 强制对齐；禁 whisper 转写比例映射）——字幕/画面 cue/挂载全部由它派生。
 1. TTS 生成 `audio/voiceover.wav`（分节生成便于重做单节）。
 2. 强制对齐产出 `audio/timeline.json`（逐词时间戳 + 分节区间），回填 `film.json.audio.timeline`。
 3. **自查（G1 级，不过必须重做）**：回转写与剧本比对准确率 ≥ 95%。（**时长门已取消**——见 §1「时长不设硬门」；只记录实际总时长，不为凑数重做或变速。）
@@ -93,7 +93,7 @@ WebSearch / 用户素材整理出 5–10 条核心事实，**每条带出处 URL
 ⏸ **停：给用户听旁白**。此后一切视觉时长以 timeline 为准。
 
 ### ⑤ storyboard ⏸
-填 `film.json.shots[]`，每镜头：绑定 timeline 的真实音频区间、intent、景别/版式、来源路由（见 §4 路由表）、锚点需求。走 Seedance 的镜头同时划 `shot_groups[]` 并声明组间接缝契约（A 尾帧接力 / B 硬切 / C 转场，详见 `references/seedance.md`）。
+填 `film.json.shots[]`，每镜头：绑定 timeline 的真实音频区间、intent、景别/版式、来源路由（见 §4 路由表）、锚点需求。走 Seedance 的镜头同时划 `shot_groups[]` 并声明组间接缝契约（A 尾帧接力 / B 硬切 / C 转场，详见 `references/seedance.md`；组装类镜头 duration 直接 10s + 挂载尾对齐）。路由到实拍/检索素材的镜头读 `references/footage-sourcing.md`（来源分层：Pexels 只空镜、叙事走公域档案、时事走 APIhub；空镜池五铁律：一素材一次/RESERVE/时代过滤/防暗尾/零缝隙）。
 
 **自查八项**（逐项过，结果记 `ledger.gates`）：
 1. 镜头区间无缝隙、无重叠，首尾对齐音频总长；
@@ -126,7 +126,7 @@ WebSearch / 用户素材整理出 5–10 条核心事实，**每条带出处 URL
 
 ### ⑨ review ⏸
 1. **L0 手动仪器**（结果与证据写 `review.md`）：`ffprobe` 查时长/分辨率/帧率；blackdetect / freezedetect 查黑帧冻结；响度是否 -14 LUFS；成片音轨回转写 vs 剧本；承诺复验（时长、运动占比、转场数）。出示证据，"我检查过了"不算数。
-2. **视觉出厂自查**（读 `references/visual-selfcheck.md`）：抽帧逐项过版式反模式硬查（竖屏视觉重心 / 双角标 PPT 味 / 文件实证 / 死尾 / 幻灯片化 / 模板味 / 三面开钩一致 / 文字拆词），**任一命中必改再出厂**，结果记 `ledger.gates`——这是 agent 出厂前**自己发现并指出问题**的门，不靠用户挑（脚本层有 narration-voice、拼贴层有 collage-broll 死尾、技术层有 hyperframes check，本门补视觉层）。
+2. **视觉出厂自查**（读 `references/visual-selfcheck.md`）：抽帧逐项过版式反模式硬查（第一批：竖屏视觉重心 / 双角标 PPT 味 / 文件实证 / 死尾 / 幻灯片化 / 模板味 / 三面开钩一致 / 文字拆词；第二批：素材重复零容忍 / 时代地点错位 / 暗尾黑闪 / 音画 6 锚点抽查 / **时效词复核** / 烘焙镜头拍点），**任一命中必改再出厂**，结果记 `ledger.gates`——这是 agent 出厂前**自己发现并指出问题**的门，不靠用户挑（脚本层有 narration-voice、拼贴层有 collage-broll 死尾、技术层有 hyperframes check，本门补视觉层）。
 3. ⏸ **用户亲自看片**（M0 的评委团就是用户）。
 4. 引导用户跑 `/video-score` 登记 9 维分（2026-07-16 起含 D8 创意 / D9 网感）；有问题跑 `/video-triage` 归因到环节。
 
@@ -142,7 +142,8 @@ WebSearch / 用户素材整理出 5–10 条核心事实，**每条带出处 URL
 | AI 纸拼贴 b-roll（GPT-Image-2 + Seedance 首尾帧） | ✅ | 概念/观点句/抽象隐喻的氛围 b-roll（半调纸拼贴、从空场组装） | 无文字/数字/logo（要文字 HyperFrames 叠层）；强制三闸门；2026-07-17 冒烟验证 | `references/collage-broll.md` |
 | 数字人（HeyGen Avatar 4） | ✅ | 口播、主持、结论、人设 IP | 时长=音频时长；aspect_ratio 必填；形象锚点按目标画幅构图 | `references/avatar.md` |
 | 图片 + 动效（GPT-Image-2） | ✅ | 风格化静帧、插画、概念示意、"准运动" | 连续 ≤ 2 镜（防幻灯片化） | `references/image-motion.md` |
-| TTS 音频（seed-audio-1.0） | ✅ | 一切旁白（+可单独生成 BGM/音效轨） | 旁白轨纪律见知识包 | `references/tts-audio.md` |
+| TTS 音频（≤120s seed-audio / >120s MiniMax 官方音色） | ✅ | 一切旁白（+BGM 可 MiniMax music 生成） | 长片必 single-pass + 声纹 gate；对齐必走 forced-alignment | `references/tts-audio.md` `references/forced-alignment.md` |
+| 实拍 / 检索素材 | ✅ | 空镜氛围（Pexels）、叙事档案（archive.org/Commons）、时事新闻（APIhub） | 一素材全片一次；broadcast-risk ≤3s；来源分层禁顶替 | `references/footage-sourcing.md` |
 | 实拍 / 检索剪辑 | 🔜 检索 API 待接入（用户提供，契约到手即开通） | 纪实感、证据声部、B-roll | provenance/license 硬门照跑；接入前需素材的选人工投喂 | — |
 
 路由纪律：

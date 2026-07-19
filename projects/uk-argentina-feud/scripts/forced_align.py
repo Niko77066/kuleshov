@@ -31,28 +31,33 @@ proc = Wav2Vec2Processor.from_pretrained(MODEL)
 model = Wav2Vec2ForCTC.from_pretrained(MODEL)
 model.eval()
 CHUNK, OVL = 40 * sr, 5 * sr
-STRIDE = 320  # wav2vec2 帧距 20ms
+CORE = CHUNK - OVL          # 35s：各块核心区精确平铺，杜绝重复/缺失帧
+FPS = sr / 320              # wav2vec2 帧率 50fps（帧距固定 20ms）
 ems = []
-pos = 0
+k = 0
 with torch.no_grad():
-    while pos < wave.shape[0]:
-        s = max(0, pos - (OVL if pos > 0 else 0))
-        e = min(wave.shape[0], pos + CHUNK)
+    while k * CORE < wave.shape[0]:
+        s = k * CORE
+        e = min(s + CHUNK, wave.shape[0])
         seg = wave[s:e]
         logits = model(seg.unsqueeze(0)).logits[0]  # (T,C)
         lp = torch.log_softmax(logits, dim=-1)
-        # 掐掉重叠：头部丢 OVL/2 对应帧（非首块）；尾部丢 OVL/2（非末块）
-        f0 = (OVL // 2) // STRIDE if s > 0 else 0
-        f1 = lp.shape[0] - ((OVL // 2) // STRIDE if e < wave.shape[0] else 0)
+        seg_dur = (e - s) / sr
+        core0 = (OVL / 2) / sr if k > 0 else 0.0
+        core1 = seg_dur - ((OVL / 2) / sr if e < wave.shape[0] else 0.0)
+        f0 = round(core0 * 50)
+        f1 = min(lp.shape[0], round(core1 * 50))
         ems.append(lp[f0:f1])
-        print(f"  chunk {s/sr:7.1f}-{e/sr:7.1f}s -> {f1-f0} frames")
+        print(f"  chunk {s/sr:7.1f}-{e/sr:7.1f}s core [{s/sr+core0:.1f},{s/sr+core1:.1f}] -> {f1-f0} frames")
         if e >= wave.shape[0]:
             break
-        pos = e - OVL // 2  # 下一块起点回退半重叠，与掐帧互补
+        k += 1
 emission = torch.cat(ems, dim=0)
 n_frames = emission.shape[0]
-frame_dur = dur / n_frames
-print(f"emission {n_frames} frames, {frame_dur*1000:.1f}ms/frame")
+frame_dur = 0.02            # 固定帧距，不再用 dur/n_frames 均匀缩放
+drift = abs(n_frames * frame_dur - dur)
+print(f"emission {n_frames} frames vs 期望 {dur*50:.0f} (差 {drift:.2f}s，应 <0.1s/块数)")
+assert drift < 0.5, "分块平铺仍有帧数偏差，禁止继续"
 
 # 4. 目标 token id（OOV 字记下位置后插值）
 vocab = proc.tokenizer.get_vocab()

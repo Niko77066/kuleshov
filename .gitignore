@@ -21,3 +21,4 @@ projects/**/compose/snapv2/
 projects/**/shots/frames*/
 projects/**/review_frames/
 projects/**/compose/.hyperframes/
+projects/**/shots/*-res.json
