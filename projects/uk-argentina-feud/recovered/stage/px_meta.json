@@ -1,0 +1,268 @@
+{
+ "floodlights_0": {
+  "section": "sec01",
+  "query": "stadium floodlights night",
+  "pexels_id": 35002181,
+  "url": "https://www.pexels.com/video/exciting-night-football-match-in-stadium-35002181/",
+  "dur": 12
+ },
+ "floodlights_1": {
+  "section": "sec01",
+  "query": "stadium floodlights night",
+  "pexels_id": 34590578,
+  "url": "https://www.pexels.com/video/vibrant-nighttime-soccer-match-at-packed-stadium-34590578/",
+  "dur": 10
+ },
+ "arg_fans_0": {
+  "section": "sec01",
+  "query": "argentina fans flag celebrating",
+  "pexels_id": 36053394,
+  "url": "https://www.pexels.com/video/excited-fans-cheering-with-argentina-flag-indoors-36053394/",
+  "dur": 6
+ },
+ "arg_fans_1": {
+  "section": "sec01",
+  "query": "argentina fans flag celebrating",
+  "pexels_id": 36028815,
+  "url": "https://www.pexels.com/video/excited-fans-celebrate-with-argentina-flag-36028815/",
+  "dur": 10
+ },
+ "obelisco_0": {
+  "section": "sec01",
+  "query": "obelisco buenos aires night",
+  "pexels_id": 31563866,
+  "url": "https://www.pexels.com/video/aerial-view-of-buenos-aires-obelisk-31563866/",
+  "dur": 11
+ },
+ "obelisco_1": {
+  "section": "sec01",
+  "query": "obelisco buenos aires night",
+  "pexels_id": 4762114,
+  "url": "https://www.pexels.com/video/drone-footage-of-traffic-in-the-city-s-intersecting-road-4762114/",
+  "dur": 30
+ },
+ "fans_crowd_0": {
+  "section": "sec01",
+  "query": "football fans crowd cheering night",
+  "pexels_id": 34605094,
+  "url": "https://www.pexels.com/video/cheering-fans-in-a-vibrant-football-stadium-34605094/",
+  "dur": 7
+ },
+ "fans_crowd_1": {
+  "section": "sec01",
+  "query": "football fans crowd cheering night",
+  "pexels_id": 34671875,
+  "url": "https://www.pexels.com/video/exciting-football-match-in-packed-stadium-34671875/",
+  "dur": 11
+ },
+ "storm_sea_0": {
+  "section": "sec02",
+  "query": "stormy ocean big waves storm",
+  "pexels_id": 1879456,
+  "url": "https://www.pexels.com/video/storm-at-sea-1879456/",
+  "dur": 26
+ },
+ "storm_sea_1": {
+  "section": "sec02",
+  "query": "stormy ocean big waves storm",
+  "pexels_id": 10234379,
+  "url": "https://www.pexels.com/video/drone-shot-of-beach-10234379/",
+  "dur": 20
+ },
+ "island_aerial_0": {
+  "section": "sec02",
+  "query": "aerial remote island coastline cliffs",
+  "pexels_id": 5055983,
+  "url": "https://www.pexels.com/video/aerial-view-of-beautiful-island-5055983/",
+  "dur": 7
+ },
+ "island_aerial_1": {
+  "section": "sec02",
+  "query": "aerial remote island coastline cliffs",
+  "pexels_id": 8357014,
+  "url": "https://www.pexels.com/video/a-scenery-of-an-ocean-8357014/",
+  "dur": 26
+ },
+ "casa_rosada_0": {
+  "section": "sec03",
+  "query": "casa rosada buenos aires",
+  "pexels_id": 33584578,
+  "url": "https://www.pexels.com/video/historical-reenactors-in-costumed-group-photo-33584578/",
+  "dur": 12
+ },
+ "casa_rosada_1": {
+  "section": "sec03",
+  "query": "casa rosada buenos aires",
+  "pexels_id": 33869626,
+  "url": "https://www.pexels.com/video/meeting-historical-characters-in-buenos-aires-33869626/",
+  "dur": 5
+ },
+ "plaza_mayo_0": {
+  "section": "sec03",
+  "query": "plaza de mayo buenos aires",
+  "pexels_id": 19908878,
+  "url": "https://www.pexels.com/video/obelisco-argentina-buenos-aires-19908878/",
+  "dur": 8
+ },
+ "plaza_mayo_1": {
+  "section": "sec03",
+  "query": "plaza de mayo buenos aires",
+  "pexels_id": 14907581,
+  "url": "https://www.pexels.com/video/high-angle-view-of-9-de-julio-avenue-and-the-obelisk-in-buenos-aires-city-argentina-14907581/",
+  "dur": 20
+ },
+ "steam_train_0": {
+  "section": "sec03",
+  "query": "steam locomotive vintage smoke",
+  "pexels_id": 25471824,
+  "url": "https://www.pexels.com/video/a-steam-train-is-traveling-through-the-forest-25471824/",
+  "dur": 14
+ },
+ "steam_train_1": {
+  "section": "sec03",
+  "query": "steam locomotive vintage smoke",
+  "pexels_id": 5702029,
+  "url": "https://www.pexels.com/video/steam-train-running-5702029/",
+  "dur": 20
+ },
+ "pampas_cattle_0": {
+  "section": "sec03",
+  "query": "cattle herd gaucho grassland",
+  "pexels_id": 18924890,
+  "url": "https://www.pexels.com/video/inek-surusu-18924890/",
+  "dur": 19
+ },
+ "pampas_cattle_1": {
+  "section": "sec03",
+  "query": "cattle herd gaucho grassland",
+  "pexels_id": 32320584,
+  "url": "https://www.pexels.com/video/herd-of-cattle-grazing-on-green-hillside-32320584/",
+  "dur": 13
+ },
+ "wheat_0": {
+  "section": "sec03",
+  "query": "golden wheat field wind",
+  "pexels_id": 11355346,
+  "url": "https://www.pexels.com/video/crops-waving-on-wind-on-field-11355346/",
+  "dur": 9
+ },
+ "wheat_1": {
+  "section": "sec03",
+  "query": "golden wheat field wind",
+  "pexels_id": 17831468,
+  "url": "https://www.pexels.com/video/a-wheat-field-with-tall-grass-and-a-blue-sky-17831468/",
+  "dur": 10
+ },
+ "grey_sea_0": {
+  "section": "sec04",
+  "query": "cold grey sea waves overcast",
+  "pexels_id": 30884234,
+  "url": "https://www.pexels.com/video/dramatic-winter-waves-crashing-on-rocky-shore-30884234/",
+  "dur": 5
+ },
+ "grey_sea_1": {
+  "section": "sec04",
+  "query": "cold grey sea waves overcast",
+  "pexels_id": 36114865,
+  "url": "https://www.pexels.com/video/serene-winter-beach-waves-on-rocky-shore-36114865/",
+  "dur": 12
+ },
+ "bleak_island_0": {
+  "section": "sec04",
+  "query": "windswept grass cliffs barren island",
+  "pexels_id": 11206060,
+  "url": "https://www.pexels.com/video/barren-rocks-by-sea-shore-11206060/",
+  "dur": 10
+ },
+ "bleak_island_1": {
+  "section": "sec04",
+  "query": "windswept grass cliffs barren island",
+  "pexels_id": 10415958,
+  "url": "https://www.pexels.com/video/waving-grasses-on-coast-10415958/",
+  "dur": 58
+ },
+ "warship_sil_0": {
+  "section": "sec04",
+  "query": "warship silhouette sea",
+  "pexels_id": 13379259,
+  "url": "https://www.pexels.com/video/silhouette-of-a-tugboat-towing-a-cargo-ship-at-sunrise-13379259/",
+  "dur": 59
+ },
+ "warship_sil_1": {
+  "section": "sec04",
+  "query": "warship silhouette sea",
+  "pexels_id": 28575665,
+  "url": "https://www.pexels.com/video/majestic-cargo-ship-at-sunset-on-tranquil-sea-28575665/",
+  "dur": 57
+ },
+ "malvinas_mem_0": {
+  "section": "sec04",
+  "query": "malvinas memorial buenos aires",
+  "pexels_id": 32709623,
+  "url": "https://www.pexels.com/video/monument-statue-urban-park-at-sunset-32709623/",
+  "dur": 13
+ },
+ "malvinas_mem_1": {
+  "section": "sec04",
+  "query": "malvinas memorial buenos aires",
+  "pexels_id": 32551249,
+  "url": "https://www.pexels.com/video/aerial-cityscape-over-buenos-aires-skyline-32551249/",
+  "dur": 11
+ },
+ "war_memorial_0": {
+  "section": "sec04",
+  "query": "war memorial names engraved",
+  "pexels_id": 7317632,
+  "url": "https://www.pexels.com/video/a-memorial-wall-recognizing-war-heroes-7317632/",
+  "dur": 19
+ },
+ "war_memorial_1": {
+  "section": "sec04",
+  "query": "war memorial names engraved",
+  "pexels_id": 7316609,
+  "url": "https://www.pexels.com/video/a-memorial-wall-for-heroes-7316609/",
+  "dur": 15
+ },
+ "grass_close_0": {
+  "section": "sec05",
+  "query": "football pitch grass close up",
+  "pexels_id": 4112090,
+  "url": "https://www.pexels.com/video/bulgaria-juventus-zlatograd-championofchampions-4112090/",
+  "dur": 6
+ },
+ "grass_close_1": {
+  "section": "sec05",
+  "query": "football pitch grass close up",
+  "pexels_id": 31522780,
+  "url": "https://www.pexels.com/video/close-up-football-on-grass-field-31522780/",
+  "dur": 5
+ },
+ "azteca_0": {
+  "section": "sec05",
+  "query": "estadio azteca mexico city",
+  "pexels_id": 36689839,
+  "url": "https://www.pexels.com/video/aerial-view-of-estadio-azteca-in-mexico-city-36689839/",
+  "dur": 8
+ },
+ "azteca_1": {
+  "section": "sec05",
+  "query": "estadio azteca mexico city",
+  "pexels_id": 36689840,
+  "url": "https://www.pexels.com/video/aerial-view-of-estadio-azteca-in-mexico-city-36689840/",
+  "dur": 7
+ },
+ "mexico_aerial_0": {
+  "section": "sec05",
+  "query": "mexico city stadium aerial",
+  "pexels_id": 36689839,
+  "url": "https://www.pexels.com/video/aerial-view-of-estadio-azteca-in-mexico-city-36689839/",
+  "dur": 8
+ },
+ "mexico_aerial_1": {
+  "section": "sec05",
+  "query": "mexico city stadium aerial",
+  "pexels_id": 35849249,
+  "url": "https://www.pexels.com/video/aerial-view-of-guadalajara-cityscape-in-daylight-35849249/",
+  "dur": 8
+ }
+}

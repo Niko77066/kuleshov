@@ -1,0 +1,178 @@
+{
+ "ba_night_0": {
+  "src": "pexels",
+  "section": "sec01",
+  "query": "buenos aires night avenida",
+  "id": 4762116,
+  "url": "https://www.pexels.com/video/the-downtown-area-of-buenos-aires-argentina-4762116/",
+  "dur": 59
+ },
+ "ba_night_1": {
+  "src": "pexels",
+  "section": "sec01",
+  "query": "buenos aires night avenida",
+  "id": 28671359,
+  "url": "https://www.pexels.com/video/the-building-is-lit-up-at-night-and-has-a-large-clock-on-it-28671359/",
+  "dur": 30
+ },
+ "obelisco_n_0": {
+  "src": "pexels",
+  "section": "sec01",
+  "query": "obelisco night traffic",
+  "id": 31563866,
+  "url": "https://www.pexels.com/video/aerial-view-of-buenos-aires-obelisk-31563866/",
+  "dur": 11
+ },
+ "obelisco_n_1": {
+  "src": "pexels",
+  "section": "sec01",
+  "query": "obelisco night traffic",
+  "id": 32043639,
+  "url": "https://www.pexels.com/video/drive-through-buenos-aires-avenida-9-de-julio-32043639/",
+  "dur": 22
+ },
+ "fans_street_0": {
+  "src": "pexels",
+  "section": "sec01",
+  "query": "soccer fans celebration street flags",
+  "id": 11208468,
+  "url": "https://www.pexels.com/video/supporters-on-football-match-11208468/",
+  "dur": 14
+ },
+ "fans_street_1": {
+  "src": "pexels",
+  "section": "sec01",
+  "query": "soccer fans celebration street flags",
+  "id": 14376701,
+  "url": "https://www.pexels.com/video/a-crowd-of-people-in-yellow-shirts-and-green-hats-14376701/",
+  "dur": 7
+ },
+ "arg_flag_0": {
+  "src": "pexels",
+  "section": "sec01",
+  "query": "argentina flag blue white sky",
+  "id": 16401521,
+  "url": "https://www.pexels.com/video/argentina-flag-16401521/",
+  "dur": 20
+ },
+ "arg_flag_1": {
+  "src": "pexels",
+  "section": "sec01",
+  "query": "argentina flag blue white sky",
+  "id": 34440038,
+  "url": "https://www.pexels.com/video/argentinian-flag-waving-under-clear-blue-sky-34440038/",
+  "dur": 6
+ },
+ "navy1_0": {
+  "src": "pexels",
+  "section": "sec04",
+  "query": "navy frigate ocean",
+  "id": 35239446,
+  "url": "https://www.pexels.com/video/naval-vessel-on-ocean-with-choppy-waves-35239446/",
+  "dur": 20
+ },
+ "navy1_1": {
+  "src": "pexels",
+  "section": "sec04",
+  "query": "navy frigate ocean",
+  "id": 5853030,
+  "url": "https://www.pexels.com/video/dark-blue-sea-close-up-5853030/",
+  "dur": 13
+ },
+ "navy2_0": {
+  "src": "pexels",
+  "section": "sec04",
+  "query": "military warship grey",
+  "id": 4825305,
+  "url": "https://www.pexels.com/video/an-aircraft-carrier-docked-in-the-sea-bay-4825305/",
+  "dur": 8
+ },
+ "navy2_1": {
+  "src": "pexels",
+  "section": "sec04",
+  "query": "military warship grey",
+  "id": 29161042,
+  "url": "https://www.pexels.com/video/drone-shot-of-aircraft-carrier-at-sunset-29161042/",
+  "dur": 9
+ },
+ "casarosada2_0": {
+  "src": "pexels",
+  "section": "sec03",
+  "query": "casa rosada pink palace argentina",
+  "id": 33584578,
+  "url": "https://www.pexels.com/video/historical-reenactors-in-costumed-group-photo-33584578/",
+  "dur": 12
+ },
+ "casarosada2_1": {
+  "src": "pexels",
+  "section": "sec03",
+  "query": "casa rosada pink palace argentina",
+  "id": 38198718,
+  "url": "https://www.pexels.com/video/aerial-night-view-of-palacio-da-liberdade-38198718/",
+  "dur": 25
+ },
+ "moor_wind_0": {
+  "src": "pexels",
+  "section": "sec04",
+  "query": "moorland windswept grass fog",
+  "id": 6256789,
+  "url": "https://www.pexels.com/video/landscape-of-a-field-6256789/",
+  "dur": 29
+ },
+ "moor_wind_1": {
+  "src": "pexels",
+  "section": "sec04",
+  "query": "moorland windswept grass fog",
+  "id": 1801133,
+  "url": "https://www.pexels.com/video/the-beauty-of-nature-1801133/",
+  "dur": 58
+ },
+ "pxb_warship_0": {
+  "src": "pixabay",
+  "section": "sec04",
+  "query": "warship navy",
+  "id": 359023,
+  "url": "https://pixabay.com/videos/id-359023/",
+  "dur": 5
+ },
+ "pxb_warship_1": {
+  "src": "pixabay",
+  "section": "sec04",
+  "query": "warship navy",
+  "id": 338280,
+  "url": "https://pixabay.com/videos/id-338280/",
+  "dur": 19
+ },
+ "pxb_obelisco_0": {
+  "src": "pixabay",
+  "section": "sec01",
+  "query": "buenos aires obelisco",
+  "id": 19309,
+  "url": "https://pixabay.com/videos/id-19309/",
+  "dur": 16
+ },
+ "pxb_obelisco_1": {
+  "src": "pixabay",
+  "section": "sec01",
+  "query": "buenos aires obelisco",
+  "id": 8897,
+  "url": "https://pixabay.com/videos/id-8897/",
+  "dur": 30
+ },
+ "pxb_wembley_0": {
+  "src": "pixabay",
+  "section": "sec05",
+  "query": "wembley stadium",
+  "id": 208387,
+  "url": "https://pixabay.com/videos/id-208387/",
+  "dur": 25
+ },
+ "pxb_wembley_1": {
+  "src": "pixabay",
+  "section": "sec05",
+  "query": "wembley stadium",
+  "id": 3148,
+  "url": "https://pixabay.com/videos/id-3148/",
+  "dur": 55
+ }
+}

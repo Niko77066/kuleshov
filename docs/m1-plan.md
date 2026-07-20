@@ -35,10 +35,10 @@
 
 ## 待接入 API（用户提供，契约到手即接）
 
-| API | 需要的契约信息 | 接入动作 |
+| API | 状态 | 说明 |
 |---|---|---|
-| 检索/实拍素材 API | endpoint、鉴权、查询参数（关键词/时长/分辨率/license 字段）、返回格式、配额 | `produce/references/` 新增 `retrieval.md` 知识包；provenance/license 登记工序；路由表 🔜 → ✅ |
-| 服务器渲染 API | 提交格式（composition 包/git ref）、回调或轮询、产物拉取、并发配额 | compose 阶段同一 composition 双跑**帧级一致性对比**，通过才切默认；切换记 `ledger.decisions` |
+| 检索/实拍素材 API | ✅ **已闭环（2026-07-18，英阿片实测）** | 三层方案替代单一 API：Pexels/Pixabay（纯空镜）+ archive.org/Wikimedia 公有领域（叙事/证据位）+ **APIhub** `youtube_search→video_download`（时事新闻位）。知识包 `produce/references/footage-sourcing.md`（含 provenance/license 登记工序、空镜池五铁律）；凭据均在 `.env` |
+| 服务器渲染 API | 🔜 准备中（用户侧） | 契约到手后：compose 阶段同一 composition 双跑**帧级一致性对比**，通过才切默认；切换记 `ledger.decisions` |
 
 ## 7/18 – 7/22 todo（M2 检查点：下周三）
 

@@ -16,7 +16,7 @@
     "pipeline_version": "m0-v1",
     "schema_version": "m1-v1",
     "status": "delivered",
-    "next_action": "成片已交付：out/final.mp4（255.7s，1280x720/30fps，-13.9 LUFS/TP -1.5，hyperframes 0.7.57 -q high --strict 本地渲染=与验收draft同引擎；docker通道网络超时降级已记ledger）。后续：/video-score 登记 + 双平台发布包（rednote-mentor）+ 成本单价回填（Seedance/GPT-Image x-oneapi-request-id 反查）。broadcast-risk 素材 9 条已按 ≤3s 闪切使用，发布前需用户对 manifest.json 的 broadcast-risk 清单最终拍板。"
+    "next_action": "✅ /video-score 已登记（2026-07-20，GS-12 基线：D1 5/D2 5/D3 4/D4 4/D5 4/D6 4/D7 4/D8 4/D9 4，均分 4.22，EP 建议分待用户校准）。剩余收尾：双平台发布包（rednote-mentor）+ broadcast-risk 9 条素材用户拍板 + 成本单价回填（x-oneapi-request-id 反查）。"
   },
   "audio": {
     "voiceover": {
@@ -1369,6 +1369,12 @@
         "date": "2026-07-19",
         "decision": "final 首渲抽帧抓出两缺陷并修：①缝隙并入使尾对齐像素窗越媒体末尾0.24s(hand段尾黑帧)→并入逻辑改为优先后条前扩(削media_start,payoff不动)、否则前条延长且媒体窗前移防越界；②match_replay池被上游耗尽后三级回退抓到sheffield军舰照撞'补时被绝杀'文案→match_replay加RESERVE(fans_banner2/goal_action)+战争素材TAG_EXCLUDE",
         "evidence": "out/final_review*.jpg"
+      },
+      {
+        "id": "dec23",
+        "date": "2026-07-20",
+        "decision": "/video-score 登记 GS-12 基线 9 维（5,5,4,4,4,4,4,4,4 均分4.22）：EP 按帧证据/仪器数据/review 记录逐维给建议分并留理由，登记备注标注待用户校准；出厂铁律6人工分进片库",
+        "evidence": "视频调优工作簿.xlsx 基线打分 行15 + out/final_review*.jpg"
       }
     ],
     "costs": [
