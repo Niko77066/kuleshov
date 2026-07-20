@@ -1,0 +1,27 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"><style>
+@font-face{font-family:"Songti SC";src:local("Songti SC")}@font-face{font-family:"PingFang SC";src:local("PingFang SC")}
+:root{--f:#BC5A1E;--cream:#EFE7D2;--ink:#17181C;--accent:#C8451B;--soft:#4A4B50}
+html,body{margin:0;width:1080px;height:1440px;background:var(--f);overflow:hidden;font-family:"PingFang SC",sans-serif}
+#r{width:1080px;height:1440px;position:relative}
+.folder{position:absolute;left:70px;right:70px;top:150px;bottom:170px;background:var(--cream);border-radius:8px;transform:rotate(-0.8deg);box-shadow:0 34px 80px rgba(23,24,28,.45)}
+.tab{position:absolute;top:-56px;left:78px;background:var(--cream);padding:16px 46px 12px;font-size:32px;letter-spacing:6px;color:var(--ink);border-radius:14px 14px 0 0}
+.body{position:absolute;inset:44px;border:3px solid rgba(23,24,28,.25);box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:40px;padding:40px}
+.kick{font-size:40px;color:var(--soft);letter-spacing:.04em}
+.big{font-family:"Songti SC",serif;font-weight:900;font-size:150px;line-height:1.14;color:var(--ink)}
+.big .r{color:var(--accent)}
+.sub{font-size:44px;color:var(--soft);line-height:1.5}
+.bar{width:240px;height:12px;background:var(--accent)}
+#brand{position:absolute;right:70px;bottom:64px;width:150px;opacity:.55;mix-blend-mode:multiply}
+#grain{position:absolute;inset:0;background:url("assets/grain.png");background-size:512px 512px;opacity:.05;mix-blend-mode:multiply;pointer-events:none}
+</style></head><body>
+<div id="r" data-composition-id="cover-rn" data-width="1080" data-height="1440" data-start="0" data-duration="1">
+  <div class="folder"><div class="tab">AI 安全观察</div>
+    <div class="body">
+      <div class="kick">以前偷库得靠顶尖黑客</div>
+      <div class="big">AI 会自己<br><span class="r">「黑库」</span>了</div>
+      <div class="bar"></div>
+      <div class="sub">你的数据，还安全吗？</div>
+    </div>
+  </div>
+  <img id="brand" src="assets/jinghua-logo.jpg"><div id="grain"></div>
+</div></body></html>
