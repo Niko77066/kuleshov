@@ -41,7 +41,7 @@ MG_HTML={
 "punch":'<div class="ctr punch"><div class="symp s1"><i>❄️</i><b>并不够凉</b></div><div class="symp s2"><i>💸</i><b>未必省电</b></div><div class="symp s3"><i>👃</i><b>还可能发臭</b></div><div class="title26"><div class="big">26<span>℃</span></div><div class="tsub">其实没那么科学</div></div></div>',
 "humid":'<div class="ctr humid"><div class="hhead">同样 <b>27℃</b>，湿度决定体感</div><div class="hrow"><div class="hcol c-ok"><div class="hum">湿度 50%</div><div class="face">🙂</div><div class="feel">体感 舒适</div></div><div class="hcol c-bad"><div class="hum">湿度 80%</div><div class="face">🥵</div><div class="feel">体感≈<b>30℃</b> 闷黏</div></div></div></div>',
 "why":'<div class="ctr why"><div class="qmark">?</div><div class="qtext">不够凉、又发臭<br>怎么就<b>火遍全国</b></div><div class="qtag">这其实是一场误会</div></div>',
-"tiers":'<div class="ctr tiers"><div class="thead">设计规范里的夏季舒适温度</div><div class="scale"><div class="band b1"><span class="bl">I 级 · 较高标准</span><span class="br">24–26℃</span></div><div class="band b2"><span class="bl">II 级 · 一般标准</span><span class="br">26–28℃</span></div><div class="seam"><div class="pin">26℃</div><div class="pinlab">正好卡在中缝 · 折中数</div></div></div></div>',
+"tiers":'<div class="ctr tiers"><div class="thead">设计规范里的夏季舒适温度</div><div class="scale"><div class="band b1"><span class="bl">I 级 · 较高标准</span><span class="br">24–26℃</span></div><div class="band b2"><span class="bl">II 级 · 一般标准</span><span class="br">26–28℃</span></div><div class="seam"><div class="pin">26℃</div></div></div><div class="pinnote">正好卡在两档的中缝 · 是个折中数</div></div>',
 "tday":'<div class="ctr card"><div class="cnum">01</div><div class="ctitle">温度 · 白天</div><ul class="rows"><li><b>22℃</b> + 大风速，15 分钟速降</li><li>再调回舒适温度，一般 <b>24–26℃</b></li></ul></div>',
 "tnight":'<div class="ctr card"><div class="ctitle sm">温度 · 夜间</div><ul class="rows"><li>睡觉温度<b>往上提 2℃</b></li><li>老人小孩<b>别低于 27℃</b></li></ul></div>',
 "thum":'<div class="ctr card"><div class="cnum">02</div><div class="ctitle">湿度</div><ul class="rows"><li>室内湿度 <b>&gt;60%</b>，先开「除湿」</li><li>不黏不腻，比一味降温更清爽</li></ul></div>',
@@ -53,7 +53,7 @@ MG_ANIM={
 "punch":[(".s1",0.3,0.35,"pop"),(".s2",1.2,0.35,"pop"),(".s3",2.1,0.35,"pop"),(".title26",5.0,0.5,"pop")],
 "humid":[(".hhead",0.3,0.4,"rise"),(".c-ok",1.0,0.45,"rise"),(".c-bad",4.4,0.45,"rise")],
 "why":[(".qmark",0.3,0.4,"pop"),(".qtext",1.0,0.4,"rise"),(".qtag",6.3,0.4,"pop")],
-"tiers":[(".thead",0.3,0.4,"rise"),(".b1",1.4,0.5,"slideL"),(".b2",2.8,0.5,"slideR"),(".seam",10.6,0.5,"pop")],
+"tiers":[(".thead",0.3,0.4,"rise"),(".b1",1.4,0.5,"slideL"),(".b2",2.8,0.5,"slideR"),(".seam",10.6,0.5,"pop"),(".pinnote",11.2,0.4,"rise")],
 "tday":[(".cnum",0.3,0.4,"rise"),(".ctitle",0.6,0.4,"rise"),(".rows li:nth-child(1)",1.1,0.4,"slideL"),(".rows li:nth-child(2)",2.0,0.4,"slideL")],
 "tnight":[(".ctitle",0.2,0.4,"rise"),(".rows li:nth-child(1)",0.8,0.4,"slideL"),(".rows li:nth-child(2)",1.6,0.4,"slideL")],
 "thum":[(".cnum",0.3,0.4,"rise"),(".ctitle",0.6,0.4,"rise"),(".rows li:nth-child(1)",1.1,0.4,"slideL"),(".rows li:nth-child(2)",2.0,0.4,"slideL")],
@@ -80,6 +80,13 @@ CSS+="""
 .kickov .kq{display:inline-block;font-family:"SerifSC";font-weight:700;font-size:58px;color:#fff;line-height:1.5;
   background:rgba(43,33,24,0.62);padding:20px 44px;border-radius:14px;text-shadow:0 3px 12px rgba(0,0,0,0.9);}
 .kickov .kq b{color:var(--accent);}
+/* v3 fixes: tiers 叠加不再重叠 + 去掉左上小标题 */
+.tiers .scale{position:relative;width:900px;}
+.tiers .band{margin:26px 0;}
+.tiers .seam{position:absolute;left:50%;top:50%;bottom:auto;transform:translate(-50%,-50%);flex-direction:column;opacity:0;}
+.tiers .pin{font-size:50px;padding:4px 18px;box-shadow:0 4px 14px rgba(0,0,0,0.45);}
+.tiers .pinnote{margin-top:34px;font-family:"SansSC";font-weight:700;font-size:32px;color:var(--mark);opacity:0;}
+#logo{display:none!important;}
 """
 
 H=['<!doctype html>','<html lang="zh" data-resolution="landscape" data-fps="30">',
@@ -108,7 +115,7 @@ for bid,s,e,pos,html in BADGE:
     H.append(f'  <div id="{bid}" class="clip badge {pos}" data-start="{s:.2f}" data-duration="{e-s:.2f}" data-track-index="3">{html}</div>')
 H.append('  '+KICKER)
 H.append(f'  <div id="capbox" class="clip" data-start="0" data-duration="{DUR:.2f}" data-track-index="5"></div>')
-H.append(f'  <div id="logo" class="clip" data-start="0" data-duration="{DUR:.2f}" data-track-index="6">生活祛魅 · 每天多懂一点</div>')
+# v3: 去掉左上角小标题水印(用户要求)
 for lid,ti in [("lut",100),("grain",102),("vig",103),("fade",104)]:
     H.append(f'  <div id="{lid}" class="clip" data-start="0" data-duration="{DUR:.2f}" data-track-index="{ti}"></div>')
 # GSAP

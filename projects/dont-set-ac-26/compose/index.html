@@ -105,10 +105,22 @@ body,html{width:1280px;height:720px;overflow:hidden;background:var(--ink);font-f
 .kickov .kq{display:inline-block;font-family:"SerifSC";font-weight:700;font-size:58px;color:#fff;line-height:1.5;
   background:rgba(43,33,24,0.62);padding:20px 44px;border-radius:14px;text-shadow:0 3px 12px rgba(0,0,0,0.9);}
 .kickov .kq b{color:var(--accent);}
+
+.kickov{position:absolute;left:0;right:0;bottom:120px;text-align:center;opacity:0;}
+.kickov .kq{display:inline-block;font-family:"SerifSC";font-weight:700;font-size:58px;color:#fff;line-height:1.5;
+  background:rgba(43,33,24,0.62);padding:20px 44px;border-radius:14px;text-shadow:0 3px 12px rgba(0,0,0,0.9);}
+.kickov .kq b{color:var(--accent);}
+/* v3 fixes: tiers 叠加不再重叠 + 去掉左上小标题 */
+.tiers .scale{position:relative;width:900px;}
+.tiers .band{margin:26px 0;}
+.tiers .seam{position:absolute;left:50%;top:50%;bottom:auto;transform:translate(-50%,-50%);flex-direction:column;opacity:0;}
+.tiers .pin{font-size:50px;padding:4px 18px;box-shadow:0 4px 14px rgba(0,0,0,0.45);}
+.tiers .pinnote{margin-top:34px;font-family:"SansSC";font-weight:700;font-size:32px;color:var(--mark);opacity:0;}
+#logo{display:none!important;}
 </style></head><body>
 <div id="main-composition" data-composition-id="main-video" data-width="1280" data-height="720" data-start="0" data-duration="198.81" data-fps="30">
   <audio id="vo" class="clip" src="assets/voiceover.mp3" data-start="0" data-duration="198.81" data-track-index="0" data-volume="1" data-has-audio="true"></audio>
-  <audio id="bgm" class="clip" src="assets/bgm_bed.mp3" data-start="0" data-duration="198.98" data-track-index="4" data-volume="0.25" data-has-audio="true"></audio>
+  <audio id="bgm" class="clip" src="assets/bgm_bed.mp3" data-start="0" data-duration="198.98" data-track-index="4" data-volume="1" data-has-audio="true"></audio>
   <video id="v_altar" class="clip fullframe" src="assets/clips/altar.mp4" muted data-start="0.00" data-duration="5.66" data-media-start="4.38" data-track-index="1"></video>
   <video id="v_s03_sweat" class="clip fullframe" src="assets/clips/v2_s03_sweat.mp4" muted data-start="8.18" data-duration="5.76" data-media-start="4.28" data-track-index="1"></video>
   <video id="v_s06_thermo" class="clip fullframe real" src="assets/clips/s06_thermo_q.mp4" muted data-start="23.04" data-duration="5.54" data-media-start="0.40" data-track-index="1"></video>
@@ -130,7 +142,7 @@ body,html{width:1280px;height:720px;overflow:hidden;background:var(--ink);font-f
   <div id="mg_punch" class="clip mg" data-start="13.94" data-duration="9.10" data-track-index="2"><div class="ctr punch"><div class="symp s1"><i>❄️</i><b>并不够凉</b></div><div class="symp s2"><i>💸</i><b>未必省电</b></div><div class="symp s3"><i>👃</i><b>还可能发臭</b></div><div class="title26"><div class="big">26<span>℃</span></div><div class="tsub">其实没那么科学</div></div></div></div>
   <div id="mg_humid" class="clip mg" data-start="37.60" data-duration="9.42" data-track-index="2"><div class="ctr humid"><div class="hhead">同样 <b>27℃</b>，湿度决定体感</div><div class="hrow"><div class="hcol c-ok"><div class="hum">湿度 50%</div><div class="face">🙂</div><div class="feel">体感 舒适</div></div><div class="hcol c-bad"><div class="hum">湿度 80%</div><div class="face">🥵</div><div class="feel">体感≈<b>30℃</b> 闷黏</div></div></div></div></div>
   <div id="mg_why" class="clip mg" data-start="87.82" data-duration="9.18" data-track-index="2"><div class="ctr why"><div class="qmark">?</div><div class="qtext">不够凉、又发臭<br>怎么就<b>火遍全国</b></div><div class="qtag">这其实是一场误会</div></div></div>
-  <div id="mg_tiers" class="clip mg" data-start="97.00" data-duration="18.34" data-track-index="2"><div class="ctr tiers"><div class="thead">设计规范里的夏季舒适温度</div><div class="scale"><div class="band b1"><span class="bl">I 级 · 较高标准</span><span class="br">24–26℃</span></div><div class="band b2"><span class="bl">II 级 · 一般标准</span><span class="br">26–28℃</span></div><div class="seam"><div class="pin">26℃</div><div class="pinlab">正好卡在中缝 · 折中数</div></div></div></div></div>
+  <div id="mg_tiers" class="clip mg" data-start="97.00" data-duration="18.34" data-track-index="2"><div class="ctr tiers"><div class="thead">设计规范里的夏季舒适温度</div><div class="scale"><div class="band b1"><span class="bl">I 级 · 较高标准</span><span class="br">24–26℃</span></div><div class="band b2"><span class="bl">II 级 · 一般标准</span><span class="br">26–28℃</span></div><div class="seam"><div class="pin">26℃</div></div></div><div class="pinnote">正好卡在两档的中缝 · 是个折中数</div></div></div>
   <div id="mg_tday" class="clip mg" data-start="139.90" data-duration="12.74" data-track-index="2"><div class="ctr card"><div class="cnum">01</div><div class="ctitle">温度 · 白天</div><ul class="rows"><li><b>22℃</b> + 大风速，15 分钟速降</li><li>再调回舒适温度，一般 <b>24–26℃</b></li></ul></div></div>
   <div id="mg_tnight" class="clip mg" data-start="152.64" data-duration="4.76" data-track-index="2"><div class="ctr card"><div class="ctitle sm">温度 · 夜间</div><ul class="rows"><li>睡觉温度<b>往上提 2℃</b></li><li>老人小孩<b>别低于 27℃</b></li></ul></div></div>
   <div id="mg_thum" class="clip mg" data-start="166.40" data-duration="5.58" data-track-index="2"><div class="ctr card"><div class="cnum">02</div><div class="ctitle">湿度</div><ul class="rows"><li>室内湿度 <b>&gt;60%</b>，先开「除湿」</li><li>不黏不腻，比一味降温更清爽</li></ul></div></div>
@@ -142,7 +154,6 @@ body,html{width:1280px;height:720px;overflow:hidden;background:var(--ink);font-f
   <div id="bWind" class="clip badge tr" data-start="158.20" data-duration="7.90" data-track-index="3"><div class="t1">出风口<b>朝上 ↑</b> · 冷气自然下沉更均匀</div></div>
   <div id="kicker" class="clip kickov" data-start="192.60" data-duration="6.21" data-track-index="3"><div class="kq">先让屋里的人<b>舒服</b>，<br>才是真的会用空调。</div></div>
   <div id="capbox" class="clip" data-start="0" data-duration="198.81" data-track-index="5"></div>
-  <div id="logo" class="clip" data-start="0" data-duration="198.81" data-track-index="6">生活祛魅 · 每天多懂一点</div>
   <div id="lut" class="clip" data-start="0" data-duration="198.81" data-track-index="100"></div>
   <div id="grain" class="clip" data-start="0" data-duration="198.81" data-track-index="102"></div>
   <div id="vig" class="clip" data-start="0" data-duration="198.81" data-track-index="103"></div>
@@ -168,6 +179,7 @@ tl.fromTo('#mg_tiers .thead',{opacity:0,y:16},{opacity:1,y:0,duration:0.40,ease:
 tl.fromTo('#mg_tiers .b1',{opacity:0,x:-24},{opacity:1,x:0,duration:0.50,ease:'power2.out'},98.40);
 tl.fromTo('#mg_tiers .b2',{opacity:0,x:24},{opacity:1,x:0,duration:0.50,ease:'power2.out'},99.80);
 tl.fromTo('#mg_tiers .seam',{opacity:0,scale:1.15},{opacity:1,scale:1,duration:0.50,ease:'power3.out'},107.60);
+tl.fromTo('#mg_tiers .pinnote',{opacity:0,y:16},{opacity:1,y:0,duration:0.40,ease:'power2.out'},108.20);
 tl.fromTo('#mg_tday .cnum',{opacity:0,y:16},{opacity:1,y:0,duration:0.40,ease:'power2.out'},140.20);
 tl.fromTo('#mg_tday .ctitle',{opacity:0,y:16},{opacity:1,y:0,duration:0.40,ease:'power2.out'},140.50);
 tl.fromTo('#mg_tday .rows li:nth-child(1)',{opacity:0,x:-24},{opacity:1,x:0,duration:0.40,ease:'power2.out'},141.00);

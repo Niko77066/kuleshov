@@ -16,8 +16,8 @@
     "pipeline_version": "m0-v1",
     "schema_version": "m1-v1",
     "status": "delivered",
-    "next_action": "✅ v2 出厂(2026-07-20):换B音色Gentle_Senior(声纹0.952过门)+像素叙事6%→40%(11拼贴)+BGM(fal minimax-music,禁人声鼓点,-30垫底)+走渲染机(服务端270s,设为默认)。成片 out/final.mp4 198.9s/-14.05LUFS,L0全过。⏸待用户看片。遗留:s06温度计仍是timecode空镜(可批量修)。",
-    "version": "v2"
+    "next_action": "✅ v3(2026-07-20):修用户v2反馈——①音画错乱根因(compose voiceover.mp3仍是v1 A音色→改B)②去左上小标题③温度带26℃叠加重叠修复(卡中缝+折中数移下)④BGM换器乐原生MusicGen(禁人声哼唱,song模型会哼是教训)⑤走渲染机。成片 out/final.mp4 198.9s/-14.23LUFS,音画对齐5锚点全过。⏸待用户看片。遗留:s06温度计timecode空镜。",
+    "version": "v3"
   },
   "audio": {
     "voiceover": {
@@ -640,6 +640,34 @@
         "decision": "渲染走渲染机(服务端HTTP API,tools/render-remote.sh),设为以后默认([[render-machine-default]])。",
         "why": "用户指令;compose自带woff2符合字体新规,渲染机双跑一致性已在英阿片验;服务端270s vs 本地docker~13min。",
         "evidence": "egress东京13.158.136.168;final_v2抽帧与本地snapshot帧级一致"
+      },
+      {
+        "id": "D16-alignbug",
+        "stage": "v3-fix",
+        "decision": "修音画错乱根因:v2 换B音色后 audio/voiceover.wav 更新了,但 compose/assets/voiceover.mp3 没同步(仍v1 A,185.6s),导致渲染用v1 A音频跑v2 B时间轴(198.8s)→完全错乱。已重生 compose voiceover.mp3=B。",
+        "why": "我的疏漏;审查时只测了 audio/voiceover.wav 和 final的回转写(同剧本仍96%过),没测'渲染音频的时间戳是否匹配字幕时间'——教训:换音频后必验 compose/assets 同步 + 音画对齐锚点抽查(切片转写vs该时刻应说的话)。",
+        "evidence": "5锚点切片转写全对齐(你家空调@0.4/先说凉@23/那问题@87.8/那空调@136.3/说到底@187.6)"
+      },
+      {
+        "id": "D17-nologo",
+        "stage": "v3-fix",
+        "decision": "去掉左上角小标题水印'生活祛魅·每天多懂一点'(用户要求)。",
+        "why": "用户不需要。",
+        "alt": null
+      },
+      {
+        "id": "D18-tiers",
+        "stage": "v3-fix",
+        "decision": "温度带卡叠加重叠修复:26℃ pin 缩小卡在两档中缝(不压band文字),'折中数'注移到scale下方独立一行。",
+        "why": "用户指出中间内容叠加、可读性差(pinlab压住'II级·一般标准')。",
+        "alt": null
+      },
+      {
+        "id": "D19-bgm-musicgen",
+        "stage": "v3-fix",
+        "decision": "BGM 从 fal minimax-music(song模型,哼唱)换 本地 MusicGen(facebook/musicgen-small,器乐原生无人声能力)。29.9s→8x交叉淡化loop到199s→-30LUFS垫底。",
+        "why": "用户:BGM不要人声哼唱。学BGM最佳实践(media-use bgm.md):song模型(minimax)会把'[Instrumental]'当旋律哼;fal器乐模型(stable-audio/cassetteai)在网关503不可用;器乐原生MusicGen物理上不产人声=根治哼唱。",
+        "evidence": "MusicGen 器乐,-30.42LUFS"
       }
     ],
     "costs": [
@@ -797,6 +825,20 @@
           "回转写": "96.8%≥95%",
           "像素叙事占比": "collage ~40%(11条),达风格包≥40%目标(D08失衡已修)",
           "渲染机spot-check": "final_v2抽帧25帧与本地compose snapshot一致,字体新规下帧级无漂移"
+        },
+        "result": "PASS"
+      },
+      {
+        "id": "G-v3-review",
+        "stage": "v3-review",
+        "when": "2026-07-20",
+        "checks": {
+          "音画对齐(v2错乱的核心)": "5锚点切片转写全对齐 PASS",
+          "响度": "-14.23LUFS/TP-1.50",
+          "黑帧": "0",
+          "视觉修复": "无logo✓/温度带无叠加重叠✓(渲染抽帧确认)",
+          "BGM": "MusicGen器乐-30垫底,无人声哼唱(器乐模型不产人声)",
+          "渲染机": "服务端渲染,egress东京"
         },
         "result": "PASS"
       }
