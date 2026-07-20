@@ -27,7 +27,7 @@
       "captions": "不加通屏字幕（版式卡即大字，沿用首片）"
     },
     "series": "《AI 隐私风险解读》第 2 集（承接首片『你删掉的对话平台还存着』）",
-    "next_action": "⏸ 用户看片校准(s03b重做+woff2+BGM 版)→ 合 main。渲染机已切默认(双跑验收 gate10 pass),本地降兜底"
+    "next_action": "⏸ 用户看 v3(docsrc 修复+纹理 BGM)校准 → 合 main。48h 窗口最晚 7/22"
   },
   "audio": {
     "voiceover": {
@@ -51,13 +51,13 @@
     },
     "music": {
       "file": "audio/bgm_bed.mp3",
-      "provider": "fal-ai/minimax-music/v2.6 (灵鲸网关 queue.fal.run, 用户指定接口)",
+      "provider": "fal-ai/minimax-music/v2.6 (灵鲸网关, 用户指定接口)",
       "prompt_file": "audio/bgm_payload.json",
-      "request_id": "task_pUhlWEZe8gmBc3vXYbkpNTe1Hr3SQj6t",
-      "raw": "audio/bgm_raw.mp3(316s器乐)",
-      "bed": "audio/bgm_bed.mp3(裁8-90s,82.1s,2s淡入/3s淡出)",
-      "mount": "post-mix:volume≈0.055(-25dB)置旁白下→amix normalize=0→loudnorm I=-14;BGM 实际~-34LUFS≈旁白下20LU的克制床",
-      "note": "克制器乐:慢/小调/低drone+钟摆tick+微glitch,无人声(is_instrumental)。首次prompt 580字超限报错→改242字重出"
+      "request_id": "task_1Ld5rQefjP2ta7ib1bEKrAaszUOxly2l",
+      "raw": "audio/bgm_raw.mp3(144s)",
+      "bed": "audio/bgm_bed.mp3(裁6-88s,82.1s,2s淡入/3s淡出)",
+      "mount": "post-mix volume≈0.073→BGM 置旁白下 ~22LU；amix normalize=0→loudnorm I=-14。最终 -14.11 LUFS/-0.95 dBTP",
+      "note": "v2 按 media-use/audio/references/bgm.md 最佳实践重做：床是纹理非旋律——软 sustained pad+低 ambient drone、无主旋律/无鼓/无节拍、平淡低动态、loop-friendly。修 v1『钟摆tick+glitch+ominous』过于有性格抢戏(用户反馈影响观感)"
     },
     "timeline": {
       "file": "audio/timeline.json",
@@ -695,7 +695,7 @@
       "色块横扫(三段边界:段1入 s02a、段2入 s03a、段3入 s04a)",
       "白帧2帧(收尾前 s04e)"
     ],
-    "lut": "以拼贴静帧色场为基准统一 LUT",
+    "lut": "以拼贴静帧色场为基准统一 LUT；渲染机 woff2 出片",
     "grain": "全片统一细颗粒(拼贴自带纸颗粒为基准,版式卡叠同款颗粒缝合)",
     "loudness_lufs": -14.0,
     "transitions_detail": [
@@ -768,6 +768,14 @@
         "stage": "audio/deliver",
         "why": "首片默认无BGM我未主动提(缺口);用户点接口补。发布包已删 out/publish 并改 CLAUDE.md+rednote SKILL",
         "by": "用户→EP"
+      },
+      {
+        "id": "dec05",
+        "date": "2026-07-20",
+        "decision": "两处修复(用户第二轮反馈):①MG卡 docsrc『来源』脚注压内框线(每张卷宗卡都有,我漏查)→docbody bottom 36px→84px 让内框收在脚注之上;②BGM 按 bgm.md 最佳实践重做:床=纹理非旋律(软pad+低drone,无主旋律/节拍),置旁白下~22LU,替代 v1 过于有性格的『钟摆tick+glitch+ominous』",
+        "stage": "compose/audio",
+        "why": "用户:边框重合『你一直没发现』+『BGM不合适影响观感,先学最佳实践』。已读 media-use/audio/references/bgm.md",
+        "by": "用户→EP"
       }
     ],
     "costs": [
@@ -834,6 +842,13 @@
         "stage": "render",
         "item": "渲染机 render-remote ×2成功(v1 189s+v2 177s,+若干503重试) + 本地docker ×2(双跑/兜底)",
         "note": "渲染机=团队基建按调用;本地docker无API费"
+      },
+      {
+        "id": "cost09",
+        "date": "2026-07-20",
+        "stage": "audio(BGM v2)",
+        "item": "fal minimax-music/v2.6 ×1(纹理床重做)",
+        "note": "$0.15;req task_1Ld5..."
       }
     ],
     "gates": [
@@ -924,6 +939,14 @@
         "check": "⑨ L0 复检(s03b重做+woff2机渲+BGM版)",
         "result": "PASS",
         "notes": "final.mp4=渲染机woff2片(视频流copy)+旁白+BGM混音。blackdetect无黑帧;freezedetect 4拼贴窗0死尾;loudnorm 2要素:-14.12 LUFS/-0.99 dBTP(含BGM床~-34LUFS/旁白下~20LU);82.0s;成片抽帧确认woff2 CJK+4拼贴(含新s03b)+标签+品牌正常"
+      },
+      {
+        "id": "gate12",
+        "date": "2026-07-20",
+        "stage": "review(v3 修复)",
+        "check": "docsrc 边框重合修复 + BGM 最佳实践重做 复检",
+        "result": "PASS",
+        "notes": "docsrc:重渲后 doc-hf 14s 抽帧确认内框线收在『来源』脚注之上、footnote 落清爽下边距、无重合(doc-isc/doc-law 同源修复)。check layout 0 err(内容未溢出)。BGM:纹理床(软pad+低drone无旋律无节拍),~22LU under voice,终混 -14.11 LUFS/-0.95 dBTP;blackdetect 无黑帧。渲染机出片(185s,一次过)"
       }
     ]
   }
