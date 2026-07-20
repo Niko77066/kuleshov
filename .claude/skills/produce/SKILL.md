@@ -121,12 +121,12 @@ WebSearch / 用户素材整理出 5–10 条核心事实，**每条带出处 URL
 - 声明型镜头与叠加层直接写成组件；烘焙 clip 按 `t` 挂入；
 - **时长调和**（烘焙 clip 超长时按序）：尾部裁切（保动作完成点）→ 变速 ± 5% → 均不可则该镜 fail 重做；**禁止冻结帧补时长**；
 - 混排缝合：统一 LUT（以 style frame 为基准）+ 共享颗粒；剪辑点落句读/节拍，默认 J-cut/L-cut；转场 ≤ 4 种；
-- `npx hyperframes lint` 不过禁 render；render 用 `--docker` 保帧级复现，出 `out/final.mp4`。
-- 服务器渲染 API（用户提供，待接入）就位后替代本地渲染跑 final；切换前必须用同一 composition 双跑对比一次帧级一致性，通过才切，切换记 `ledger.decisions`。
+- **字体纪律（硬规则，2026-07-20 起）**：compose 禁 `local("系统字体")` 承担正文/标题，必用自带 woff2（`SansSC/SerifSC`，见 `references/server-render.md`）；`font-weight` 只取 woff2 实有档，别让浏览器 faux-bold。`python3 tools/kuleshov-lint.py projects/<片名>` 先过（woff2/时效词/脚注压边框），error 不清零禁 render。
+- **渲染默认走渲染机**（2026-07-20 双跑验收过、切默认，记 `ledger.decisions`）：`tools/render-remote.sh <compose> <out> [ver] [quality]`（东京 VPN 出口 13.158.136.168；503 并发满退避重试）；比本地 docker 快 ~2.3×。**本地 `hyperframes render --docker` 降为兜底**（机器宕机/占满时）。`npx hyperframes check` 不过禁 render。新风格包首用 woff2 时仍双跑一次（全片 SSIM + 关键版式帧目检换行/安全区，判据看目检不看全片 SSIM 数字）。
 
 ### ⑨ review ⏸
 1. **L0 手动仪器**（结果与证据写 `review.md`）：`ffprobe` 查时长/分辨率/帧率；blackdetect / freezedetect 查黑帧冻结；响度是否 -14 LUFS；成片音轨回转写 vs 剧本；承诺复验（时长、运动占比、转场数）。出示证据，"我检查过了"不算数。
-2. **视觉出厂自查**（读 `references/visual-selfcheck.md`）：抽帧逐项过版式反模式硬查（第一批：竖屏视觉重心 / 双角标 PPT 味 / 文件实证 / 死尾 / 幻灯片化 / 模板味 / 三面开钩一致 / 文字拆词；第二批：素材重复零容忍 / 时代地点错位 / 暗尾黑闪 / 音画 6 锚点抽查 / **时效词复核** / 烘焙镜头拍点），**任一命中必改再出厂**，结果记 `ledger.gates`——这是 agent 出厂前**自己发现并指出问题**的门，不靠用户挑（脚本层有 narration-voice、拼贴层有 collage-broll 死尾、技术层有 hyperframes check，本门补视觉层）。
+2. **视觉出厂自查**（读 `references/visual-selfcheck.md`）：**先跑自动前置门 `python3 tools/kuleshov-lint.py projects/<片名>`**（woff2/时效词/脚注压边框，error 禁出厂），再抽帧逐项过版式反模式硬查（第一批：竖屏视觉重心 / 双角标 PPT 味 / 文件实证 / 死尾 / 幻灯片化 / 模板味 / 三面开钩一致 / 文字拆词；第二批：素材重复 / 时代地点错位 / 暗尾黑闪 / **音画同步(字幕·文字与 TTS，关键观感痛点，评委 D5/D6 必查)** / 时效词复核 / 烘焙镜头拍点 / **元素压容器边框(脚注·角标骑内框线)**），**任一命中必改再出厂**，结果记 `ledger.gates`——agent 出厂前**自己发现并指出问题**的门，不靠用户挑。背景与本次新增门见 `docs/postmortem-hf-breach.md`。
 3. ⏸ **用户亲自看片**（M0 的评委团就是用户）。
 4. 引导用户跑 `/video-score` 登记 9 维分（2026-07-16 起含 D8 创意 / D9 网感）；有问题跑 `/video-triage` 归因到环节。
 
@@ -142,7 +142,8 @@ WebSearch / 用户素材整理出 5–10 条核心事实，**每条带出处 URL
 | AI 纸拼贴 b-roll（GPT-Image-2 + Seedance 首尾帧） | ✅ | 概念/观点句/抽象隐喻的氛围 b-roll（半调纸拼贴、从空场组装） | 无文字/数字/logo（要文字 HyperFrames 叠层）；强制三闸门；2026-07-17 冒烟验证 | `references/collage-broll.md` |
 | 数字人（HeyGen Avatar 4） | ✅ | 口播、主持、结论、人设 IP | 时长=音频时长；aspect_ratio 必填；形象锚点按目标画幅构图 | `references/avatar.md` |
 | 图片 + 动效（GPT-Image-2） | ✅ | 风格化静帧、插画、概念示意、"准运动" | 连续 ≤ 2 镜（防幻灯片化） | `references/image-motion.md` |
-| TTS 音频（≤120s seed-audio / >120s MiniMax 官方音色） | ✅ | 一切旁白（+BGM 可 MiniMax music 生成） | 长片必 single-pass + 声纹 gate；对齐必走 forced-alignment | `references/tts-audio.md` `references/forced-alignment.md` |
+| TTS 音频（≤120s seed-audio / >120s MiniMax 官方音色） | ✅ | 一切旁白 | 长片必 single-pass + 声纹 gate；对齐必走 forced-alignment | `references/tts-audio.md` `references/forced-alignment.md` |
+| BGM 背景音乐床（fal minimax-music/v2.6） | ✅ | 解说片 >10s 的氛围垫底 | **床要纹理不要旋律**；压旁白下 18–22 LU；`is_instrumental` | `references/bgm.md` |
 | 实拍 / 检索素材 | ✅ | 空镜氛围（Pexels）、叙事档案（archive.org/Commons）、时事新闻（APIhub） | 一素材全片一次；broadcast-risk ≤3s；来源分层禁顶替 | `references/footage-sourcing.md` |
 | 实拍 / 检索剪辑 | 🔜 检索 API 待接入（用户提供，契约到手即开通） | 纪实感、证据声部、B-roll | provenance/license 硬门照跑；接入前需素材的选人工投喂 | — |
 
