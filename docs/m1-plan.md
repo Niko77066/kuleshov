@@ -38,7 +38,7 @@
 | API | 状态 | 说明 |
 |---|---|---|
 | 检索/实拍素材 API | ✅ **已闭环（2026-07-18，英阿片实测）** | 三层方案替代单一 API：Pexels/Pixabay（纯空镜）+ archive.org/Wikimedia 公有领域（叙事/证据位）+ **APIhub** `youtube_search→video_download`（时事新闻位）。知识包 `produce/references/footage-sourcing.md`（含 provenance/license 登记工序、空镜池五铁律）；凭据均在 `.env` |
-| 服务器渲染 API | 🟡 **接入中（2026-07-20 契约到手）** | 契约 `docs/render-http-api.md`；阶段 A 连通性 ✓（401/4ms，出口 IP 13.158.136.168 已验）；一键脚本 `tools/render-remote.sh` + 冒烟工程 `tools/render-smoke/`（tar 已传 S3）。**卡点：`FFMPEG_RENDER_HTTP_TOKEN` 生产值在 bitable 权限墙后（dev_value 空），须有权限的人提供**。token 到手 → 阶段 B/C 冒烟 → 真片双跑**帧级一致性对比**通过才切默认，切换记 `ledger.decisions`。注意版本疑点：渲染机生产版 0.7.3，两条链路成片用的 0.7.57/0.7.60——冒烟后须验证高版本 composition 兼容性 |
+| 服务器渲染 API | ✅ **通路验证完成（2026-07-20）**，切默认待下一部片复验 | A/B/C 三阶段全过（真片 65.7s 服务端 129s 渲完）；版本按请求装（0.7.3/0.7.57/0.7.60 实测均可）。真片双跑对比 SSIM 0.981——差异根因＝compose 依赖 macOS 系统字体，Linux 落 font-kit 兜底致长标题换行漂移。**新规则：compose 一律自带 woff2 字体（禁 local() 系统字体）**，下一部片按此双跑达帧级一致后切默认、记 ledger。知识包 `produce/references/server-render.md`，脚本 `tools/render-remote.sh` |
 
 ## 7/18 – 7/22 todo（M2 检查点：下周三）
 

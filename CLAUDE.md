@@ -14,7 +14,7 @@ M0 的交付物不是视频，是：**验证过的品味资产 + 带人工分的
 
 M0 实验项目（800v-thermal-runaway / estee-lauder-night / samsung-health-ai-consent / _smoke）与弃用风格包（daily-brief / tech-newsroom / engineering-anatomy / night-luxe）已于 2026-07-20 精简出库：git 历史可查，本地全量归档在 `~/kuleshov-archive/m0-projects/`，film.json 校准语料在 `film-ir/tests/fixtures/` 有只读副本。
 
-外部依赖：**检索/实拍素材已闭环**（Pexels + archive.org 公域 + APIhub 新闻三层方案，见 `produce/references/footage-sourcing.md`）；**服务器渲染 API** 用户侧准备中，契约到手即接（切换前须帧级一致性对比）。
+外部依赖：**检索/实拍素材已闭环**（Pexels + archive.org 公域 + APIhub 新闻三层方案，见 `produce/references/footage-sourcing.md`）；**服务器渲染 API 通路已验**（`tools/render-remote.sh`，知识包 `produce/references/server-render.md`）——切默认前须下一部片按"compose 自带 woff2 字体"新规双跑达帧级一致。
 
 账号运营层用 `/rednote-mentor`：选题从搜索词反推进 brief，出厂随片交付双平台发布包，冷启动数据按 L5 回流归因。M1 工程化设计（Film IR API、导演—子导演上下文、风格包注入机制）见 `docs/film-ir-context-architecture.md`，排期与 todo 见 `docs/m1-plan.md`。
 
