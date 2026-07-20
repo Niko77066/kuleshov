@@ -1,8 +1,0 @@
-{
-  "model": "gpt-image-2",
-  "prompt": "Extreme macro cross-section concept still for a forensic engineering documentary: the internal LAYERED structure of a lithium battery cell, showing distinct stacked flat layers — a cathode layer, a thin porous separator membrane, and an anode layer — cleanly cross-sectioned and slightly fanned apart so the layering is legible. On the anode surface, a thin solid-electrolyte-interphase (SEI) film is beginning to crack and decompose, with a faint amber heat glow (#FFB02E) blooming from that spot as the earliest onset of failure. Deep carbon-black background (#0C0F14), dramatic raking light, crisp bone-white (#E8E6E1) edge highlights on the layer cross-sections, physically real thin-film materials, shallow depth of field, subtle haze. The rest of the layers stay cool coolant-blue (#3D9DF6) toned, reading as normal. Absolutely NO text, NO labels, NO numbers, NO logos, NO rainbow colors, NO sci-fi HUD, NO cartoon look. Clean space around the layers for later annotation. 16:9.",
-  "quality": "medium",
-  "output_format": "png",
-  "size": "1536x864",
-  "n": 1
-}
