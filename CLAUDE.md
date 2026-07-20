@@ -7,10 +7,12 @@ M0 的交付物不是视频，是：**验证过的品味资产 + 带人工分的
 
 ## 当前目标（M1 · 2026-07-16 会后拍板版）
 
-场景定位：**社媒账号内容创作与运营**（覆盖 KOL 选题验证 → KOC 起号变现），产出发布**小红书 + 抖音**。选题、创意、信息密度是拿流量的生命线（评分卡已补 D8 创意 / D9 网感）。M1 两个生产目标，**2026-07-17 下班前各出首片**（效果第一：质量不过评分线宁可返工延发，但开拍与首版必须当天完成）：
+场景定位：**社媒账号内容创作与运营**（覆盖 KOL 选题验证 → KOC 起号变现），产出发布**小红书 + 抖音**。选题、创意、信息密度是拿流量的生命线（评分卡已补 D8 创意 / D9 网感）。M1 两条生产链路，**首片均已交付**（2026-07-20 状态），当前重心是把两条链路固化为**可端到端复跑的生产模式**（工程项见 `docs/m1-plan.md` 7/18–22 段）：
 
-1. **知识科普类 3 分钟视频**（对标片：`/Users/admin/Downloads/6a36784a00000000110050d4_副本.mp4`，拆解与风格包见 `styles/pixel-chronicle/`）；
-2. **荆华密算 AI 隐私平台社媒视频**——内容引擎定稿：**搜集全球 AI 隐私与泄露热点新闻 → 专业解读 + 安全提醒 → 凸显六场景（法律/医疗/心理/职场/金融/科研）中的产品价值**。企业号红线见 `.claude/skills/rednote-mentor/references/compliance.md`。
+1. **知识科普类 3 分钟视频**——风格包 `styles/pixel-chronicle/`，首片 `projects/uk-argentina-feud/`（已出厂合 main）；
+2. **荆华密算 AI 隐私平台社媒视频**——内容引擎：**搜集全球 AI 隐私与泄露热点新闻 → 专业解读 + 安全提醒 → 凸显六场景（法律/医疗/心理/职场/金融/科研）中的产品价值**。风格包 `styles/case-file/`，首片 `projects/openai-78m-logs/`（已出厂合 main）。企业号红线见 `.claude/skills/rednote-mentor/references/compliance.md`。
+
+M0 实验项目（800v-thermal-runaway / estee-lauder-night / samsung-health-ai-consent / _smoke）与弃用风格包（daily-brief / tech-newsroom / engineering-anatomy / night-luxe）已于 2026-07-20 精简出库：git 历史可查，本地全量归档在 `~/kuleshov-archive/m0-projects/`，film.json 校准语料在 `film-ir/tests/fixtures/` 有只读副本。
 
 两个外部依赖由用户提供 API（契约到手即接入，todo 见 `docs/m1-plan.md`）：**检索/实拍素材 API**（补齐五源里最后一源）、**服务器渲染 API**（替代本地渲染，切换前须帧级一致性对比）。
 
@@ -19,8 +21,9 @@ M0 的交付物不是视频，是：**验证过的品味资产 + 带人工分的
 ## 目录
 
 - `.claude/skills/produce/` — 十阶段生产管线 SOP（入口：`/produce`），引擎知识包在其 `references/` 下，按镜头路由按需加载
-- `styles/` — 风格包（每包一个目录）+ 反主观翻译总表（`translation-table.md`）
+- `styles/` — 风格包（现存两包：`pixel-chronicle` 知识科普横屏 / `case-file` 官号竖屏）+ 反主观翻译总表（`translation-table.md`）+ 进化规程（`_iteration.md`）
 - `projects/<片名>/` — 每片一个目录：`film.json`（全片唯一真相源）+ 阶段 artifact + 产物
+- `film-ir/` — Film IR API（Python 库 + CLI `kuleshov-ir`：read / patch / validate / execute 四动词 + G1 门套件 + migrate 收编器）；测试 `film-ir/.venv/bin/python -m pytest film-ir/tests/`
 - `tools/oss-upload.sh` — 本地资产传 grain S3 → 返回 `storage.neodrop.ai` 公网 URL（Seedance @ref 引用用）
 
 ## 运行铁律（M0 版 Rule Zero）

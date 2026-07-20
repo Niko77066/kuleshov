@@ -1,3 +1,0 @@
-{ "name": "800v-thermal-runaway-compose", "private": true, "type": "module",
-  "scripts": { "lint": "npx --yes hyperframes lint final.html",
-               "render": "npx --yes hyperframes render final.html --docker --output out/final.mp4" } }

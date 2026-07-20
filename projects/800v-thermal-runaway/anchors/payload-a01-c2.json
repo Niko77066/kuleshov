@@ -1,8 +1,0 @@
-{
-  "model": "gpt-image-2",
-  "prompt": "Cinematic three-quarter hero style frame for a forensic engineering documentary about EV battery thermal runaway. Subject: an 800V lithium battery module — a tight row of dark prismatic cells with metal terminal posts, seated in an open dark-metal tray — in a pitch-black investigation studio. Deep carbon-black background (#0C0F14), dramatic low-key light. Crisp bone-white (#E8E6E1) edge highlights. The thermal event is SPREADING: the central cell is white-hot at its core (#FFF3E0) fading through orange (#FF5A1F), and the TWO adjacent cells are already heating to a dull amber (#FFB02E), heat visibly propagating outward cell by cell, with vapor and shimmering hot-air distortion rising. Cells further out still carry a cool coolant-blue (#3D9DF6) rim, reading as 'not yet reached'. Mood: calm, clinical, high-contrast, cinematic, physically real brushed-metal materials, shallow depth of field. Absolutely NO text, NO logos, NO people, NO rainbow colors, NO sci-fi holographic HUD, NO glowing blue particles, NO cartoon look. 16:9.",
-  "quality": "medium",
-  "output_format": "png",
-  "size": "1536x864",
-  "n": 1
-}
