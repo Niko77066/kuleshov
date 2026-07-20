@@ -1,8 +1,11 @@
-"""ir_migrate：M0 手写 film.json（三种方言）→ m1-v1 收编（DESIGN.md §2.4）。
+"""ir_migrate：M0 手写 film.json（五种方言）→ m1-v1 收编（DESIGN.md §2.4）。
 
 方言语料：800v-thermal-runaway（voiceover 平铺、music.gen 字符串、seam 自由文本）、
 samsung-health-ai-consent（overlays.range、source.group、provider heygen_avatar）、
-estee-lauder-night（static_type、shot_ref/shot_refs/scope=all_shots、provider 变体）。
+estee-lauder-night（static_type、shot_ref/shot_refs/scope=all_shots、provider 变体）、
+uk-argentina-feud（voiceover.engine 平铺、timeline 缺 duration_s、provider collage-broll-pixel、
+ledger 条目无 id）、openai-78m-logs（anchors.gen 字符串、shots.qc 字符串、
+edit.transitions 结构化条目、provider collage-broll、ledger 条目无 id）。
 
 原则：只归一字段名与结构，不丢任何留痕——搬不动的键靠 extra=allow 原样保留。
 """
@@ -20,6 +23,8 @@ PROVIDER_MAP = {
     "heygen_avatar": "avatar",
     "stock_footage": "footage",
     "real_product_image": "footage",
+    "collage-broll": "collage_broll",         # openai-78m 方言：拼贴 b-roll 混合通路
+    "collage-broll-pixel": "collage_broll",   # uk-argentina 方言：同通路的像素改版（原名存 origin_provider）
 }
 ANCHOR_STATUS_MAP = {"captured": "acquired", "picked": "selected"}
 _SEAM_PATTERNS = [
@@ -37,10 +42,12 @@ def migrate(raw: dict) -> tuple[dict, list[str]]:
     _meta(d, log)
     _voiceover(d, log)
     _music(d, log)
+    _timeline(d, log)
     _anchors(d, log)
     _shots(d, log)
     _groups(d, log)
     _overlays(d, log)
+    _edit(d, log)
     _ledger(d, log)
 
     validated = validate_dict(d)
@@ -52,6 +59,12 @@ def _meta(d: dict, log: list[str]) -> None:
     if meta.get("schema_version") != SCHEMA_VERSION:
         meta["schema_version"] = SCHEMA_VERSION
         log.append(f"meta.schema_version → {SCHEMA_VERSION}")
+    # openai-78m 方言：no-lock 时长政策——commitment 只记 duration_actual_s，无 duration_s。
+    # 不许让 schema 默认值 60 冒充承诺：no-lock 语义 = 承诺即音频自然时长。
+    c = meta.get("commitment")
+    if isinstance(c, dict) and "duration_s" not in c and isinstance(c.get("duration_actual_s"), (int, float)):
+        c["duration_s"] = c["duration_actual_s"]
+        log.append("meta.commitment.duration_s ← duration_actual_s（no-lock 方言：承诺=音频自然时长，原字段保留）")
     status = meta.get("status", "brief")
     if status not in (*STAGES, "delivered"):
         canonical = "delivered" if "deliver" in status else "brief"
@@ -77,6 +90,19 @@ def _voiceover(d: dict, log: list[str]) -> None:
             vo["voice_profile"] = vo.pop("voice_desc")
         vo["gen"] = gen
         log.append("voiceover 平铺留痕 → gen 块（800v 方言）")
+    # uk-argentina / openai 方言：engine + 参数平铺在 voiceover 顶层
+    elif "gen" not in vo and "engine" in vo:
+        gen = {"model": vo.pop("engine")}
+        params = vo.pop("params") if isinstance(vo.get("params"), dict) else {}
+        for k in ("voice", "speed", "emotion", "mode", "endpoint"):
+            if k in vo:
+                params[k] = vo.pop(k)
+        if params:
+            gen["params"] = params
+        if "duration_actual_s" in vo:
+            gen["duration_actual_s"] = vo.pop("duration_actual_s")
+        vo["gen"] = gen
+        log.append("voiceover 平铺留痕 → gen 块（engine 方言）")
     gen = vo.get("gen")
     _fix_gen(gen, "voiceover", log)
     if isinstance(gen, dict) and "voice_profile" in gen and "voice_profile" not in vo:
@@ -92,6 +118,28 @@ def _music(d: dict, log: list[str]) -> None:
         _fix_gen(music.get("gen"), "music", log)
 
 
+def _timeline(d: dict, log: list[str]) -> None:
+    """uk-argentina 方言：timeline 只记对齐方法与文件指针，缺 duration_s。
+
+    只从**实测**音频时长回填（audio-first 铁律：真实时间戳，不按剧本估时）；
+    找不到实测值就留空，让 schema 校验自己报——不猜。
+    """
+    audio = d.get("audio") or {}
+    tl = audio.get("timeline")
+    if not isinstance(tl, dict) or "duration_s" in tl:
+        return
+    vo = audio.get("voiceover") or {}
+    gen = vo.get("gen") if isinstance(vo.get("gen"), dict) else {}
+    for src, val in (("audio.voiceover.gen.duration_actual_s", gen.get("duration_actual_s")),
+                     ("audio.voiceover.duration_actual_s", vo.get("duration_actual_s")),
+                     ("audio.voiceover.duration_s", vo.get("duration_s"))):
+        if isinstance(val, (int, float)):
+            tl["duration_s"] = val
+            tl["duration_s_source"] = f"迁移回填自 {src}（实测音频时长）"
+            log.append(f"audio.timeline.duration_s ← {src}（{val}s，来源存 duration_s_source）")
+            return
+
+
 def _anchors(d: dict, log: list[str]) -> None:
     for a in d.get("anchors") or []:
         if "need" in a and "intent" not in a:
@@ -105,6 +153,9 @@ def _anchors(d: dict, log: list[str]) -> None:
             note = a.get("note") or ""
             a["note"] = (note + f"；picked_from: {a.pop('picked_from')}").lstrip("；")
             log.append(f"anchors[{a.get('id')}].picked_from 并入 note")
+        if isinstance(a.get("gen"), str):   # openai-78m 方言："模型, payload文件" 单行字符串
+            a["gen"] = _gen_from_string(a["gen"])
+            log.append(f"anchors[{a.get('id')}].gen 字符串 → gen 块（原文存 note）")
         _fix_gen(a.get("gen"), f"anchors[{a.get('id')}]", log)
 
 
@@ -123,6 +174,12 @@ def _shots(d: dict, log: list[str]) -> None:
         if "static_type" in s and "static_class" not in s:
             s["static_class"] = bool(s.pop("static_type"))
             log.append(f"shots[{sid}].static_type → static_class")
+        if isinstance(s.get("qc"), str):    # openai-78m 方言：qc 是一句人写结论
+            s["qc"] = {"note": s["qc"]}
+            log.append(f"shots[{sid}].qc 字符串 → {{note}} 块（原文保留）")
+        if isinstance(s.get("gen"), str):
+            s["gen"] = _gen_from_string(s["gen"])
+            log.append(f"shots[{sid}].gen 字符串 → gen 块（原文存 note）")
         _fix_gen(s.get("gen"), f"shots[{sid}]", log)
 
 
@@ -167,8 +224,50 @@ def _overlays(d: dict, log: list[str]) -> None:
             o["intent"] = o["spec"]
 
 
+def _edit(d: dict, log: list[str]) -> None:
+    """openai-78m 方言：transitions 条目是 {type, usage} 结构化对象。
+
+    归一为 uk-argentina 同款 "类型（用法）" 字符串（G1 转场词汇门按条目计数），
+    原结构化条目原样存 transitions_detail。
+    """
+    edit = d.get("edit")
+    if not isinstance(edit, dict):
+        return
+    trans = edit.get("transitions")
+    if not (isinstance(trans, list) and any(isinstance(t, dict) for t in trans)):
+        return
+    edit.setdefault("transitions_detail", copy.deepcopy(trans))
+    flat = []
+    for t in trans:
+        if isinstance(t, dict):
+            label = str(t.get("type") or t.get("name") or t)
+            if t.get("usage"):
+                label += f"（{t['usage']}）"
+            flat.append(label)
+        else:
+            flat.append(t)
+    edit["transitions"] = flat
+    log.append("edit.transitions 结构化条目 → 字符串（原文存 transitions_detail）")
+
+
 def _ledger(d: dict, log: list[str]) -> None:
     ledger = d.get("ledger") or {}
+    # uk-argentina / openai-78m 方言：ledger 条目无 id → 按序补机器 id（不动其余任何字段）
+    for key, prefix in (("decisions", "dec"), ("costs", "cost"), ("gates", "gate")):
+        items = ledger.get(key) or []
+        existing = {it.get("id") for it in items if isinstance(it, dict) and it.get("id")}
+        filled = 0
+        for i, it in enumerate(items, 1):
+            if not isinstance(it, dict) or it.get("id"):
+                continue
+            cand = f"{prefix}{i:02d}"
+            while cand in existing:
+                cand += "x"
+            it["id"] = cand
+            existing.add(cand)
+            filled += 1
+        if filled:
+            log.append(f"ledger.{key} {filled} 条缺 id → 按序补 {prefix}NN")
     for c in ledger.get("costs") or []:
         if "req_id" in c and "request_id" not in c:
             c["request_id"] = c.pop("req_id")
@@ -186,9 +285,21 @@ def _ledger(d: dict, log: list[str]) -> None:
             log.append(f"gates[{g.get('id')}].gate → check")
 
 
+def _gen_from_string(s: str) -> dict:
+    """gen 单行字符串收编：能确定解析的（"模型, payload.json"）拆出 model/prompt_file，
+    其余只进 note——原文永远整句保留，不猜。"""
+    parts = [p.strip() for p in s.split(",", 1)]
+    if len(parts) == 2 and parts[1].endswith(".json"):
+        return {"model": parts[0], "prompt_file": parts[1], "note": s}
+    return {"model": "", "note": s}
+
+
 def _fix_gen(gen, owner: str, log: list[str]) -> None:
     if not isinstance(gen, dict):
         return
+    if "model" not in gen and "engine" in gen:   # uk-argentina 方言：镜头 gen 用 engine 记模型名
+        gen["model"] = gen.pop("engine")
+        log.append(f"{owner}.gen.engine → model")
     if isinstance(gen.get("wallclock_s"), list):   # 多 take 数组（samsung 方言）
         takes = gen["wallclock_s"]
         gen["wallclock_s_each"] = takes
