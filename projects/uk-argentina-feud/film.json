@@ -16,7 +16,7 @@
     "pipeline_version": "m0-v1",
     "schema_version": "m1-v1",
     "status": "delivered",
-    "next_action": "✅ 成片已恢复归位（用户 Downloads 副本，ffprobe 255.700s/1280x720/30fps 与交付规格一致，128s 抽帧内容核验通过）+ 异地备份 https://storage.neodrop.ai/kuleshov/uk-arg/final.mp4。GS-12 评分已登记（均分 4.22 待用户校准）。剩余：发布包（标题三选一待用户拍板）+ broadcast-risk 9 条拍板 + 成本单价回填。注意：voiceover 源 mp3 与 13 条像素片段源文件仍缺失（不影响发布，只影响未来重剪；重生成留痕齐全）。"
+    "next_action": "✅ 全部收尾完成（2026-07-20）：评分登记（GS-12 均分4.22）→ 成片恢复+S3备份 → 双平台发布包 out/publish/（标题①提问式，用户拍板；封面账号模板 gen_covers.py 可复用）。⏰ 发布时效窗 ≤2026-07-22（片内'前两天'口径），用户点发布即可。发布后 24-48h 冷启动数据回流走场景 D 归因。成本单价回填仍挂账。"
   },
   "audio": {
     "voiceover": {
@@ -1381,6 +1381,12 @@
         "date": "2026-07-20",
         "decision": "worktree 清理误删媒体事故收束：final.mp4 从用户 Downloads 副本恢复归位并核验（时长/规格/帧内容三项一致），上传 grain S3 作异地备份；素材池等 1.1G 已从 scratchpad 抢救至 recovered/。旁白源与像素片段源仍缺，接受现状（发布不受影响，重剪需按留痕重生成）",
         "evidence": "ffprobe 255.700s + storage.neodrop.ai/kuleshov/uk-arg/final.mp4 + recovered/README.md"
+      },
+      {
+        "id": "dec25",
+        "date": "2026-07-20",
+        "decision": "发布包拍板与交付：标题采用方案①提问式『英国和阿根廷到底什么仇什么怨？』（用户拍板）；broadcast-risk 9 条素材用户放行；封面走 PIL+片内字体账号模板（大字'钱·血·球'+27.5s标题帧），双平台包全件交付 out/publish/。用户同日授权：此后交付流程内选择题 EP 直接拍板留痕，不再逐项询问",
+        "evidence": "out/publish/publish-package.md + cover_xhs_3x4.jpg + cover_douyin_9x16.jpg + gen_covers.py"
       }
     ],
     "costs": [
