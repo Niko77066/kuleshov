@@ -20,7 +20,7 @@
     "budget": { "cap_usd": null, "spent_usd": 0 },
     "pipeline_version": "m0-v1",
     "status": "delivered",
-    "next_action": "✅ v3 已交付：用户看片通过(2026-07-20)，/video-score 登记均分 4.44(对照 v1 基线 2.89)，⑩ deliver 合 main。成片 out/final.mp4(案卷档案风格包；65.8s/-14.02 LUFS/无黑帧)。后续可选：发布包按 v3 视觉更新封面(out/publish 现为 v2 版帧)、冷启动数据 L5 回流归因。DEBT：track10 密(warning)、s02a 可能 1 孤儿 Seedance 任务、品牌默认印刷红可覆写、hyperframes 0.7.64 Docker 镜像未建成(本次用 v2 同款 0.7.60 镜像)、媒体文件不进 git(mp4/mp3 已复制回主仓库工作区，服务器化时需迁移)"(case-file 风格包重构；1080×1920/30fps/65.8s；-14.05 LUFS/无黑帧/check 0 error)。v1(daily-brief)判全军覆没、归档反例 out/final_v1_daily-brief.mp4。v2 落实用户三条反馈：数字→TechCrunch 报道面板、法规→cac 公文面板(同步高亮)、钩子/收尾→居中极简。⏸ 待用户亲自看片 → 通过后：/video-score 登记 9 维 → ⑩ deliver(合 main + git commit)+ /rednote-mentor 出小红书+抖音发布包。DEBT：track10 密(warning)、s02a 可能 1 孤儿 Seedance 任务、品牌默认印刷红可覆写。"
+    "next_action": "✅ v3 已交付：用户看片通过(2026-07-20)，/video-score 登记均分 4.44(对照 v1 基线 2.89)，⑩ deliver 合 main。成片 out/final.mp4(案卷档案风格包；65.8s/-14.02 LUFS/无黑帧)。后续可选：发布包按 v3 视觉更新封面(out/publish 现为 v2 版帧)、冷启动数据 L5 回流归因。DEBT：track10 密(warning)、s02a 可能 1 孤儿 Seedance 任务、品牌默认印刷红可覆写、hyperframes 0.7.64 Docker 镜像未建成(本次用 v2 同款 0.7.60 镜像)、媒体文件不进 git(mp4/mp3 已复制回主仓库工作区，服务器化时需迁移)"
   },
   "audio": {
     "voiceover": {
