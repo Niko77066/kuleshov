@@ -5,7 +5,7 @@
     "style_pack": "pixel-chronicle",
     "commitment": {
       "type": "hybrid",
-      "duration_s": 165.0,
+      "duration_s": 198.9,
       "tolerance_pct": 10.0,
       "note": "时长非硬锁（2026-07-16 去除时长锁）；~2.5–3min 规划值，最终以 audio.timeline 真实戳为准。pixel-chronicle 语速~300字/分。"
     },
@@ -16,7 +16,8 @@
     "pipeline_version": "m0-v1",
     "schema_version": "m1-v1",
     "status": "delivered",
-    "next_action": "✅ 出厂交付(2026-07-20):成片 out/final.mp4(-14LUFS)+film.json+review.md+双平台发布包(3:4封面/plan)已备,留痕已commit,成片S3备份。⏸待用户:亲自看片→/video-score登记9维(片库校准语料)。DEBT:①BGM待引擎恢复mux(用户拍板VO-first);②s06时码显示器空镜偏弱可选换镜重渲。成本单价待回填。合main待用户看片认可。"
+    "next_action": "✅ v2 出厂(2026-07-20):换B音色Gentle_Senior(声纹0.952过门)+像素叙事6%→40%(11拼贴)+BGM(fal minimax-music,禁人声鼓点,-30垫底)+走渲染机(服务端270s,设为默认)。成片 out/final.mp4 198.9s/-14.05LUFS,L0全过。⏸待用户看片。遗留:s06温度计仍是timecode空镜(可批量修)。",
+    "version": "v2"
   },
   "audio": {
     "voiceover": {
@@ -152,508 +153,342 @@
   ],
   "shots": [
     {
-      "id": "s01_altar",
+      "id": "altar",
       "t": [
         0.0,
-        5.14
+        5.66
       ],
-      "voice_ref": "sec01",
-      "intent": "hook：被供上神坛的26℃遥控器键，halftone手围拢——'神化'。10s慢组装尾对齐落在'最没必要按的一个'",
-      "framing": "中景概念隐喻",
+      "kind": "collage",
+      "intent": "hook神坛:被供的26℃键",
       "source": {
-        "provider": "collage_broll",
-        "params": {},
-        "note": "纸拼贴概念b-roll(GPT-Image静帧→Seedance首尾帧,10s慢组装尾对齐)；无文字数字(走overlay)"
+        "provider": "collage_broll"
       },
-      "anchor_refs": [
-        "anc_s01_altar"
-      ],
-      "static_class": false,
-      "status": "qc_pass",
-      "gen": {
-        "model": "doubao-seedance-2-0-260128",
-        "mode": "首尾帧assemble",
-        "request_id": "202607201016367002276388268d9d6tgLJzlKN",
-        "task_id": "task_tSqJ2CRlyh1vvkGVHvFVLmSrhgRYPKfI",
-        "duration_actual_s": 10.04,
-        "resolution": "1280x720",
-        "fps": 24,
-        "file": "shots/altar.mp4",
-        "refs": [
-          "anc_s01_altar"
-        ],
-        "generate_audio": false
-      },
-      "qc": {
-        "assemble": "空紫场→神坛基座→红垫红幡→按键升起→双侧朝拜手→光环末秒逐条弹出",
-        "死尾": "contact sheet 10帧逐帧均匀推进,末帧仍在组装,无冻结尾 PASS",
-        "pixel": "halftone统一无畸变",
-        "verdict": "pass"
-      }
+      "status": "rendered_v2"
     },
     {
-      "id": "s02_myth",
+      "id": "myth",
       "t": [
-        5.14,
-        7.28
+        5.66,
+        8.18
       ],
-      "voice_ref": "sec01",
-      "intent": "传说光环：'不冷不热·省电'金标签环绕26℃键旋入",
-      "framing": "全屏版式",
+      "kind": "mg",
+      "intent": "传说光环",
       "source": {
-        "provider": "hyperframes",
-        "params": {},
-        "note": "MG信息骨架/数据实物化(禁坐标轴)；内部元素2-4s进出维持视觉变化"
+        "provider": "hyperframes"
       },
-      "anchor_refs": [],
-      "static_class": true,
-      "status": "planned"
+      "status": "rendered_v2"
     },
     {
-      "id": "s03_sweat_room",
+      "id": "s03_sweat",
       "t": [
-        7.28,
-        12.72
+        8.18,
+        13.94
       ],
-      "voice_ref": "sec01",
-      "intent": "实拍：夏天闷热屋里对着空调擦汗/不适的人（Pexels空镜，真运动破幻灯片）",
-      "framing": "中景实拍",
+      "kind": "collage",
+      "intent": "闷热扇风的人",
       "source": {
-        "provider": "footage",
-        "params": {},
-        "note": "Pexels纯空镜(不承担叙事)；一素材全片一次;尾留0.8s防暗尾;1280x720;叠MG角标承载信息",
-        "asset": "compose/assets/broll/s03_sweat_room.mp4"
+        "provider": "collage_broll"
       },
-      "anchor_refs": [],
-      "static_class": false,
-      "status": "sourced"
+      "status": "rendered_v2"
     },
     {
-      "id": "s04_punch",
+      "id": "punch",
       "t": [
-        12.72,
-        21.86
+        13.94,
+        23.04
       ],
-      "voice_ref": "sec01",
-      "intent": "三症状打脸角标砸出❄️💸👃 → 报题大字卡『26℃其实没那么科学』→黑场闸门",
-      "framing": "角标连击→大字卡+黑场",
+      "kind": "mg",
+      "intent": "三症状+报题26℃没那么科学+黑场",
       "source": {
-        "provider": "hyperframes",
-        "params": {},
-        "note": "MG信息骨架/数据实物化(禁坐标轴)；内部元素2-4s进出维持视觉变化"
+        "provider": "hyperframes"
       },
-      "anchor_refs": [],
-      "static_class": true,
-      "status": "planned"
+      "status": "rendered_v2"
     },
     {
-      "id": "s06_thermo_q",
+      "id": "s06_thermo",
       "t": [
-        21.86,
-        27.0
+        23.04,
+        28.58
       ],
-      "voice_ref": "sec02",
-      "intent": "实拍：真实温度计/空调显示屏macro，叠MG问号'不是这个数说了算'",
-      "framing": "近景实拍+overlay",
+      "kind": "footage",
+      "intent": "温度计/显示屏(⚠timecode空镜偏弱)",
       "source": {
-        "provider": "footage",
-        "params": {},
-        "note": "Pexels纯空镜(不承担叙事)；一素材全片一次;尾留0.8s防暗尾;1280x720;叠MG角标承载信息",
-        "asset": "compose/assets/broll/s06_thermo_q.mp4"
+        "provider": "footage"
       },
-      "anchor_refs": [],
-      "static_class": false,
-      "status": "sourced"
+      "status": "rendered_v2"
     },
     {
-      "id": "s07_climates",
+      "id": "s07_heat",
       "t": [
-        27.0,
-        35.2
+        28.58,
+        37.6
       ],
-      "voice_ref": "sec02",
-      "intent": "实拍：不同气候空镜（干热/湿热/凉爽），叠WHO角标'全球没有统一答案'",
-      "framing": "实拍空镜+overlay",
+      "kind": "collage",
+      "intent": "暑热烈日(+WHO角标)",
       "source": {
-        "provider": "footage",
-        "params": {},
-        "note": "Pexels纯空镜(不承担叙事)；一素材全片一次;尾留0.8s防暗尾;1280x720;叠MG角标承载信息",
-        "asset": "compose/assets/broll/s07_climates.mp4"
+        "provider": "collage_broll"
       },
-      "anchor_refs": [],
-      "static_class": false,
-      "status": "sourced"
+      "status": "rendered_v2"
     },
     {
-      "id": "s08_humidity",
+      "id": "humid",
       "t": [
-        35.2,
-        44.9
+        37.6,
+        47.02
       ],
-      "voice_ref": "sec02",
-      "intent": "signature：温度计固定27℃，湿度条50%→绿舒适脸 / 80%→红闷汗脸≈体感30℃（实物化对照,禁坐标轴）",
-      "framing": "全屏数据实物化",
+      "kind": "mg",
+      "intent": "湿度体感对照 signature 27℃50%/80%",
       "source": {
-        "provider": "hyperframes",
-        "params": {},
-        "note": "MG信息骨架/数据实物化(禁坐标轴)；内部元素2-4s进出维持视觉变化"
+        "provider": "hyperframes"
       },
-      "anchor_refs": [],
-      "static_class": true,
-      "status": "planned"
+      "status": "rendered_v2"
     },
     {
-      "id": "s09_sweat_sci",
+      "id": "s09_sweat",
       "t": [
-        44.9,
-        51.04
+        47.02,
+        53.04
       ],
-      "voice_ref": "sec02",
-      "intent": "实拍：皮肤汗珠macro（高湿蒸发不掉），叠MG角标'湿度高→散热↓'",
-      "framing": "微距实拍+overlay",
+      "kind": "collage",
+      "intent": "汗蒸发受阻(高湿)",
       "source": {
-        "provider": "footage",
-        "params": {},
-        "note": "Pexels纯空镜(不承担叙事)；一素材全片一次;尾留0.8s防暗尾;1280x720;叠MG角标承载信息",
-        "asset": "compose/assets/broll/s09_sweat_sci.mp4"
+        "provider": "collage_broll"
       },
-      "anchor_refs": [],
-      "static_class": false,
-      "status": "sourced"
+      "status": "rendered_v2"
     },
     {
-      "id": "s10_vulnerable",
+      "id": "s10_vuln",
       "t": [
-        51.04,
-        59.94
+        53.04,
+        62.14
       ],
-      "voice_ref": "sec02",
-      "intent": "实拍：老人/小孩居家空镜，叠'热脆弱人群'角标；落点'该往下调就大胆调'",
-      "framing": "中景实拍+overlay",
+      "kind": "collage",
+      "intent": "热脆弱人群 老人小孩(+角标)",
       "source": {
-        "provider": "footage",
-        "params": {},
-        "note": "Pexels纯空镜(不承担叙事)；一素材全片一次;尾留0.8s防暗尾;1280x720;叠MG角标承载信息",
-        "asset": "compose/assets/broll/s10_vulnerable.mp4"
+        "provider": "collage_broll"
       },
-      "anchor_refs": [],
-      "static_class": false,
-      "status": "sourced"
+      "status": "rendered_v2"
     },
     {
-      "id": "s11_ac_inside",
+      "id": "s11_acin",
       "t": [
-        59.94,
-        67.06
+        62.14,
+        69.82
       ],
-      "voice_ref": "sec03",
-      "intent": "转场『再说那股怪味』+空调内部剖面：灰尘/冷凝水/霉菌实物化",
-      "framing": "转场卡+剖面实物化",
+      "kind": "collage",
+      "intent": "空调内部灰尘霉",
       "source": {
-        "provider": "hyperframes",
-        "params": {},
-        "note": "MG信息骨架/数据实物化(禁坐标轴)；内部元素2-4s进出维持视觉变化"
+        "provider": "collage_broll"
       },
-      "anchor_refs": [],
-      "static_class": true,
-      "status": "planned"
+      "status": "rendered_v2"
     },
     {
-      "id": "s12_ac_running",
+      "id": "s12_acrun",
       "t": [
-        67.06,
-        74.5
+        69.82,
+        76.34
       ],
-      "voice_ref": "sec03",
-      "intent": "实拍：空调出风口运行/百叶摆动，配'刚开机几十秒/风一稳就闻不到'",
-      "framing": "中近景实拍",
+      "kind": "footage",
+      "intent": "空调运行(+怪味角标)",
       "source": {
-        "provider": "footage",
-        "params": {},
-        "note": "Pexels纯空镜(不承担叙事)；一素材全片一次;尾留0.8s防暗尾;1280x720;叠MG角标承载信息",
-        "asset": "compose/assets/broll/s12_ac_running.mp4"
+        "provider": "footage"
       },
-      "anchor_refs": [],
-      "static_class": false,
-      "status": "sourced"
+      "status": "rendered_v2"
     },
     {
-      "id": "s13_compressor",
+      "id": "s13_comp",
       "t": [
-        74.5,
-        79.6
+        76.34,
+        81.7
       ],
-      "voice_ref": "sec03",
-      "intent": "压缩机短循环图示：开-停-开状态灯反复闪、风忽大忽小（26℃'尴尬'）",
-      "framing": "全屏图示",
+      "kind": "collage",
+      "intent": "压缩机短循环启停",
       "source": {
-        "provider": "hyperframes",
-        "params": {},
-        "note": "MG信息骨架/数据实物化(禁坐标轴)；内部元素2-4s进出维持视觉变化"
+        "provider": "collage_broll"
       },
-      "anchor_refs": [],
-      "static_class": true,
-      "status": "planned"
+      "status": "rendered_v2"
     },
     {
-      "id": "s14_smell_spread",
+      "id": "s14_smell",
       "t": [
-        79.6,
-        85.62
+        81.7,
+        87.82
       ],
-      "voice_ref": "sec03",
-      "intent": "霉味一波波扩散填满房间轮廓（纸拼贴气味波纹，10s慢组装）",
-      "framing": "全屏概念隐喻",
+      "kind": "collage",
+      "intent": "霉味扩散全屋",
       "source": {
-        "provider": "collage_broll",
-        "params": {},
-        "note": "纸拼贴概念b-roll(GPT-Image静帧→Seedance首尾帧,10s慢组装尾对齐)；无文字数字(走overlay)"
+        "provider": "collage_broll"
       },
-      "anchor_refs": [
-        "anc_s14_smell"
-      ],
-      "static_class": false,
-      "status": "qc_pass",
-      "gen": {
-        "model": "doubao-seedance-2-0-260128",
-        "mode": "首尾帧assemble",
-        "request_id": "20260720101642276421298268d9d6KV50gwMd",
-        "task_id": "task_7JzlgN3NxcCyB9l8LP97sS4c3ivOkhVB",
-        "duration_actual_s": 10.04,
-        "resolution": "1280x720",
-        "fps": 24,
-        "file": "shots/smell.mp4",
-        "refs": [
-          "anc_s14_smell"
-        ],
-        "generate_audio": false
-      },
-      "qc": {
-        "assemble": "空橄榄场→房间轮廓+窗→空调机身→气味波纹逐圈外扩填满房间",
-        "死尾": "contact sheet末帧波纹刚填满,运动到底,无冻结尾 PASS",
-        "pixel": "halftone统一",
-        "verdict": "pass"
-      }
+      "status": "rendered_v2"
     },
     {
-      "id": "s15_why_famous",
+      "id": "why",
       "t": [
-        85.62,
-        93.76
+        87.82,
+        97.0
       ],
-      "voice_ref": "sec04",
-      "intent": "设问『不够凉又发臭，怎么火遍全国？』+遥控器26℃回放，'这是场误会'",
-      "framing": "设问版式",
+      "kind": "mg",
+      "intent": "设问怎么火遍全国+误会",
       "source": {
-        "provider": "hyperframes",
-        "params": {},
-        "note": "MG信息骨架/数据实物化(禁坐标轴)；内部元素2-4s进出维持视觉变化"
+        "provider": "hyperframes"
       },
-      "anchor_refs": [],
-      "static_class": true,
-      "status": "planned"
+      "status": "rendered_v2"
     },
     {
-      "id": "s16_two_tiers",
+      "id": "tiers",
       "t": [
-        93.76,
-        109.92
+        97.0,
+        115.34
       ],
-      "voice_ref": "sec04",
-      "intent": "核心溯源signature：两档舒适温度带 I级24-26/II级26-28 滑出，26℃箭头卡中缝高亮，'折中数不是最舒服的数'（长演示,内部逐元素进出）",
-      "framing": "全屏数据实物化",
+      "kind": "mg",
+      "intent": "两档温度带 signature 24-26/26-28 折中",
       "source": {
-        "provider": "hyperframes",
-        "params": {},
-        "note": "MG信息骨架/数据实物化(禁坐标轴)；内部元素2-4s进出维持视觉变化"
+        "provider": "hyperframes"
       },
-      "anchor_refs": [],
-      "static_class": true,
-      "status": "planned"
+      "status": "rendered_v2"
     },
     {
-      "id": "s17_public_bldg",
+      "id": "s17a_office",
       "t": [
-        109.92,
-        123.0
+        115.34,
+        120.3
       ],
-      "voice_ref": "sec04",
-      "intent": "实拍：写字楼/商场外景+室内温控（Pexels 2-3段），叠'国办发〔2007〕42号 公共建筑夏季≥26℃'角标",
-      "framing": "实拍空镜+overlay",
+      "kind": "footage",
+      "intent": "写字楼(+42号角标)",
       "source": {
-        "provider": "footage",
-        "params": {},
-        "note": "Pexels纯空镜(不承担叙事)；一素材全片一次;尾留0.8s防暗尾;1280x720;叠MG角标承载信息",
-        "asset": "compose/assets/broll/s17_public_bldg.mp4"
+        "provider": "footage"
       },
-      "anchor_refs": [],
-      "static_class": false,
-      "status": "sourced"
+      "status": "rendered_v2"
     },
     {
-      "id": "s18_remote_key",
+      "id": "s17b_mall",
       "t": [
-        123.0,
-        128.72
+        120.3,
+        124.8
       ],
-      "voice_ref": "sec04",
-      "intent": "遥控器'啪'加上26℃专属键，'就这么一路传到今天'",
-      "framing": "全屏实物化",
+      "kind": "footage",
+      "intent": "商场",
       "source": {
-        "provider": "hyperframes",
-        "params": {},
-        "note": "MG信息骨架/数据实物化(禁坐标轴)；内部元素2-4s进出维持视觉变化"
+        "provider": "footage"
       },
-      "anchor_refs": [],
-      "static_class": true,
-      "status": "planned"
+      "status": "rendered_v2"
+    },
+    {
+      "id": "s17c_thermostat",
+      "t": [
+        124.8,
+        129.76
+      ],
+      "kind": "footage",
+      "intent": "楼宇控制面板",
+      "source": {
+        "provider": "footage"
+      },
+      "status": "rendered_v2"
+    },
+    {
+      "id": "s18_rkey",
+      "t": [
+        129.76,
+        136.3
+      ],
+      "kind": "collage",
+      "intent": "遥控器加26℃键",
+      "source": {
+        "provider": "collage_broll"
+      },
+      "status": "rendered_v2"
     },
     {
       "id": "s19_intro",
       "t": [
-        128.72,
-        132.56
+        136.3,
+        139.9
       ],
-      "voice_ref": "sec05",
-      "intent": "实拍：伸手够空调遥控器/居家（转场'空调到底怎么开'铺垫）",
-      "framing": "实拍",
+      "kind": "footage",
+      "intent": "够遥控器",
       "source": {
-        "provider": "footage",
-        "params": {},
-        "note": "Pexels纯空镜(不承担叙事)；一素材全片一次;尾留0.8s防暗尾;1280x720;叠MG角标承载信息",
-        "asset": "compose/assets/broll/s19_intro.mp4"
+        "provider": "footage"
       },
-      "anchor_refs": [],
-      "static_class": false,
-      "status": "sourced"
+      "status": "rendered_v2"
     },
     {
-      "id": "s20_day",
+      "id": "tday",
       "t": [
-        132.56,
-        144.52
+        139.9,
+        152.64
       ],
-      "voice_ref": "sec05",
-      "intent": "温度tip·白天：22℃+大风速速降15min→回24-26（榜单卡逐条+温控盘动效）",
-      "framing": "全屏榜单卡",
+      "kind": "mg",
+      "intent": "温度tip白天22速降→24-26",
       "source": {
-        "provider": "hyperframes",
-        "params": {},
-        "note": "MG信息骨架/数据实物化(禁坐标轴)；内部元素2-4s进出维持视觉变化"
+        "provider": "hyperframes"
       },
-      "anchor_refs": [],
-      "static_class": true,
-      "status": "planned"
+      "status": "rendered_v2"
     },
     {
-      "id": "s20_night",
+      "id": "tnight",
       "t": [
-        144.52,
-        148.94
+        152.64,
+        157.4
       ],
-      "voice_ref": "sec05",
-      "intent": "温度tip·夜间：睡觉+2度、老人小孩别低于27",
-      "framing": "全屏榜单卡",
+      "kind": "mg",
+      "intent": "温度tip夜间+2老幼27",
       "source": {
-        "provider": "hyperframes",
-        "params": {},
-        "note": "MG信息骨架/数据实物化(禁坐标轴)；内部元素2-4s进出维持视觉变化"
+        "provider": "hyperframes"
       },
-      "anchor_refs": [],
-      "static_class": true,
-      "status": "planned"
+      "status": "rendered_v2"
     },
     {
-      "id": "s21_tip_wind",
+      "id": "s21_wind",
       "t": [
-        148.94,
-        156.88
+        157.4,
+        166.4
       ],
-      "voice_ref": "sec05",
-      "intent": "实拍：空调出风口（Pexels），叠MG箭头↑'出风朝上，冷气下沉全屋均匀'",
-      "framing": "实拍+overlay",
+      "kind": "collage",
+      "intent": "冷气下沉(+风向角标)",
       "source": {
-        "provider": "footage",
-        "params": {},
-        "note": "Pexels纯空镜(不承担叙事)；一素材全片一次;尾留0.8s防暗尾;1280x720;叠MG角标承载信息",
-        "asset": "compose/assets/broll/s21_tip_wind.mp4"
+        "provider": "collage_broll"
       },
-      "anchor_refs": [],
-      "static_class": false,
-      "status": "sourced"
+      "status": "rendered_v2"
     },
     {
-      "id": "s22_tip_humid",
+      "id": "thum",
       "t": [
-        156.88,
-        161.56
+        166.4,
+        171.98
       ],
-      "voice_ref": "sec05",
-      "intent": "湿度tip：室内湿度>60% 先开'除湿'更清爽",
-      "framing": "全屏榜单卡",
+      "kind": "mg",
+      "intent": "湿度tip>60%除湿",
       "source": {
-        "provider": "hyperframes",
-        "params": {},
-        "note": "MG信息骨架/数据实物化(禁坐标轴)；内部元素2-4s进出维持视觉变化"
+        "provider": "hyperframes"
       },
-      "anchor_refs": [],
-      "static_class": true,
-      "status": "planned"
+      "status": "rendered_v2"
     },
     {
-      "id": "s23_tip_save",
+      "id": "tsave",
       "t": [
-        161.56,
-        175.9
+        171.98,
+        187.58
       ],
-      "voice_ref": "sec05",
-      "intent": "省电三招长演示：短时出门调高不关机 / ECO模式 / 半月洗滤网（逐条）",
-      "framing": "全屏榜单卡",
+      "kind": "mg",
+      "intent": "省电三招榜单",
       "source": {
-        "provider": "hyperframes",
-        "params": {},
-        "note": "MG信息骨架/数据实物化(禁坐标轴)；内部元素2-4s进出维持视觉变化"
+        "provider": "hyperframes"
       },
-      "anchor_refs": [],
-      "static_class": true,
-      "status": "planned"
+      "status": "rendered_v2"
     },
     {
-      "id": "s24_cozy_home",
+      "id": "s06_cozy",
       "t": [
-        175.9,
-        180.3
+        187.58,
+        197.62
       ],
-      "voice_ref": "sec06",
-      "intent": "实拍：手把温度往下调→傍晚居家舒适空镜（金句铺垫）",
-      "framing": "中景实拍",
+      "kind": "collage",
+      "intent": "居家暖场(金句叠层)",
       "source": {
-        "provider": "footage",
-        "params": {},
-        "note": "Pexels纯空镜(不承担叙事)；一素材全片一次;尾留0.8s防暗尾;1280x720;叠MG角标承载信息",
-        "asset": "compose/assets/broll/s24_cozy_home.mp4"
+        "provider": "collage_broll"
       },
-      "anchor_refs": [],
-      "static_class": false,
-      "status": "sourced"
-    },
-    {
-      "id": "s25_kicker",
-      "t": [
-        180.3,
-        185.64
-      ],
-      "voice_ref": "sec06",
-      "intent": "手写体金句『先让屋里的人舒服，才是真的会用空调』+纸纹底淡出（零CTA）",
-      "framing": "全屏金句卡",
-      "source": {
-        "provider": "hyperframes",
-        "params": {},
-        "note": "MG信息骨架/数据实物化(禁坐标轴)；内部元素2-4s进出维持视觉变化"
-      },
-      "anchor_refs": [],
-      "static_class": true,
-      "status": "planned"
+      "status": "rendered_v2"
     }
   ],
   "overlays": [
@@ -777,6 +612,34 @@
         "why": "禁静默降级(铁律5)→已停下问用户；BGM 是垫底polish非核心，pixel-chronicle情绪主要靠剪辑密度承担，VO-first成片完整可评。",
         "alt": "深挖FAL通道(用户未选)/永久无BGM(未选)",
         "debt": "BGM待引擎恢复后生成(纪录片底色+轻chiptune,-30LUFS级,data-volume~0.23)并mux进out/final.mp4"
+      },
+      {
+        "id": "D12-voiceB",
+        "stage": "v2-audio",
+        "decision": "换音色 audiobook_female_1→Chinese (Mandarin)_Gentle_Senior(风格包实证音色,calm/1.0)。",
+        "why": "用户听感A前后不一致(prosody起伏);且我第一轮声纹测法错误(4s窗裸余弦0.703假警报),正确测法(verify_files+整节)A=0.940其实达标、B=0.952更稳。B是风格包§5指定音色,纪录片腔更匀。纠正 D06 擅自换 audiobook 的偏离。",
+        "evidence": "ECAPA verify_files: A 0.940 / B 0.952(门槛0.88)"
+      },
+      {
+        "id": "D13-visualbig",
+        "stage": "v2-storyboard",
+        "decision": "视觉大改:像素/拼贴叙事 6%→~40%(11条纸拼贴collage),MG只留硬数据(26℃报题/湿度对照/两档温度带/tips榜单/设问),footage只留温度计/空调运行/公共建筑/够遥控。",
+        "why": "用户指出拼贴少得可怜、MG一大半有幻灯片感;打脸章节的概念beat(闷热/汗蒸发/脆弱人群/空调内部/压缩机/遥控加键/冷气下沉/居家)全部转纸拼贴,承担叙事richness。",
+        "cost": "11 collage=GPT-Image静帧×9新+Seedance×9新(altar/smell复用v1);死尾检查全过"
+      },
+      {
+        "id": "D14-bgm",
+        "stage": "v2-audio",
+        "decision": "BGM 走 fal fal-ai/minimax-music/v2.6(端点 {FAL_PROXY_BASE}/queue.fal.run/...),生成纪录片底色+轻chiptune,禁人声哼唱+禁鼓点(用户要求);loop到片长+loudnorm -30LUFS,compose data-volume 0.25(~20LU低于旁白)。",
+        "why": "MiniMax music网关路由404不可用;用户给fal通道。",
+        "note": "fal $0.15/次,共2次(首版有人声/鼓点被打回,重生成)"
+      },
+      {
+        "id": "D15-render",
+        "stage": "v2-compose",
+        "decision": "渲染走渲染机(服务端HTTP API,tools/render-remote.sh),设为以后默认([[render-machine-default]])。",
+        "why": "用户指令;compose自带woff2符合字体新规,渲染机双跑一致性已在英阿片验;服务端270s vs 本地docker~13min。",
+        "evidence": "egress东京13.158.136.168;final_v2抽帧与本地snapshot帧级一致"
       }
     ],
     "costs": [
@@ -921,6 +784,21 @@
           "blemish": "s06(23.3s)『温度计』实拍实为视频timecode显示(LTC/VITC),不贴题弱项——已flag待用户看片裁决(可选5s换镜重渲)"
         },
         "result": "PASS(1 minor blemish flagged)"
+      },
+      {
+        "id": "G-v2-review",
+        "stage": "v2-review",
+        "when": "2026-07-20",
+        "checks": {
+          "L0容器": "1280x720/30fps,198.9s,-14.05LUFS/TP-1.49",
+          "黑帧": "0",
+          "冻结": "39段全MG卡停留(collage/footage 0冻结)",
+          "ECAPA声纹": "verify_files整节 MIN 0.952≥0.88 PASS(第一轮跳门已补,B音色稳)",
+          "回转写": "96.8%≥95%",
+          "像素叙事占比": "collage ~40%(11条),达风格包≥40%目标(D08失衡已修)",
+          "渲染机spot-check": "final_v2抽帧25帧与本地compose snapshot一致,字体新规下帧级无漂移"
+        },
+        "result": "PASS"
       }
     ]
   }
