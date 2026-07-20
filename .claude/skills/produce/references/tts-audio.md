@@ -17,7 +17,7 @@
 
 ### 官方音色选型协议（别再用 shaonv 这类旧别名裸猜）
 
-1. **音色表真相源**：grain `packages/db/prisma/seed-data/tts-voices/minimax-voices-zh.tsv`（官方全量快照，voice_id/gender/age/use_cases）。按 use_cases 先筛（Documentary / Corporate & Narration / Podcasts）。
+1. **音色表真相源**：grain `packages/db/prisma/seed-data/tts-voices/minimax-voices-zh.tsv`（官方全量快照，voice_id/gender/age/use_cases）。按 use_cases 先筛（Documentary / Corporate & Narration / Podcasts）。**tsv 不在本机时/日常复用：查 `references/minimax-voices.md`——已探测有效 id + ECAPA 声纹排名的实测固化表，长片默认 `Chinese (Mandarin)_Warm_Girl`，复现脚本 `tools/minimax-voice-ecapa.py`。**
 2. **韵律初筛**（一节文本 × 每候选）：停顿数与总停顿时长（贴句读=自然）、音高中位与 IQR（IQR 过小=平板电音味，过大警惕漂移）、语速 4.2–4.8 字/s。
 3. **整轨声纹决赛**（全文 × 前 2 名）：ECAPA（speechbrain spkrec-ecapa-voxceleb）全片 6 窗两两比对，**pairwise min ≥ 0.88 才准用**——表现力强的音色往往漂移（实测 Laid_BackGirl min 0.804 出局）；纪录片片型实证可用：`Chinese (Mandarin)_Gentle_Senior`（min 0.889，Documentary 标签）。
 4. **内容 QA**：whisper 独立转写 diff 剧本——中文数字→阿拉伯数字、同音字是转写噪声不算错；真吞字/念错才打回。
