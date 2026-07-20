@@ -18,7 +18,8 @@ STAGES = ("brief", "research", "blueprint", "script", "audio", "storyboard",
 MetaStatus = Literal["brief", "research", "blueprint", "script", "audio", "storyboard",
                      "anchors", "motion", "compose", "review", "deliver", "delivered"]
 
-Provider = Literal["hyperframes", "seedance", "image_motion", "avatar", "footage", "tts"]
+Provider = Literal["hyperframes", "seedance", "image_motion", "avatar", "footage", "tts",
+                   "collage_broll"]  # 拼贴 b-roll：静帧(GPT-Image)→Seedance 首尾帧 assemble 混合通路（uk-argentina / openai-78m 方言实证）
 
 ShotStatus = Literal["planned", "sourced", "generated", "qc_pass", "qc_fail", "redo"]
 AnchorStatus = Literal["planned", "generated", "acquired", "selected", "locked", "rejected"]

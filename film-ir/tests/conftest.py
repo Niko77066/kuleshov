@@ -4,7 +4,8 @@ from pathlib import Path
 import pytest
 
 FIXTURES = Path(__file__).parent / "fixtures"
-REAL_FILMS = ["800v-thermal-runaway", "samsung-health-ai-consent", "estee-lauder-night"]
+REAL_FILMS = ["800v-thermal-runaway", "samsung-health-ai-consent", "estee-lauder-night",
+              "uk-argentina-feud", "openai-78m-logs"]
 
 
 @pytest.fixture(params=REAL_FILMS)

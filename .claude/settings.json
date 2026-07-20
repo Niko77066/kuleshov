@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // empty' | { read -r f; case \"$f\" in */projects/*/film.json) echo '{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"permissionDecision\":\"ask\",\"permissionDecisionReason\":\"film.json 是受管真相源，直写会绕过乐观锁/ledger 留痕/门控保护。请改用 film-ir/.venv/bin/kuleshov-ir patch。确属例外（如修复坏 JSON）可由用户放行。\"}}';; esac; }",
+            "statusMessage": "film.json 直写拦截检查"
+          }
+        ]
+      }
+    ]
+  }
+}

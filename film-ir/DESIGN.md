@@ -187,3 +187,14 @@ HTTP/MCP 皮；L1–L2 感知仪器与 L4 评委（M1 后半的"渲染后自审"
 - **samsung**：收编 30 处；`timeline.coverage` 报 s06_dataflow 与 s06_avatar_analysis 重叠 6.4s——**不是数据错误，是数字人抠像叠 MG 的合成层**。当前 schema 假设 shots 严格时序，"镜头并行轨 / 合成关系"是真实存在的表达需求（蓝图 §12.4 IR 表达力张力的第一个实证）。**待作者裁决**：加 `track`/`composite_with` 字段，还是这类前景层归 overlays。samsung 另有转场 6 种 > 4 上限（当时用户裁决接受，属历史豁免）。
 - **estee**：收编 58 处；抓到真实漂移——`shot_groups` 引用了两个已改名镜头（`s03a_1982_day` 等）、4 个 seedance 镜头 qc_pass 但缺 `gen.file`。**手写 JSON 必然漂移，这正是写入层校验的存在理由**。
 - 三部片的实迁（--write）留到合并回 main 时执行，避免与 M0 主线冲突。
+
+## 8.1 两条核心链路收编（2026-07-20，实迁已落盘）
+
+M0 精简后仓库只剩两条核心链路，方言收编 + `--write` 实迁均已完成（回归 fixtures 各留只读副本）：
+
+- **openai-78m-logs**（case-file 链路）：收编 35 处，门套件 **0 error** / 2 warn（两个 overlay 无定位）。新增 `collage_broll` provider（GPT-Image 静帧 → Seedance 首尾帧的混合通路，映射成 seedance 会被 groups.arithmetic 误伤）。发现真相源坏 JSON 一处（v3 交付时 next_action 改写残留，已修，commit b85af4c）——**手编 JSON 连语法正确都保证不了，直写拦截的又一实证**。
+- **uk-argentina-feud**（pixel-chronicle 链路）：收编 46 处，门套件 35 error / 18 warn——全部是真实校准发现、非迁移缺陷，性质同 samsung 并行轨案例，**待作者裁决**三个 IR 表达力开放点：
+  1. `voice_ref` 指向 `voiceover.sections`，但真实时间戳活在外部 `audio/timeline_fa.json`（forced-alignment 产物），`timeline.sections` 为空 → 25 处 refs error。裁决点：迁移时把外部对齐结果回填进 IR，还是 schema 承认"外部对齐文件"为一等引用。
+  2. 章节闸门间 0.35s 缝隙 ×5 属有意设计（章节呼吸），`timeline.coverage` 按无缝假设报 error。裁决点：加 `gap_intent` 留痕，还是门放宽容差。
+  3. 4 个独立 seedance 镜头不进组（当时无组语义需求）→ `groups.arithmetic` error。裁决点：单镜头是否要求自成单元素组。
+  另：末镜止于 240.04s vs 音频 256.68s（差 16.64s，片尾 credits 段无镜头条目）——待核实是留痕缺失还是真实结构。
