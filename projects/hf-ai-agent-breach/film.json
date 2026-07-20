@@ -27,7 +27,7 @@
       "captions": "不加通屏字幕（版式卡即大字，沿用首片）"
     },
     "series": "《AI 隐私风险解读》第 2 集（承接首片『你删掉的对话平台还存着』）",
-    "next_action": "⑨ 用户看片(M0评委门)→ /video-score 登记 9维分 → ⑩ deliver git commit 合 main + 发布包封面"
+    "next_action": "⏸ 用户看片校准(s03b重做+woff2+BGM 版)→ 合 main。渲染机已切默认(双跑验收 gate10 pass),本地降兜底"
   },
   "audio": {
     "voiceover": {
@@ -48,6 +48,16 @@
       "duration_s": 81.936,
       "selected_take": 1,
       "note": "整片一次生成(≤120s 单次音色一致)；自带逐字 subtitle 直接建 timeline，全文含 Hugging Face/周鸿祎/赵春江/密态计算/荆华密算均正确解析"
+    },
+    "music": {
+      "file": "audio/bgm_bed.mp3",
+      "provider": "fal-ai/minimax-music/v2.6 (灵鲸网关 queue.fal.run, 用户指定接口)",
+      "prompt_file": "audio/bgm_payload.json",
+      "request_id": "task_pUhlWEZe8gmBc3vXYbkpNTe1Hr3SQj6t",
+      "raw": "audio/bgm_raw.mp3(316s器乐)",
+      "bed": "audio/bgm_bed.mp3(裁8-90s,82.1s,2s淡入/3s淡出)",
+      "mount": "post-mix:volume≈0.055(-25dB)置旁白下→amix normalize=0→loudnorm I=-14;BGM 实际~-34LUFS≈旁白下20LU的克制床",
+      "note": "克制器乐:慢/小调/低drone+钟摆tick+微glitch,无人声(is_instrumental)。首次prompt 580字超限报错→改242字重出"
     },
     "timeline": {
       "file": "audio/timeline.json",
@@ -119,17 +129,15 @@
       "candidates": [],
       "gen": {
         "model": "gpt-image-2 medium",
-        "prompt_file": "anchors/a_s03b_reinfer_still_payload.json",
+        "prompt_file": "anchors/a_s03b_reinfer_still_payload_v2.json",
         "params": {
           "size": "720x1280",
-          "quality": "medium",
-          "output_format": "png"
+          "quality": "medium"
         },
         "refs": [],
-        "note": "Gate2 静帧,EP 目检通过",
-        "reqid": "202607201044434262120228268d9d6CkUFMGHM"
+        "note": "v2 静帧,EP 目检通过(AI气泡→反推箭头→档案)"
       },
-      "note": "深紫场(个人信息沉淀):散落信息碎片被牵引聚成人形剪影",
+      "note": "深紫场(v2):AI回答气泡→红色反推箭头+线→拽开个人档案(表格记录+剪影chip),表意『从AI输出反推隐私』",
       "field_hex": "#3B2A57",
       "still": "anchors/a_s03b_reinfer_collage.png"
     },
@@ -203,6 +211,7 @@
         "s03b_reinfer"
       ],
       "provider": "seedance",
+      "note": "v2 clip;尾对齐裁 6.84s",
       "engine": "seedance collage 首尾帧",
       "seam_prev": "B 硬切",
       "seam_next": "B 硬切",
@@ -415,7 +424,7 @@
       "static_class": false,
       "status": "qc_pass",
       "gen": {
-        "model": "gpt-image-2(静帧) + doubao-seedance-2-0-260128(首尾帧)",
+        "model": "gpt-image-2(静帧v2) + doubao-seedance-2-0-260128(首尾帧v2)",
         "params": {
           "resolution": "720p",
           "ratio": "9:16",
@@ -425,11 +434,12 @@
         "refs": [
           "anchor:a_s03b_reinfer"
         ],
-        "task_id": "task_32Phjqw77wFICq5tcFbGxwPZi5ImerU9",
+        "task_id": "task_xZWRqXmTRhkZVmrjZnZuSwMPziJJQY5I",
         "duration_actual_s": 10.042,
         "file": "shots/s03b_reinfer_collage.mp4",
-        "video_payload": "shots/s03b_reinfer_seedance_payload.json",
-        "reqid": "202607201053182992575278268d9d61ZCOXOQt",
+        "note": "v2 重做:弃v1『碎片聚成具体男性人脸』(概念漂到重识别+标签一个你与陌生脸不搭)；改『AI回答气泡→红色反推箭头→拽开个人档案(记录+剪影chip)』,贴合赵春江『从AI输出反推训练数据隐私』。v1 归档 anchors/_v1_archive、shots/_v1_archive",
+        "video_payload": "shots/s03b_reinfer_seedance_payload_v2.json",
+        "reqid": "202607201248266054707618268d9d6yvihsUWU",
         "trim_window_s": [
           2.16,
           9.0
@@ -439,7 +449,7 @@
       },
       "qc": {
         "result": "pass",
-        "note": "Gate3 视频QA(contact sheet 目检+YDIF):assemble-from-empty 连续组装、payoff 落窗尾;尾对齐裁 [2.16, 9.0]→6.84s;1080x1920/30fps;无畸变/假字/logo"
+        "note": "Gate3 v2 QA:contact sheet 连续组装(气泡→点→线→反推箭头→档案开+记录填,payoff~t9),尾对齐裁[2.16-9.0]→6.84s;无畸变/可读字/真人脸;1080x1920/30fps"
       },
       "source_note": "F07 赵春江 隐私反推"
     },
@@ -663,7 +673,7 @@
     {
       "id": "ov_s03b_text",
       "type": "label_over_collage",
-      "note": "轻标签:碎片 → 一个你(隐私反推)。低透明,不抢人形轮廓",
+      "note": "v2 轻标签『一句回答，反推出你』(反推出你 印刷红);对齐新隐喻(回答→反推→底档),替代 v1『碎片，拼出一个你』",
       "on_shot": "s03b_reinfer"
     },
     {
@@ -731,6 +741,33 @@
         "decision": "修订门控字段: meta.commitment",
         "stage": "review",
         "why": "duration_actual_s 81.936→82.1(成片含loudnorm容器,no-lock只记录)"
+      },
+      {
+        "id": "dec02",
+        "date": "2026-07-20",
+        "decision": "s03b 重做(用户看片反馈):v1『碎片拼成具体男性人脸』概念漂到重识别、标签『一个你』与陌生脸不搭；v2 改『AI回答气泡→反推箭头→拽开个人档案』+标签『一句回答，反推出你』,贴合赵春江原意",
+        "stage": "motion/compose",
+        "why": "用户指出与口播(隐私反推)不搭；单镜手术,新静帧+新Seedance,其余镜不动",
+        "by": "用户→EP"
+      },
+      {
+        "id": "dec03",
+        "date": "2026-07-20",
+        "decision": "compose 迁 woff2 自带字体(SansSC/SerifSC 替 local PingFang/Songti;font-weight 900→700 避 faux-bold 本地/机器差异);上渲染机出片并切服务器渲染为默认,本地docker降兜底",
+        "stage": "compose/render",
+        "why": "用户问『为什么不走渲染机』;根因=我沿用首片系统字体踩渲染机字体纪律红线。双跑验收(gate10)pass 后达切默认门",
+        "by": "用户→EP",
+        "options_considered": [
+          "继续本地docker(否:没engage用户渲染机,且未做woff2双跑)"
+        ]
+      },
+      {
+        "id": "dec04",
+        "date": "2026-07-20",
+        "decision": "加 BGM(用户指定 fal-ai/minimax-music/v2.6 接口):克制器乐床,post-mix 置旁白下~20LU;取消发布包设计(用户:没什么用,运营端自理)",
+        "stage": "audio/deliver",
+        "why": "首片默认无BGM我未主动提(缺口);用户点接口补。发布包已删 out/publish 并改 CLAUDE.md+rednote SKILL",
+        "by": "用户→EP"
       }
     ],
     "costs": [
@@ -776,6 +813,27 @@
         "stage": "compose",
         "item": "HyperFrames docker render 0.7.64 (1080x1920/30fps/82.1s/high)",
         "note": "本地docker无API费;render 6m59s;+loudnorm 2-pass音频重编码"
+      },
+      {
+        "id": "cost06",
+        "date": "2026-07-20",
+        "stage": "motion(s03b v2)",
+        "item": "GPT-Image-2 静帧×1 + Seedance 首尾帧×1(s03b 重做)",
+        "note": "reqid/ task_id 见 shots[s03b_reinfer].gen/anchors"
+      },
+      {
+        "id": "cost07",
+        "date": "2026-07-20",
+        "stage": "audio(BGM)",
+        "item": "fal minimax-music/v2.6 ×至多3次($0.15/次)",
+        "note": "1)test短prompt(可能计费) 2)真prompt580字超限被拒(应不计费) 3)真prompt242字成功。合计计费约$0.15-0.30"
+      },
+      {
+        "id": "cost08",
+        "date": "2026-07-20",
+        "stage": "render",
+        "item": "渲染机 render-remote ×2成功(v1 189s+v2 177s,+若干503重试) + 本地docker ×2(双跑/兜底)",
+        "note": "渲染机=团队基建按调用;本地docker无API费"
       }
     ],
     "gates": [
@@ -842,6 +900,30 @@
         "check": "9维评分卡 EP 预打分(待用户看片校准)",
         "result": "provisional",
         "notes": "EP 逐维预打分(非用户评委门,待用户亲自看片校准):D1意图5/D2准确5/D3开头5/D4节奏4/D5音画4/D6字幕版式5/D7完成5/D8创意5/D9网感4=均分4.67(对照首片基线4.44)。理由:D8创意=4条新拼贴隐喻(电路手扒库/碎片反推聚人/文件果实被摘/密文保险箱)非模板;D3开头=反常识钩三面一致;D4/D9略保留=企业号信息密+静态卡连跑4(case-file relaxation)。⏸ 未做用户看片,不标 delivered。"
+      },
+      {
+        "id": "gate09",
+        "date": "2026-07-20",
+        "stage": "motion(s03b v2)",
+        "check": "s03b 重做 Gate2静帧+Gate3视频 QA",
+        "result": "PASS",
+        "notes": "v2 静帧EP目检(AI气泡→反推箭头→档案,无真人脸/可读字);视频 contact sheet 连续组装 payoff~t9,尾裁6.84s;成片42s抽帧确认新隐喻+新标签『一句回答，反推出你』woff2渲染正常"
+      },
+      {
+        "id": "gate10",
+        "date": "2026-07-20",
+        "stage": "render(双跑验收)",
+        "check": "woff2 本地docker vs 渲染机 双跑帧级一致(切默认门)",
+        "result": "PASS",
+        "notes": "全片SSIM All=0.9803/PSNR avg37.76(残差集中在4拼贴视频h264重编码:卡片段SSIM 0.9857>拼贴段0.9700);关键版式帧目检:个保法卡 local vs server 换行/字形/安全区『逐像素级一致』(单帧SSIM 0.966残差=chromium光栅AA非内容),首片系统字体的长标题换行漂移已消除。→达切默认门,渲染机切默认、本地降兜底。渲染机503并发满重试5次成功(177s)"
+      },
+      {
+        "id": "gate11",
+        "date": "2026-07-20",
+        "stage": "review(final v2)",
+        "check": "⑨ L0 复检(s03b重做+woff2机渲+BGM版)",
+        "result": "PASS",
+        "notes": "final.mp4=渲染机woff2片(视频流copy)+旁白+BGM混音。blackdetect无黑帧;freezedetect 4拼贴窗0死尾;loudnorm 2要素:-14.12 LUFS/-0.99 dBTP(含BGM床~-34LUFS/旁白下~20LU);82.0s;成片抽帧确认woff2 CJK+4拼贴(含新s03b)+标签+品牌正常"
       }
     ]
   }

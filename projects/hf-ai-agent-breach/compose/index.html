@@ -5,9 +5,13 @@
     <title>AI 现在会自己黑库了 — master（case-file v3 案卷档案）</title>
     <script src="assets/gsap.min.js"></script>
     <style>
-      @font-face { font-family: "PingFang SC"; src: local("PingFang SC"); }
-      @font-face { font-family: "Songti SC"; src: local("Songti SC"); }
-      @font-face { font-family: "SF Mono"; src: local("SF Mono"); }
+      /* woff2 自带字体（渲染机字体纪律：禁 local 系统字体承担正文/标题，本地与渲染机同字形） */
+      @font-face { font-family:"SerifSC"; font-weight:700; src:url("assets/fonts/serif-sc-700-latin.woff2") format("woff2"); unicode-range:U+0000-00FF,U+2000-206F,U+2190-21FF; }
+      @font-face { font-family:"SerifSC"; font-weight:700; src:url("assets/fonts/serif-sc-700-cn.woff2") format("woff2"); }
+      @font-face { font-family:"SansSC"; font-weight:700; src:url("assets/fonts/sans-sc-700-latin.woff2") format("woff2"); unicode-range:U+0000-00FF,U+2000-206F; }
+      @font-face { font-family:"SansSC"; font-weight:700; src:url("assets/fonts/sans-sc-700-cn.woff2") format("woff2"); }
+      @font-face { font-family:"SansSC"; font-weight:400; src:url("assets/fonts/sans-sc-400-latin.woff2") format("woff2"); unicode-range:U+0000-00FF,U+2000-206F; }
+      @font-face { font-family:"SansSC"; font-weight:400; src:url("assets/fonts/sans-sc-400-cn.woff2") format("woff2"); }
       :root {
         --paper: #F4F1EA; --ink: #17181C; --accent: #C8451B; --rule: #C9C4B8;
         --ink-soft: #4A4B50; --grey: #6B6B67; --cream: #EFE7D2; --brick: #B0452F;
@@ -16,13 +20,13 @@
       html, body {
         margin: 0; padding: 0; width: 1080px; height: 1920px;
         background: var(--paper); overflow: hidden;
-        font-family: "PingFang SC", sans-serif; color: var(--ink);
+        font-family: "SansSC", sans-serif; color: var(--ink);
         -webkit-font-smoothing: antialiased;
       }
       #master-root { width: 1080px; height: 1920px; position: relative; }
       #paper-bg { position: absolute; inset: 0; background: var(--paper); z-index: 1; }
-      .serif { font-family: "Songti SC", serif; font-weight: 900; }
-      .mono { font-family: "SF Mono", Menlo, monospace; }
+      .serif { font-family: "SerifSC", serif; font-weight: 700; }
+      .mono { font-family: "SF Mono", Menlo, "SansSC", monospace; }
 
       /* ── V3 案卷档案：色场 + 奶油白卷宗 ── */
       .filecard { position: absolute; inset: 0; z-index: 10; }
@@ -39,18 +43,18 @@
         border-radius: 12px 12px 0 0; }
       .docbody { position: absolute; inset: 36px; border: 3px solid rgba(23,24,28,0.25);
         padding: 54px 48px; box-sizing: border-box; }
-      .docmeta { font-family: "SF Mono", Menlo, monospace; font-size: 27px; letter-spacing: 2px;
+      .docmeta { font-family: "SF Mono", Menlo, "SansSC", monospace; font-size: 27px; letter-spacing: 2px;
         color: var(--ink-soft); line-height: 1.9; border-bottom: 2px solid rgba(23,24,28,0.22);
         padding-bottom: 28px; }
       .docsrc { position: absolute; bottom: 26px; left: 48px; font-size: 27px; color: var(--ink-soft); letter-spacing: 1px; }
       .stamp { position: absolute; padding: 18px 34px; border: 9px solid var(--accent); color: var(--accent);
-        font-weight: 900; letter-spacing: 12px; transform: rotate(-12deg); opacity: 0.85; mix-blend-mode: multiply; }
+        font-weight: 700; letter-spacing: 12px; transform: rotate(-12deg); opacity: 0.85; mix-blend-mode: multiply; }
 
       /* 纸签（金句/标题级） */
       .slip { position: absolute; left: 90px; right: 90px; top: 50%; transform: translateY(-50%) rotate(-0.7deg);
         background: var(--cream); padding: 90px 70px; box-sizing: border-box; text-align: center;
         box-shadow: 0 26px 60px rgba(23,24,28,0.4); }
-      .slip .big { font-family: "Songti SC", serif; font-weight: 900; line-height: 1.3; }
+      .slip .big { font-family: "SerifSC", serif; font-weight: 700; line-height: 1.3; }
       .slip .lead { font-size: 46px; color: var(--ink-soft); line-height: 1.5; }
       .slip .bar { width: 220px; height: 10px; background: var(--accent); margin: 44px auto 0; }
 
@@ -61,24 +65,24 @@
       .sheetL { left: 62px; transform: rotate(-1.2deg); }
       .sheetR { right: 62px; transform: rotate(1.1deg); }
       .sheet .lab { font-size: 44px; letter-spacing: 0.08em; color: var(--ink-soft); }
-      .sheet .bigv { font-family: "Songti SC", serif; font-weight: 900; font-size: 84px; line-height: 1.14; text-align: center; }
+      .sheet .bigv { font-family: "SerifSC", serif; font-weight: 700; font-size: 84px; line-height: 1.14; text-align: center; }
       .sheetL .lab, .sheetL .bigv { color: var(--grey); }
       .sheetR .bigv { color: var(--accent); }
 
       /* 报道/公文卷宗 */
-      .headline { font-family: "Songti SC", serif; font-weight: 900; font-size: 56px; line-height: 1.24; color: var(--ink); margin-top: 34px; }
+      .headline { font-family: "SerifSC", serif; font-weight: 700; font-size: 56px; line-height: 1.24; color: var(--ink); margin-top: 34px; }
       .bullets { margin-top: 44px; }
       .bullets .bl { font-size: 40px; color: var(--ink-soft); line-height: 1.5; margin-top: 22px; opacity: 0; }
       .bullets .bl b { color: var(--ink); font-weight: 800; }
-      .gazette-title { font-family: "Songti SC", serif; font-weight: 900; font-size: 58px; line-height: 1.28; margin: 26px 0 14px; }
-      .quotebig { font-family: "Songti SC", serif; font-weight: 900; font-size: 76px; line-height: 1.24; color: var(--accent); margin-top: 40px; opacity: 0; }
+      .gazette-title { font-family: "SerifSC", serif; font-weight: 700; font-size: 58px; line-height: 1.28; margin: 26px 0 14px; }
+      .quotebig { font-family: "SerifSC", serif; font-weight: 700; font-size: 76px; line-height: 1.24; color: var(--accent); margin-top: 40px; opacity: 0; }
       .quoteby { font-size: 34px; color: var(--ink-soft); letter-spacing: 1px; margin-top: 24px; opacity: 0; }
       .article { margin-top: 30px; position: relative; }
       .article .num { font-weight: 800; font-size: 40px; color: var(--ink); }
       .article .txt { font-size: 40px; color: var(--ink-soft); line-height: 1.5; margin-top: 12px; }
       .hl-wash { position: absolute; background: rgba(200,69,27,0.14); border-radius: 6px; opacity: 0; }
       .hl-bar { position: absolute; height: 6px; background: var(--accent); border-radius: 3px; transform-origin: left center; }
-      .lawpunch { font-family: "Songti SC", serif; font-weight: 900; font-size: 48px; line-height: 1.3; color: var(--ink); margin-top: 46px; opacity: 0; }
+      .lawpunch { font-family: "SerifSC", serif; font-weight: 700; font-size: 48px; line-height: 1.3; color: var(--ink); margin-top: 46px; opacity: 0; }
       .lawpunch b { color: var(--accent); }
 
       /* 拼贴 clip */
@@ -87,17 +91,17 @@
       /* 拼贴叠层标签 */
       .ovlabel { position: absolute; z-index: 30; background: var(--cream); box-shadow: 0 18px 44px rgba(23,24,28,0.45); }
       #ov-s02a { left: 66px; top: 120px; padding: 34px 46px 38px; transform: rotate(-1.2deg); }
-      #ov-s02a .l1 { font-family: "Songti SC", serif; font-weight: 900; font-size: 66px; line-height: 1.1; color: var(--ink); white-space: nowrap; }
+      #ov-s02a .l1 { font-family: "SerifSC", serif; font-weight: 700; font-size: 66px; line-height: 1.1; color: var(--ink); white-space: nowrap; }
       #ov-s02a .l2 { font-size: 38px; margin-top: 16px; color: var(--ink-soft); white-space: nowrap; }
       #ov-s02a .l2::before { content: ""; display: inline-block; width: 34px; height: 8px; background: var(--accent); margin-right: 18px; vertical-align: middle; }
       #ov-s03b { left: 70px; bottom: 150px; padding: 26px 40px; transform: rotate(-1deg); }
-      #ov-s03b .l1 { font-family: "Songti SC", serif; font-weight: 900; font-size: 56px; color: var(--ink); white-space: nowrap; }
+      #ov-s03b .l1 { font-family: "SerifSC", serif; font-weight: 700; font-size: 56px; color: var(--ink); white-space: nowrap; }
       #ov-s03b .l1 b { color: var(--accent); }
       #ov-s03c-note { left: 70px; right: 70px; bottom: 120px; padding: 24px 36px; transform: rotate(-0.6deg); text-align: center; }
       #ov-s03c-note .l1 { font-size: 40px; color: var(--ink-soft); white-space: nowrap; }
       #ov-s03c-note .l1 b { color: var(--accent); font-weight: 800; }
       #ov-s04d { right: 70px; top: 150px; padding: 26px 40px; transform: rotate(1deg); }
-      #ov-s04d .l1 { font-family: "Songti SC", serif; font-weight: 900; font-size: 54px; color: var(--ink); white-space: nowrap; }
+      #ov-s04d .l1 { font-family: "SerifSC", serif; font-weight: 700; font-size: 54px; color: var(--ink); white-space: nowrap; }
       #ov-s04d .l1 b { color: var(--accent); }
 
       #brand { position: absolute; right: 60px; bottom: 60px; z-index: 40; width: 150px; opacity: 0.5; mix-blend-mode: multiply; }
@@ -206,7 +210,7 @@
         <div class="l2">承认被攻破</div>
       </div>
       <div id="ov-s03b" class="ovlabel clip" data-start="38.073" data-duration="6.84" data-track-index="30">
-        <div class="l1">碎片，拼出<b>一个你</b></div>
+        <div class="l1">一句回答，<b>反推出你</b></div>
       </div>
       <div id="ov-s03c-note" class="ovlabel clip" data-start="44.913" data-duration="7.24" data-track-index="30">
         <div class="l1">病历 · 征信 · 对话：<b>好摘的果子</b></div>

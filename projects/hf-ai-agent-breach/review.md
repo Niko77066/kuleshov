@@ -49,3 +49,15 @@
 ## ⏸ 用户看片（M0 评委门）
 
 成片 `out/final.mp4`（1080×1920 / 30fps / 82.1s / -14.10 LUFS / 无黑帧）。EP 已过 L0 + 视觉 15 项 + 合规；请用户亲自看片校准。
+
+---
+
+## 修订 v2（2026-07-20 用户看片反馈后）
+
+三处改动（详见 ledger dec02/dec03/dec04 + gate09/10/11）：
+
+1. **s03b 重做**（dec02/gate09）：v1「碎片聚成具体男性人脸」概念漂到重识别、标签「一个你」与陌生脸不搭 → v2「AI 回答气泡 → 红色反推箭头 → 拽开个人档案（记录+剪影 chip）」，标签改「一句回答，反推出你」，贴合赵春江「从 AI 输出反推训练数据隐私」。单镜手术，新静帧+新 Seedance，其余镜未动。v1 归档 `anchors/_v1_archive`、`shots/_v1_archive`。
+2. **woff2 字体 + 渲染机切默认**（dec03/gate10）：compose 弃 `local("PingFang/Songti")` 系统字体，换自带 `SansSC/SerifSC` woff2（`font-weight:900→700` 避 faux-bold 本地/机器差异）；上渲染机出片。**双跑验收**：全片 SSIM 0.9803 / PSNR 37.76（残差集中在 4 拼贴视频 h264 重编码；卡片段 0.9857 > 拼贴段 0.9700），关键版式帧（个保法卡）local vs server **换行/字形/安全区逐像素级一致**（单帧残差=chromium 光栅 AA，非内容）——首片系统字体的长标题换行漂移已消除。达切默认门：**渲染机切默认、本地 docker 降兜底**。
+3. **BGM**（dec04/gate11）：fal `minimax-music/v2.6`（用户指定接口）生器乐床（慢/小调/低 drone+钟摆 tick+微 glitch，无人声），post-mix 置旁白下 ~20LU。发布包设计取消（`out/publish` 删，CLAUDE.md + rednote SKILL 同步）。
+
+**final.mp4（v2）**：渲染机 woff2 片（视频流 copy）+ 旁白 + BGM 混音；1080×1920/30fps/82.0s/**-14.12 LUFS / -0.99 dBTP**；blackdetect 无黑帧；freezedetect 4 拼贴窗 0 死尾。`out/final_server.mp4` 为无 BGM 母版。
