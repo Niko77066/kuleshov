@@ -2,7 +2,7 @@
   "meta": {
     "title": "你以为删掉的 AI 对话，OpenAI 替你存着（暂名）",
     "format": "faceless_news_recap",
-    "style_pack": "case-file（案卷·官号实证快报；替代已淘汰的 daily-brief；文件前置 + 拼贴 b-roll + 居中极简 MG）",
+    "style_pack": "case-file v3 案卷档案（用户 2026-07-20 拍板 style-explore V3）：版式卡=拼贴色场上的奶油白卷宗（标签+等宽字元数据+红章），色场随相邻拼贴章节轮换（焦橙/深紫/青绿/墨绿）；替代 v2 纸白平底卡（观众反馈与拼贴割裂）与已淘汰的 daily-brief",
     "commitment": {
       "type": "typography_led + collage_broll",
       "duration_policy": "no-lock（2026-07-16 用户拍板去除『时长锁』）：时长由音频/内容自然定，只记录、不设硬门，不为凑数拉长/砍内容或偷偷变速；仍守『宁可短不可水』。",
@@ -20,7 +20,7 @@
     "budget": { "cap_usd": null, "spent_usd": 0 },
     "pipeline_version": "m0-v1",
     "status": "delivered",
-    "next_action": "▶ v2 成片已出 out/final.mp4(case-file 风格包重构；1080×1920/30fps/65.8s；-14.05 LUFS/无黑帧/check 0 error)。v1(daily-brief)判全军覆没、归档反例 out/final_v1_daily-brief.mp4。v2 落实用户三条反馈：数字→TechCrunch 报道面板、法规→cac 公文面板(同步高亮)、钩子/收尾→居中极简。⏸ 待用户亲自看片 → 通过后：/video-score 登记 9 维 → ⑩ deliver(合 main + git commit)+ /rednote-mentor 出小红书+抖音发布包。DEBT：track10 密(warning)、s02a 可能 1 孤儿 Seedance 任务、品牌默认印刷红可覆写。"
+    "next_action": "✅ v3 已交付：用户看片通过(2026-07-20)，/video-score 登记均分 4.44(对照 v1 基线 2.89)，⑩ deliver 合 main。成片 out/final.mp4(案卷档案风格包；65.8s/-14.02 LUFS/无黑帧)。后续可选：发布包按 v3 视觉更新封面(out/publish 现为 v2 版帧)、冷启动数据 L5 回流归因。DEBT：track10 密(warning)、s02a 可能 1 孤儿 Seedance 任务、品牌默认印刷红可覆写、hyperframes 0.7.64 Docker 镜像未建成(本次用 v2 同款 0.7.60 镜像)、媒体文件不进 git(mp4/mp3 已复制回主仓库工作区，服务器化时需迁移)"(case-file 风格包重构；1080×1920/30fps/65.8s；-14.05 LUFS/无黑帧/check 0 error)。v1(daily-brief)判全军覆没、归档反例 out/final_v1_daily-brief.mp4。v2 落实用户三条反馈：数字→TechCrunch 报道面板、法规→cac 公文面板(同步高亮)、钩子/收尾→居中极简。⏸ 待用户亲自看片 → 通过后：/video-score 登记 9 维 → ⑩ deliver(合 main + git commit)+ /rednote-mentor 出小红书+抖音发布包。DEBT：track10 密(warning)、s02a 可能 1 孤儿 Seedance 任务、品牌默认印刷红可覆写。"
   },
   "audio": {
     "voiceover": {
@@ -70,7 +70,7 @@
   ],
   "overlays": [
     { "id": "ov_brand", "type": "logo_corner", "file": "brand/jinghua-logo.jpg", "shots": "s02a_setup..s04f_outro", "note": "右下角低透明度品牌角标；收尾卡放大" },
-    { "id": "ov_s02a_text", "type": "text_over_collage", "on_shot": "s02a_setup", "note": "拼贴上叠：《纽约时报》× OpenAI 版权官司 / 一份文件·一项指控 + 出处小字" }
+    { "id": "ov_s02a_text", "type": "label_over_collage", "on_shot": "s02a_setup", "note": "v3：奶油白案卷标签贴纸(左上，贴上去动效)：《纽约时报》× OpenAI / 一份起诉文件，指控了一件事。安全区纪律：按锚点静帧量主体边界，标签限 y<370 全宽区、单行不折行(修复 2026-07-20 压天平反馈)" }
   ],
   "edit": {
     "transitions": [
@@ -90,7 +90,8 @@
       { "date": "2026-07-16", "stage": "audio", "by": "用户→EP", "decision": "换温柔年轻女声(品牌嗓，覆写 daily-brief 冷静播报)；选 take4", "reason": "脚本私人化更贴暖声" },
       { "date": "2026-07-16", "stage": "audio", "by": "用户", "decision": "去除『时长锁』：时长由音频/内容自然定，不设硬门", "reason": "贯彻音频先行；已同步 SOP+记忆" },
       { "date": "2026-07-17", "stage": "storyboard/collage", "by": "用户→EP", "decision": "内化 gbro-collage-broll skill 为声部『AI 纸拼贴 b-roll』(重绑 GPT-Image-2 + Seedance 首尾帧，非 Gemini)；本片 4 镜(s02a/s03b/s03c/s04e)概念/氛围镜转拼贴，其余 12 镜 HyperFrames", "options_considered": [ "原生 Gemini Omni Flash(否：需 Google 账号+计费，且 Codex image_gen 不可用)" ], "reason": "用户指令；概念镜拼贴更有质感配暖声；引擎重绑不引入新计费、成本进 neodrop 记账。已写 references/collage-broll.md + 路由表 + daily-brief 声部表 + 记忆" },
-      { "date": "2026-07-17", "stage": "collage", "by": "EP", "decision": "死尾红线：拼贴 clip 必须铺满时长、无冻结尾。s02a(v1 死尾1.5s→v2 duration6『档案逐叠堆』)、s04e(v1 密文窗超槽位→v2 duration4)、s03b(v1 死尾2s→v2)各重生 1 次；s03c/s03b-v2 达标保留", "reason": "宪法禁『冻结帧补时长』；已把该纪律写进 collage-broll.md(铺满时长 prompt + YDIF 死尾 QA)" }
+      { "date": "2026-07-17", "stage": "collage", "by": "EP", "decision": "死尾红线：拼贴 clip 必须铺满时长、无冻结尾。s02a(v1 死尾1.5s→v2 duration6『档案逐叠堆』)、s04e(v1 密文窗超槽位→v2 duration4)、s03b(v1 死尾2s→v2)各重生 1 次；s03c/s03b-v2 达标保留", "reason": "宪法禁『冻结帧补时长』；已把该纪律写进 collage-broll.md(铺满时长 prompt + YDIF 死尾 QA)" },
+      { "date": "2026-07-20", "stage": "compose", "by": "用户", "decision": "v3 版式卡定向『V3 案卷档案』：观众反馈版式卡与拼贴割裂(底色+字体)后出 7 候选(style-explore/card-variants.html)，用户从 V1色场同源/V2剪纸贴纸/V3案卷档案/V4报纸剪贴/V5纸白缝合/V6双色riso/V7色块海报中拍板 V3", "options_considered": ["V1 色场同源(改动最小)", "V2 剪纸贴纸", "V4 报纸剪贴", "V5 纸白缝合(保守解)", "V6 双色riso", "V7 色块海报"], "reason": "每张卡=一份『物证文件』摆在拼贴色场上，最贴 case-file 叙事身份；卡底从纸白平底换成拼贴同源色场+奶油白卷宗，根治割裂。全部 7 卡案卷化：色场随相邻拼贴章节轮换(焦橙→深紫→青绿→墨绿)，卷宗标签+等宽字元数据+红章。s02a 叠层同步改案卷标签贴纸并按锚点量出安全区(y<370)避让天平——修复看片记录 2026-07-20 两条『明显』问题" }
     ],
     "costs": [
       { "date": "2026-07-16", "stage": "audio", "item": "TTS ×6 take(火山 seed-audio-1.0)", "billed_s": 439, "cost_usd": null },
@@ -102,7 +103,10 @@
       { "date": "2026-07-16", "stage": "audio", "gate": "G1 词准确率(时长门已取消)", "result": "PASS", "notes": "take4 回转写0.9321；生僻词同音字反证发音正确；用户耳判通过" },
       { "date": "2026-07-16", "stage": "storyboard", "gate": "storyboard 自查八项", "result": "pass", "notes": "16镜区间连续对齐音频；连续同版式≤2；typography_led+collage" },
       { "date": "2026-07-17", "stage": "collage", "gate": "拼贴 Gate2 静帧 + Gate3 视频 QA(死尾 YDIF + payoff 时点 + 美学)", "result": "PASS(4/4)", "notes": "静帧：隐喻一眼懂、无假字/logo、同设计语言。视频：s02a v2 运动铺到~5.8s、s03b v2~4.25s、s03c 全程、s04e v2 密文窗~3.1s；死尾均≤自然落点；尾裁目标已记 shot_groups" },
-      { "date": "2026-07-17", "stage": "compose+review", "gate": "hyperframes check + ⑨ L0 手动仪器", "result": "PASS", "notes": "check 0 error/对比度15/15 WCAG AA；render --docker 出 final.mp4(1080×1920/30fps/65.8s,可复现)；blackdetect 无黑帧；loudnorm 2-pass→-14.05 LUFS/-1.10 dBTP；成片抽帧确认 4 拼贴播放+12 版式+品牌+文字正常；条号 cac 核实。证据见 review.md。⏸ 待用户看片。" }
+      { "date": "2026-07-17", "stage": "compose+review", "gate": "hyperframes check + ⑨ L0 手动仪器", "result": "PASS", "notes": "check 0 error/对比度15/15 WCAG AA；render --docker 出 final.mp4(1080×1920/30fps/65.8s,可复现)；blackdetect 无黑帧；loudnorm 2-pass→-14.05 LUFS/-1.10 dBTP；成片抽帧确认 4 拼贴播放+12 版式+品牌+文字正常；条号 cac 核实。证据见 review.md。⏸ 待用户看片。" },
+      { "date": "2026-07-20", "stage": "compose(v3)", "gate": "hyperframes check(v3 案卷档案重构)", "result": "PASS", "notes": "check 0 error/对比度 20/20 WCAG AA；修复过程：①.folder 补 z-index:11(色场 bg clip 曾盖住卷宗，14 处遮挡+对比度误判一次归零) ②callout fig 行高 1→1.12 解包围盒重叠 ③.article 补 position:relative(hl-bar 曾漂到卷宗底) ④headline 手动断行除孤字 ⑤s04f 金句 60px nowrap ⑥红章两次挪位避开日期落标题右侧。14 时点抽帧目检通过；s02a 标签实测未压天平。剩 track10 密度 warning(既有 DEBT)" },
+      { "date": "2026-07-20", "stage": "render+review(v3)", "gate": "⑨ L0 手动仪器", "result": "PASS", "notes": "render --docker hyperframes@0.7.60(=v2 出厂镜像，0.7.64 镜像构建超时故对齐 v2 口径，非静默降级、已留痕)；1080×1920/30fps/h264+aac/65.8s≈音频65.71s；blackdetect 无黑帧；loudnorm 2-pass -17.57→-14.02 LUFS/-0.97 dBTP；成片 12 帧抽帧：4 拼贴播放+7 案卷卡+s02a 标签避让+品牌角标正常；音频未动沿用 G1" },
+      { "date": "2026-07-20", "stage": "review(用户看片)", "gate": "M0 评委门(用户亲自看片)", "result": "PASS", "notes": "用户看片通过。/video-score 已登记基线打分 GS-11 新版列：D1意图5/D2准确5/D3开头4/D4节奏4/D5音画4/D6字幕5/D7完成5/D8创意4/D9网感4=均分4.44(EP逐维分，用户可校准)；对照老版 daily-brief v1 基线 2.89，差值+1.56" }
     ]
   }
 }
