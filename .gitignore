@@ -22,3 +22,9 @@ projects/**/shots/frames*/
 projects/**/review_frames/
 projects/**/compose/.hyperframes/
 projects/**/shots/*-res.json
+
+# film-ir（Python 包）
+film-ir/.venv/
+film-ir/**/__pycache__/
+film-ir/**/*.egg-info/
+film-ir/.pytest_cache/
