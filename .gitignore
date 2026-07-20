@@ -28,3 +28,6 @@ film-ir/.venv/
 film-ir/**/__pycache__/
 film-ir/**/*.egg-info/
 film-ir/.pytest_cache/
+
+# Film IR 锁文件
+projects/**/film.json.lock
