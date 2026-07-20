@@ -38,7 +38,7 @@
 | API | 状态 | 说明 |
 |---|---|---|
 | 检索/实拍素材 API | ✅ **已闭环（2026-07-18，英阿片实测）** | 三层方案替代单一 API：Pexels/Pixabay（纯空镜）+ archive.org/Wikimedia 公有领域（叙事/证据位）+ **APIhub** `youtube_search→video_download`（时事新闻位）。知识包 `produce/references/footage-sourcing.md`（含 provenance/license 登记工序、空镜池五铁律）；凭据均在 `.env` |
-| 服务器渲染 API | 🔜 准备中（用户侧） | 契约到手后：compose 阶段同一 composition 双跑**帧级一致性对比**，通过才切默认；切换记 `ledger.decisions` |
+| 服务器渲染 API | 🟡 **接入中（2026-07-20 契约到手）** | 契约 `docs/render-http-api.md`；阶段 A 连通性 ✓（401/4ms，出口 IP 13.158.136.168 已验）；一键脚本 `tools/render-remote.sh` + 冒烟工程 `tools/render-smoke/`（tar 已传 S3）。**卡点：`FFMPEG_RENDER_HTTP_TOKEN` 生产值在 bitable 权限墙后（dev_value 空），须有权限的人提供**。token 到手 → 阶段 B/C 冒烟 → 真片双跑**帧级一致性对比**通过才切默认，切换记 `ledger.decisions`。注意版本疑点：渲染机生产版 0.7.3，两条链路成片用的 0.7.57/0.7.60——冒烟后须验证高版本 composition 兼容性 |
 
 ## 7/18 – 7/22 todo（M2 检查点：下周三）
 
