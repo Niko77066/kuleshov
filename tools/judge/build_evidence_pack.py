@@ -119,6 +119,7 @@ def main() -> int:
         "style_pack": ir["meta"].get("style_pack"),
         "aspect": ir["meta"].get("aspect"),
         "duration_s": info["duration_s"],
+        "video_file": str(video.resolve()),   # Gemini 原生视频评审用（不抽帧）
         "grid_time_map": {"cols": SHEET_COLS, "interval_s": SHEET_INTERVAL_S,
                           "offset_sheet_offset_s": SHEET_INTERVAL_S / 2,
                           "rule": "行优先；第 n 格(从1数)时间 = 偏移 + (n-1)*interval_s"},
