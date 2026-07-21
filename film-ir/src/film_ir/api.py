@@ -32,7 +32,8 @@ def ir_patch(project: str | Path, ops: list[dict],
 
 
 def ir_validate(project: str | Path, stage: str | None = None) -> dict:
-    return run_gates(Project(project).load(), stage)
+    p = Project(project)
+    return run_gates(p.load(), stage, project_dir=p.dir)
 
 
 def ir_execute(project: str | Path, targets: list[str], *,
