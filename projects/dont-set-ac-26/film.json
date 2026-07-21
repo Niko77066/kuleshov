@@ -17,7 +17,7 @@
     "schema_version": "m1-v1",
     "status": "delivered",
     "next_action": "✅ v4(2026-07-20):BGM 终定=MiniMax music via fal is_instrumental:true(A马林巴拨奏,科普轻律动),换掉MusicGen-small。成片 out/final.mp4 198.9s/-14.25LUFS。DEBT:①像素风重做(用户暂缓,最大)②s06时码空镜③成本回填。⏸待用户看片→score→合main。",
-    "version": "v4"
+    "version": "v5"
   },
   "audio": {
     "voiceover": {
@@ -682,6 +682,13 @@
         "decision": "像素风重做暂缓(用户拍板)。",
         "why": "pixel-chronicle签名是16-bit像素画,我误做成halftone纸拼贴(照collage-broll默认美学,漏了改版成像素);用户知情,暂不重做,记DEBT。",
         "alt": "立即重做(用户暂缓)"
+      },
+      {
+        "id": "D22-bgm-vol",
+        "stage": "v5",
+        "decision": "BGM data-volume 0.25→0.12(−6dB,~26LU低于旁白),re-mux不重渲。",
+        "why": "用户:BGM抢口播,再下调。",
+        "alt": null
       }
     ],
     "costs": [
