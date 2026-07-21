@@ -16,8 +16,8 @@
     "pipeline_version": "m0-v1",
     "schema_version": "m1-v1",
     "status": "delivered",
-    "next_action": "✅ v3(2026-07-20):修用户v2反馈——①音画错乱根因(compose voiceover.mp3仍是v1 A音色→改B)②去左上小标题③温度带26℃叠加重叠修复(卡中缝+折中数移下)④BGM换器乐原生MusicGen(禁人声哼唱,song模型会哼是教训)⑤走渲染机。成片 out/final.mp4 198.9s/-14.23LUFS,音画对齐5锚点全过。⏸待用户看片。遗留:s06温度计timecode空镜。",
-    "version": "v3"
+    "next_action": "✅ v4(2026-07-20):BGM 终定=MiniMax music via fal is_instrumental:true(A马林巴拨奏,科普轻律动),换掉MusicGen-small。成片 out/final.mp4 198.9s/-14.25LUFS。DEBT:①像素风重做(用户暂缓,最大)②s06时码空镜③成本回填。⏸待用户看片→score→合main。",
+    "version": "v4"
   },
   "audio": {
     "voiceover": {
@@ -668,6 +668,20 @@
         "decision": "BGM 从 fal minimax-music(song模型,哼唱)换 本地 MusicGen(facebook/musicgen-small,器乐原生无人声能力)。29.9s→8x交叉淡化loop到199s→-30LUFS垫底。",
         "why": "用户:BGM不要人声哼唱。学BGM最佳实践(media-use bgm.md):song模型(minimax)会把'[Instrumental]'当旋律哼;fal器乐模型(stable-audio/cassetteai)在网关503不可用;器乐原生MusicGen物理上不产人声=根治哼唱。",
         "evidence": "MusicGen 器乐,-30.42LUFS"
+      },
+      {
+        "id": "D20-bgm-final",
+        "stage": "v4",
+        "decision": "BGM 终定 MiniMax music via fal(is_instrumental:true,无lyrics,A马林巴拨奏)。",
+        "why": "用户否MusicGen-small(音质弱);fal minimax schema 有 is_instrumental flag(之前哼唱是我漏设+用lyrics)。学到科普BGM=轻快好奇解说律动(pluck/~105BPM/软脉冲)非慢ambient pad。",
+        "alt": "B chiptune(用户选A)"
+      },
+      {
+        "id": "D21-pixel-debt",
+        "stage": "v4",
+        "decision": "像素风重做暂缓(用户拍板)。",
+        "why": "pixel-chronicle签名是16-bit像素画,我误做成halftone纸拼贴(照collage-broll默认美学,漏了改版成像素);用户知情,暂不重做,记DEBT。",
+        "alt": "立即重做(用户暂缓)"
       }
     ],
     "costs": [
