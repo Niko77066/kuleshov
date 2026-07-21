@@ -24,6 +24,7 @@ M0 实验项目（800v-thermal-runaway / estee-lauder-night / samsung-health-ai-
 - `styles/` — 风格包（现存两包：`pixel-chronicle` 知识科普横屏 / `case-file` 官号竖屏）+ 反主观翻译总表（`translation-table.md`）+ 进化规程（`_iteration.md`）。每包 `playbook.md`（散文）+ `contract.json`（机器合同，storyboard 预检 + review 实测终检；生产期只读，带宽内调整走 `meta.contract_amendments`）
 - `projects/<片名>/` — 每片一个目录：`film.json`（全片唯一真相源）+ 阶段 artifact + 产物
 - `film-ir/` — Film IR API（Python 库 + CLI `kuleshov-ir`：read / patch / validate / execute 四动词 + G1 门套件 + migrate 收编器）；测试 `film-ir/.venv/bin/python -m pytest film-ir/tests/`
+- **worktree 凭据**：`.env` 只活在主仓（gitignored），`.git/hooks/post-checkout` 钩子会在新 worktree 落地时自动软链主仓 `.env`（2026-07-21 装；重克隆后按此句复原钩子——worktree 内脚本 `source .env` 从此免手拷）
 - `tools/oss-upload.sh` — 本地资产传 grain S3 → 返回 `storage.neodrop.ai` 公网 URL（Seedance @ref 引用用）
 - `tools/measure-render.py` — 成片实测层：从终渲 mp4 反测逐镜静态持有 / `<video>` 计数 / 响度 → `evidence/render-metrics.json`（`style.contract.render` 门的证据源；自报字段与实测矛盾以实测为准）
 - `tools/judge/` — G2 评委 harness：证据包生成（contact sheet + Golden 并排，隔离创作上下文）→ Kimi API 盲评 → 校准协议（先校准后放权，凭据 `KIMI_API_KEY` 入 `.env`）
