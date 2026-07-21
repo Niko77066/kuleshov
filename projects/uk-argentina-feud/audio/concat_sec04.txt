@@ -1,2 +1,0 @@
-file '/Users/admin/kuleshov/.claude/worktrees/argentina-england-video-3c2044/projects/uk-argentina-feud/audio/sec04a.mp3'
-file '/Users/admin/kuleshov/.claude/worktrees/argentina-england-video-3c2044/projects/uk-argentina-feud/audio/sec04b.mp3'
