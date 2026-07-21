@@ -255,7 +255,7 @@ def _build_messages(pack: Path, node: str, style_pack: str, root: Path):
 
 CITE_RE = re.compile(r"\bs\d{1,3}[a-z_]*\b|\d{1,2}:\d{2}|\d{1,3}(\.\d+)?s\b")
 # D9 网感是整体维度——评分卡口径其锚点是标题/钩子/推荐页语境，不强求镜头 ID
-HOLISTIC_ANCHOR_RE = re.compile(r"钩子|标题|开场|推荐页|封面")
+HOLISTIC_ANCHOR_RE = re.compile(r"钩子|标题|开场|推荐页|推荐流|封面")
 
 
 def validate_citations(report: dict) -> dict:
