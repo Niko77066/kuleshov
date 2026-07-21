@@ -21,10 +21,12 @@ M0 实验项目（800v-thermal-runaway / estee-lauder-night / samsung-health-ai-
 ## 目录
 
 - `.claude/skills/produce/` — 十阶段生产管线 SOP（入口：`/produce`），引擎知识包在其 `references/` 下，按镜头路由按需加载
-- `styles/` — 风格包（现存两包：`pixel-chronicle` 知识科普横屏 / `case-file` 官号竖屏）+ 反主观翻译总表（`translation-table.md`）+ 进化规程（`_iteration.md`）
+- `styles/` — 风格包（现存两包：`pixel-chronicle` 知识科普横屏 / `case-file` 官号竖屏）+ 反主观翻译总表（`translation-table.md`）+ 进化规程（`_iteration.md`）。每包 `playbook.md`（散文）+ `contract.json`（机器合同，storyboard 预检 + review 实测终检；生产期只读，带宽内调整走 `meta.contract_amendments`）
 - `projects/<片名>/` — 每片一个目录：`film.json`（全片唯一真相源）+ 阶段 artifact + 产物
 - `film-ir/` — Film IR API（Python 库 + CLI `kuleshov-ir`：read / patch / validate / execute 四动词 + G1 门套件 + migrate 收编器）；测试 `film-ir/.venv/bin/python -m pytest film-ir/tests/`
 - `tools/oss-upload.sh` — 本地资产传 grain S3 → 返回 `storage.neodrop.ai` 公网 URL（Seedance @ref 引用用）
+- `tools/measure-render.py` — 成片实测层：从终渲 mp4 反测逐镜静态持有 / `<video>` 计数 / 响度 → `evidence/render-metrics.json`（`style.contract.render` 门的证据源；自报字段与实测矛盾以实测为准）
+- `tools/judge/` — G2 评委 harness：证据包生成（contact sheet + Golden 并排，隔离创作上下文）→ Kimi API 盲评 → 校准协议（先校准后放权，凭据 `KIMI_API_KEY` 入 `.env`）
 
 ## 运行铁律（M0 版 Rule Zero）
 
@@ -32,7 +34,7 @@ M0 实验项目（800v-thermal-runaway / estee-lauder-night / samsung-health-ai-
 2. **留痕不可事后补。** 每次生成记录：模型、完整 prompt、seed、参考文件、成本、耗时、实际时长；每个关键决策（选源、重做、降级、砍内容）记入 `ledger.decisions`，带理由。
 3. **音频先行。** `audio.timeline` 定稿后，一切视觉时长以真实音频时间戳为准，禁止按剧本字数估时。
 4. **状态从文件读。** 续跑、重做、回答"做到哪了"之前，先读 `film.json`——状态机活在文件里，不在对话记忆里，也不在提示词里。
-5. **禁止静默降级。** 引擎不可用、参数被迫改变（如超时重试想丢掉首帧锚定）时，**停下来问用户**，不许自动换路——LibTV 的两次静默降级是活的反面教材。
+5. **禁止静默降级——工具降级与表达降级同罪。**（2026-07-21 五片对照实验后扩订）工具降级：引擎不可用、参数被迫改变（如超时重试想丢掉首帧锚定）、**更换渲染执行环境**（Docker→本机也算，复现性契约也是引擎契约）。表达降级：删除风格包必需声部、把真运动做成入场动画冒充、跳过 hero-frame/锚点品味门、拿自评顶替评委门。两类都不许自动执行：人在环停下来问；端到端授权时，合同带宽内的调整走 `meta.contract_amendments`（留痕、不打断），带宽外与上述清单项一律**带 `contract_violation` 标记停在 review 等用户裁决**——片子照出，但禁 `delivered`、禁合 main。"全程未降级"的汇报口径以此清单为准，不许语义缩窄。
 6. **每片出厂过 `/video-score` 登记**，人工分进片库；发现问题用 `/video-triage` 归因。这是未来机器评委的校准语料，漏一片少一片。
 7. **来源平权，质量唯一。** MG 动画（HyperFrames）、AI 生成视频（Seedance）、数字人、图片动效、实拍/检索素材是五种平权的表达语言——选源只问一个问题：**哪种来源最能表达这个镜头的意图**。成本只记账、不进路由权重；禁止"能用便宜的就先用便宜的"。最终目的是把用户期望主题的视频做到最好，不惜成本。
 

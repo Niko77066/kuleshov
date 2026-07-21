@@ -3,11 +3,21 @@
     "title": "",
     "format": "",
     "style_pack": "",
-    "commitment": { "type": "", "duration_s": 60, "tolerance_pct": 5 },
+    "commitment": {
+      "type": "",
+      "duration_s": 60,
+      "tolerance_pct": 5
+    },
     "aspect": "16:9",
-    "budget": { "cap_usd": 0, "spent_usd": 0 },
-    "pipeline_version": "m0-v1",
-    "status": "brief"
+    "budget": {
+      "cap_usd": 0,
+      "spent_usd": 0
+    },
+    "pipeline_version": "m1-v2",
+    "status": "brief",
+    "schema_version": "m1-v1",
+    "contract_amendments": {},
+    "approval_policy": null
   },
   "audio": {
     "voiceover": null,

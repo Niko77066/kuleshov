@@ -62,6 +62,11 @@ class Meta(IRModel):
     pipeline_version: str = "m0-v1"      # 生产工艺版本
     schema_version: str = SCHEMA_VERSION  # 数据格式版本（与工艺版本分离）
     status: MetaStatus = "brief"
+    # 风格合同带宽内调整：{"<合同dotted路径>": 数值}，经 ir patch 写入（自动留痕）。
+    # 越出 styles/<pack>/contract.json 的 amend 带宽 = 违约（style.contract.amend 门）。
+    contract_amendments: dict = Field(default_factory=dict)
+    # 用户把哪些门委托给 EP 代决（端到端授权的显式留痕，防"EP 代决"被写成"用户已批准"）
+    approval_policy: Optional[dict] = None
 
 
 # ---------------------------------------------------------------- 生成留痕

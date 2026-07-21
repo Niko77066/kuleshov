@@ -13,6 +13,13 @@ projects/**/*.mp3
 node_modules/
 .DS_Store
 
+# 工作残渣不进 git（2026-07-21 清库新规）：抢救转储 / 原始 API 报文（gen 留痕在 film.json）
+projects/**/recovered/
+projects/**/anchors/*_response.json
+projects/**/audio/payload*.json
+projects/**/audio/response*.json
+projects/**/audio/mm_*.json
+
 # compose 中间产物(可由脚本复现)
 projects/**/compose/bake_frames/
 projects/**/compose/snapshots/
