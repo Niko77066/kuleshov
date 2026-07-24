@@ -33,5 +33,5 @@
 ## 现状与边界
 
 - **风格包形态**（风格包 vs 拆 style-skill+contract）本版**保留现有风格包形态**——未出片验证前不赌哪种更好。
-- `meme-ledger` 风格包**暂禁用**（未完成，在 `styles/_disabled/`）。
+- `meme-ledger` 风格包已完成一次试跑，但**暂禁用**（待独立风格验收，在 `styles/_disabled/`）。
 - 与 grain harness 的具体集成（打包成 grain step-skill、provider 走 grain 原生工具、发布三件套/封印）见 `docs/grain-delivery-plan.md`——那是宿主侧的集成工作，不在本包内实现。

@@ -31,11 +31,22 @@ def find_styles_dir(project_dir: Path) -> Optional[Path]:
 
 def resolve_pack_dir(style_pack: str, styles_dir: Path) -> Optional[Path]:
     """meta.style_pack 是散文（如 "case-file v3 案卷档案（…）"），
-    取 styles/ 下目录名出现在其中的那个；多命中取最长目录名。"""
+    取 styles/ 下目录名出现在其中的那个；多命中取最长目录名。
+
+    候选包保持在 ``styles/_disabled``，只有显式写成
+    ``candidate:<pack>`` 时才参与解析。这样试跑可以执行完整合同，同时
+    普通项目永远不会误加载尚未晋级的候选包。
+    """
     if not style_pack:
         return None
-    hits = [d for d in styles_dir.iterdir()
-            if d.is_dir() and d.name and d.name in style_pack]
+    roots = [styles_dir]
+    if style_pack.startswith("candidate:"):
+        disabled = styles_dir / "_disabled"
+        if disabled.is_dir():
+            roots.append(disabled)
+    hits = [d for root in roots for d in root.iterdir()
+            if d.is_dir() and not d.name.startswith("_")
+            and d.name and d.name in style_pack]
     if not hits:
         return None
     return max(hits, key=lambda d: len(d.name))
