@@ -14,12 +14,14 @@ from ..patch import apply_patch
 from ..store import Project
 from .base import Adapter, Plan, RunResult, Target
 from .hyperframes import HyperframesAdapter
-from .stubs import AvatarAdapter, FootageAdapter, ImageMotionAdapter, SeedanceAdapter
+from .providers import (AvatarAdapter, CollageBrollAdapter, FootageAdapter,
+                        ImageMotionAdapter, SeedanceAdapter)
 from .tts import TTSAdapter
 
 REGISTRY: dict[str, Adapter] = {a.name: a for a in (
     TTSAdapter(), HyperframesAdapter(),
-    SeedanceAdapter(), ImageMotionAdapter(), AvatarAdapter(), FootageAdapter(),
+    SeedanceAdapter(), CollageBrollAdapter(), ImageMotionAdapter(),
+    AvatarAdapter(), FootageAdapter(),
 )}
 
 

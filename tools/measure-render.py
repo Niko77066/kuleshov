@@ -20,6 +20,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import re
 import subprocess
 import sys
@@ -28,8 +29,8 @@ from pathlib import Path
 
 import numpy as np
 
-FFMPEG = "/opt/homebrew/bin/ffmpeg"
-FFPROBE = "/opt/homebrew/bin/ffprobe"
+FFMPEG = os.environ.get("FFMPEG", "ffmpeg")      # 走 PATH，可用环境变量覆盖（去本机硬编码）
+FFPROBE = os.environ.get("FFPROBE", "ffprobe")
 MIN_HOLD_S = 0.8          # 短于此的静止不算"持有"（正常剪辑呼吸）
 SHOT_STATIC_RATIO = 0.7   # 镜头内持有占比超此判 measured_static
 
