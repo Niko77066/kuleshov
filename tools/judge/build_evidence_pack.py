@@ -15,13 +15,14 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import os
 import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-FFMPEG = "/opt/homebrew/bin/ffmpeg"
-FFPROBE = "/opt/homebrew/bin/ffprobe"
+FFMPEG = os.environ.get("FFMPEG", "ffmpeg")      # 走 PATH，可用环境变量覆盖（去本机硬编码）
+FFPROBE = os.environ.get("FFPROBE", "ffprobe")
 SHEET_INTERVAL_S = 2.0   # contact sheet 抽帧间隔
 SHEET_COLS = 8
 FRAME_W = 320            # tile 内单帧宽
@@ -92,6 +93,10 @@ def main() -> int:
     shots = sorted(ir.get("shots", []), key=lambda s: s["t"][0])
     frame_files = shot_frames(video, shots, out / "frames")
 
+    # 音轨抽出（audio node 给隔离 subagent 真听用；无音轨则该文件不生成，audio node 会如实缺证据）
+    subprocess.run([FFMPEG, "-y", "-loglevel", "error", "-i", str(video), "-vn",
+                    "-b:a", "96k", str(out / "audio.mp3")], check=False)
+
     golden_note = None
     if args.golden:
         gdir = Path(args.golden)
@@ -130,6 +135,8 @@ def main() -> int:
                    "provider": s.get("source", {}).get("provider")}
                   for s in shots],
         "frames": frame_files,
+        "sections": [{"id": s.get("id"), "t": s.get("t"), "text": s.get("text", "")}
+                     for s in (ir.get("audio", {}).get("timeline", {}).get("sections") or [])],
     }
     (out / "manifest.json").write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")

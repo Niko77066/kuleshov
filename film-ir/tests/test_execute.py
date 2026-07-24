@@ -6,7 +6,7 @@ import pytest
 
 from film_ir.errors import IRError
 from film_ir.execute import resolve_target, execute
-from film_ir.execute.tts import TTSAdapter, _timeline_from_subtitle
+from film_ir.execute.tts import TTSAdapter
 from film_ir.execute.base import Target
 from film_ir.models import FilmIR
 from film_ir.store import Project
@@ -41,10 +41,27 @@ def test_rule_zero_rejects_voiceover_without_entry(tmp_path):
     assert e.value.code == "RULE_ZERO"
 
 
-def test_stub_provider_not_implemented(project):
-    with pytest.raises(IRError) as e:
-        execute(project, ["shots.s01"], dry_run=True)   # s01 → seedance 占位
-    assert e.value.code == "NOT_IMPLEMENTED"
+def test_seedance_adapter_plans_translation(project):
+    """去模型化：seedance 不再占位报错，dry-run 出译好的 provider 请求方言（脱敏、无 key）。"""
+    out = execute(project, ["shots.s01"], dry_run=True)   # s01 → seedance
+    r = out["results"][0]
+    assert r["provider"] == "seedance" and r["dry_run"] is True
+    req = r["plan"]["requests"][0]
+    assert req["model"] == "doubao-seedance-2-0-260128"
+    assert req["duration_s"] == 5.0
+    assert not any(("KEY" in str(k).upper() or "TOKEN" in str(k).upper()) for k in req)
+
+
+def test_provider_adapter_delegates_on_run(project):
+    """run 委托宿主：写请求文件 + 置 sourced + gen 记请求 + ledger 决策（不 fake 生成、不持 key）。"""
+    out = execute(project, ["shots.s01"])
+    assert out["ok"]
+    ir = project.load()
+    s = next(x for x in ir.shots if x.id == "s01")
+    assert s.status == "sourced"
+    assert s.gen is not None and "delegated" in s.gen.model
+    assert (project.dir / "shots" / "s01.request.json").is_file()
+    assert any("交宿主" in d.decision for d in ir.ledger.decisions)
 
 
 def test_tts_plan(project):
@@ -52,9 +69,9 @@ def test_tts_plan(project):
     plan = TTSAdapter().plan(ir, Target("audio.voiceover", "audio.voiceover", None, "tts"),
                              project.dir)
     payload = plan.requests[0]
-    assert payload["model"] == "seed-audio-1.0"
-    assert payload["audio_config"]["enable_subtitle"] is True
-    assert "朗读" in payload["text_prompt"]
+    assert payload["model"] == "speech-2.8-hd"       # MiniMax，非火山 seed-audio
+    assert "朗读" in payload["text"]
+    assert not any("KEY" in str(k).upper() or "TOKEN" in str(k).upper() for k in payload)
 
 
 def test_tts_plan_missing_prompt_file(tmp_path):
@@ -68,17 +85,16 @@ def test_tts_plan_missing_prompt_file(tmp_path):
     assert e.value.code == "RULE_ZERO"
 
 
-def test_timeline_from_subtitle_filters_punctuation():
-    tl = _timeline_from_subtitle({"sentences": [{
-        "start_time": 193, "end_time": 2072, "text": "测试句。",
-        "words": [{"start_time": 193, "end_time": 340, "text": "测"},
-                  {"start_time": 340, "end_time": 500, "text": "试"},
-                  {"start_time": 500, "end_time": 900, "text": "句"},
-                  {"start_time": 900, "end_time": 900, "text": "。"}],   # 零时长标点
-    }]})
-    assert tl["duration_s"] == 2.072
-    assert tl["sections"][0]["id"] == "sec01"
-    assert tl["words_count"] == 3
+def test_tts_delegates_on_run(project):
+    """MiniMax + 委托：run 写请求文件 + 置 awaiting + gen 记请求 + ledger 决策（不 fake、不持 key）。
+    timeline 不再由 TTS 自报字幕建——交 forced-alignment 另建。"""
+    out = execute(project, ["audio.voiceover"])
+    assert out["ok"]
+    ir = project.load()
+    assert ir.audio.voiceover.status == "awaiting_generation"
+    assert ir.audio.voiceover.gen and "delegated" in ir.audio.voiceover.gen.model
+    assert (project.dir / "audio" / "voiceover.request.json").is_file()
+    assert ir.audio.timeline is None   # timeline 由 forced-alignment 建，不由 TTS
 
 
 def test_execute_dry_run_tts(project):

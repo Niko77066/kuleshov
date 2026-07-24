@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env bash
 # 能力预检（P1-5，2026-07-21 升级计划）：开工即产出各通路就绪状态，
 # storyboard 不得把镜头路由到 missing 的 provider——把"最后一刻发现缺凭据然后静默绕路"
 # （Codex 空调片：缺渲染机 token 于是本机渲染还自称未降级）消灭在花钱之前。
@@ -24,7 +24,7 @@ docker_status=missing
 command -v docker >/dev/null 2>&1 && docker info >/dev/null 2>&1 && docker_status=ready
 
 film_ir=missing
-[[ -x "$REPO/film-ir/.venv/bin/kuleshov-ir" || -x "/Users/admin/kuleshov/film-ir/.venv/bin/kuleshov-ir" ]] && film_ir=ready
+{ command -v kuleshov-ir >/dev/null 2>&1 || [[ -x "$REPO/film-ir/.venv/bin/kuleshov-ir" ]]; } && film_ir=ready
 
 cat > "$PROJECT/capabilities.json" <<JSON
 {
