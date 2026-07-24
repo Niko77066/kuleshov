@@ -2,8 +2,8 @@
   "schema": "voice-profile@1",
   "provider": "minimax",
   "model": "speech-2.8-hd",
-  "voice_id": "Chinese (Mandarin)_Humorous_Elder",
-  "display_name": "Humorous Elder · Gravelly, Warm, Textured",
+  "voice_id": "project-authorized-minimax-voice",
+  "display_name": "Project-authorized MiniMax voice",
   "language_boost": "Chinese",
   "generation": {
     "mode": "single-pass",
@@ -31,8 +31,9 @@
     ]
   },
   "verification": {
-    "source": "MiniMax 官方系统音色表，2026-07-23 核对",
+    "source": "项目级授权记录（不在共享风格包登记真人身份、音色 ID 或参考音频）",
     "required_after_generation": [
+      "在项目 rights/ 中登记声音使用或复刻授权，并让 Film IR 的 voice_profile 指向本风格档",
       "独立回转写与冻结剧本比对，准确率至少 95%",
       "强制对齐生成逐字 timeline",
       "检查音轨与 compose/assets/voiceover.mp3 同一文件版本"
